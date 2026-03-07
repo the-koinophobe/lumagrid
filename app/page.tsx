@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const WHATSAPP_NUMBER = "2347059497792"; // replace with real number
+const WHATSAPP_NUMBER = "2348000000000"; // replace with real number
 const WHATSAPP_MSG = encodeURIComponent("Hello LumaGrid, I'd like a free solar quote for my property.");
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
@@ -85,7 +85,7 @@ function useInView(threshold = 0.15) {
   return [ref, inView];
 }
 
-function FadeIn({ children, delay = 0, className = "" }) {
+function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const [ref, inView] = useInView();
   return (
     <div ref={ref} className={className} style={{
@@ -622,7 +622,7 @@ export default function LumaGridHome() {
               </a>
               <div style={{ fontSize: 13, marginBottom: 10 }}>Port Harcourt, Rivers State</div>
               <div style={{ display: "flex", gap: 12, marginTop: 20 }}>
-                <a href="https://www.facebook.com/lumagrid" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, transition: "color 0.2s" }} onMouseEnter={e => e.target.style.color = "white"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}>Facebook</a>
+                <a href="https://facebook.com/lumagrid" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, transition: "color 0.2s" }} onMouseEnter={e => e.target.style.color = "white"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}>Facebook</a>
               </div>
             </div>
           </div>
