@@ -135,13 +135,7 @@ function WhatsAppIcon({ size = 20, color = "white" }: { size?: number; color?: s
 
 function SunIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round">
-      <circle cx="12" cy="12" r="5" />
-      <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-      <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-    </svg>
+    <img src="/images/logo.png" alt="LumaGrid Logo"  />
   );
 }
 
@@ -364,8 +358,7 @@ export default function LumaGridHome() {
               <SunIcon />
             </div>
             <span className="brig" style={{ fontWeight: 800, fontSize: 18, color: "var(--green)", letterSpacing: "-0.02em" }}>
-              LumaGrid <span style={{ color: "var(--muted)", fontWeight: 600 }}>Solar</span>
-            </span>
+              LumaGrid</span>
           </a>
 
           <div className="hide-mobile" style={{ display: "flex", alignItems: "center", gap: 32 }}>
@@ -436,7 +429,7 @@ export default function LumaGridHome() {
             animation: heroVisible ? "float 5s ease-in-out infinite" : "none",
           }}>
             <InstallPhoto
-              src="/images/installs/hero-main.jpg"
+              src="/images/real/solar-install.jpg"
               alt="Solar installation by LumaGrid"
               style={{ borderRadius: 16, height: 420, boxShadow: "0 32px 80px rgba(13,92,58,0.2)" }}
             />
