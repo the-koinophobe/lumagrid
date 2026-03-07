@@ -101,7 +101,7 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 export default function LumaGridHome() {
   const scrollY = useScrollY();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openFaq, setOpenFaq] = useState(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [heroVisible, setHeroVisible] = useState(false);
 
   useEffect(() => {
@@ -246,8 +246,8 @@ export default function LumaGridHome() {
                 fontSize: 14, fontWeight: 500, color: "var(--muted)",
                 transition: "color 0.2s",
               }}
-                onMouseEnter={e => e.target.style.color = "var(--green)"}
-                onMouseLeave={e => e.target.style.color = "var(--muted)"}
+                onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "var(--green)"}
+                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "var(--muted)"}
               >{l.label}</a>
             ))}
           </div>
@@ -611,7 +611,7 @@ export default function LumaGridHome() {
             <div>
               <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 16 }}>Services</div>
               {["Residential Solar", "Commercial Systems", "Maintenance", "Energy Audit"].map(s => (
-                <div key={s} style={{ fontSize: 13, marginBottom: 10 }}><a href="#services" style={{ color: "rgba(255,255,255,0.55)", transition: "color 0.2s" }} onMouseEnter={e => e.target.style.color = "white"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.55)"}>{s}</a></div>
+                <div key={s} style={{ fontSize: 13, marginBottom: 10 }}><a href="#services" style={{ color: "rgba(255,255,255,0.55)", transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "white"} onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.55)"}>{s}</a></div>
               ))}
             </div>
             <div>
@@ -622,7 +622,7 @@ export default function LumaGridHome() {
               </a>
               <div style={{ fontSize: 13, marginBottom: 10 }}>Port Harcourt, Rivers State</div>
               <div style={{ display: "flex", gap: 12, marginTop: 20 }}>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, transition: "color 0.2s" }} onMouseEnter={e => e.target.style.color = "white"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}>Facebook</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, transition: "color 0.2s" }} onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "white"} onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.4)"}>Facebook</a>
               </div>
             </div>
           </div>
