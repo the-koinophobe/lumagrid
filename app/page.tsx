@@ -74,8 +74,8 @@ function useScrollY() {
   return y;
 }
 
-function useInView(threshold = 0.15) {
-  const ref = useRef(null);
+function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement | null>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true); }, { threshold });
@@ -622,12 +622,12 @@ export default function LumaGridHome() {
               </a>
               <div style={{ fontSize: 13, marginBottom: 10 }}>Port Harcourt, Rivers State</div>
               <div style={{ display: "flex", gap: 12, marginTop: 20 }}>
-                <a href="https://facebook.com/lumagrid" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, transition: "color 0.2s" }} onMouseEnter={e => e.target.style.color = "white"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}>Facebook</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, transition: "color 0.2s" }} onMouseEnter={e => e.target.style.color = "white"} onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}>Facebook</a>
               </div>
             </div>
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 24, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-            <span style={{ fontSize: 12 }}>© 2026 LumaGrid Solar. All rights reserved.</span>
+            <span style={{ fontSize: 12 }}>© 2025 LumaGrid Solar. All rights reserved.</span>
             <span style={{ fontSize: 12 }}>lumagridsolar.com</span>
           </div>
         </div>
