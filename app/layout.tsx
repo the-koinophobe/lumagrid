@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Chivo } from "next/font/google";
 <meta name="apple-mobile-web-app-title" content="LumaGrid" />
-import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
-import type { ReactNode } from "react";
+import "@/app/globals.css"
 
 // ─── Site-wide default metadata ───────────────────────────────────────────────
 // Every page inherits these and can override specific fields via generateMetadata()
@@ -88,16 +86,19 @@ export const metadata: Metadata = {
 };
 
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-bricolage",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const chivo = Chivo({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-chivo",
+  display: "swap",
 });
-
 
 export default function RootLayout({
   children,
@@ -125,7 +126,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${bricolage.variable} ${chivo.variable} antialiased`}
       >
         {children}
       </body>
