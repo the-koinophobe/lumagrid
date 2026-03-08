@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+<meta name="apple-mobile-web-app-title" content="LumaGrid" />
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 

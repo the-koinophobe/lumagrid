@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 
-const WHATSAPP_NUMBER = "23480000000007059497792"; 
+const WHATSAPP_NUMBER = "2347059497792"; 
 const WHATSAPP_MSG = encodeURIComponent("Hello LumaGrid, I'd like a free solar quote for my property.");
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
