@@ -129,6 +129,7 @@ export default function RootLayout({
         className={`${bricolage.variable} ${chivo.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
