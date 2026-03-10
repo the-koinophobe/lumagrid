@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Bricolage_Grotesque, Chivo } from "next/font/google";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import "@/app/globals.css"
@@ -134,7 +132,7 @@ export default function RootLayout({
         className={`${bricolage.variable} ${chivo.variable} antialiased`}
       >
         {children}
-        <SpeedInsights />
+        
         <Analytics />
       </body>
     </html>
