@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Chivo } from "next/font/google";
-<meta name="apple-mobile-web-app-title" content="LumaGrid" />
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import "@/app/globals.css"
 
 // ─── Site-wide default metadata ───────────────────────────────────────────────
@@ -114,6 +114,7 @@ export default function RootLayout({
         */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <LocalBusinessSchema />
 
         {/* Favicon set — generate these at realfavicongenerator.net */}
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />

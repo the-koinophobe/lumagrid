@@ -13,10 +13,10 @@ export const GBP_PROFILE_URL = "https://share.google/tWa3IVR0ETFJ0k8FV";
 export const FACEBOOK_URL = "https://facebook.com/lumagrid";
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Services", href: "#services" },
-  { label: "Packages", href: "#packages" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Financing", href: "#financing" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Financing", href: "/financing" },
+  { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
 ];
 
