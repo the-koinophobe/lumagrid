@@ -14,7 +14,7 @@ export default function Navbar({ isMobile }: { isMobile: boolean }) {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: scrolled || open ? "rgba(255,255,255,0.97)" : "transparent",
+      background: scrolled || open ? "rgba(255,255,255,0.97)" : "#fff",
       borderBottom: scrolled || open ? "1px solid var(--border)" : "none",
       backdropFilter: scrolled || open ? "blur(14px)" : "none",
       transition: "all 0.3s ease",

@@ -7,8 +7,8 @@ import { WhatsAppIcon, InstallPhoto, FadeIn } from "@/components/ui";
 const TRUST_STATS = [
   { val: "3",    lbl: "States covered" },
   { val: "2yr",  lbl: "Warranty" },
-  { val: "1–2d", lbl: "Install time" },
-  { val: "Free", lbl: "Site visit" },
+  { val: "1–3d", lbl: "Install time" },
+  { val: "Free", lbl: "Site assessment" },
 ];
 
 export default function Hero({ isMobile, isSmall }: { isMobile: boolean; isSmall: boolean }) {
@@ -32,12 +32,12 @@ export default function Hero({ isMobile, isSmall }: { isMobile: boolean; isSmall
         <div style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s" }}>
           <span className="tag">Rivers · Delta · Bayelsa</span>
           <h1 className="brig" style={{ fontSize: "clamp(36px, 5.5vw, 64px)", fontWeight: 800, lineHeight: 1.07, letterSpacing: "-0.03em", marginBottom: 24 }}>
-            Stop paying<br />
-            <span style={{ color: "var(--green)" }}>for power</span><br />
-            you don't own.
+            No more<br />
+            <span style={{ color: "var(--green)" }}>power outages</span><br />
+            Switch to Solar today!.
           </h1>
           <p style={{ fontSize: 17, color: "var(--muted)", lineHeight: 1.75, maxWidth: 460, marginBottom: 36 }}>
-            LumaGrid installs reliable solar systems across the Niger Delta — with full transparency, genuine panel brands, real warranties, and engineers you can call back.
+            LumaGrid installs reliable solar systems across the Niger Delta, with full transparency, genuine panel brands, real warranties, and engineers you can call back.
           </p>
 
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 14, flexWrap: "wrap", alignItems: isMobile ? "stretch" : "center" }}>

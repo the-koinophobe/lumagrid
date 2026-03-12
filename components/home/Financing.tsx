@@ -25,10 +25,10 @@ export default function Financing({ isMobile }: { isMobile: boolean }) {
             Go solar today.<br />Pay over time.
           </h2>
           <p style={{ fontSize: 15, color: "rgba(255,255,255,0.72)", lineHeight: 1.8, marginBottom: 32, maxWidth: 420 }}>
-            Through our financing partner, you can own a full solar system with as little as 30% upfront and spread the rest over 6, 12, or 24 months. Start saving from day one.
+            Through our financing partner, you can own a full solar system with as little as 30% upfront and spread the rest over 6, 12, or 18 months. Start saving from day one.
           </p>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap", marginBottom: 36 }}>
-            {[["30%", "Minimum deposit"], ["24mo", "Max repayment"], ["Same day", "Installation"]].map(([val, lbl]) => (
+            {[["30%", "Minimum deposit"], ["18mo", "Max repayment"], ["Same day", "Installation"]].map(([val, lbl]) => (
               <div key={lbl} style={{ borderLeft: "3px solid var(--accent)", paddingLeft: 14 }}>
                 <div className="brig" style={{ fontSize: 22, fontWeight: 800, color: "white" }}>{val}</div>
                 <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>{lbl}</div>

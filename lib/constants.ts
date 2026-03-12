@@ -28,26 +28,26 @@ export const TRUST_BAR: TrustItem[] = [
 ];
 
 export const SERVICES: Service[] = [
-  { icon: "⚡", title: "Residential Solar", desc: "Full off-grid and hybrid systems for homes across the Niger Delta. Designed around your actual load — not guesswork." },
-  { icon: "🏭", title: "Commercial Systems", desc: "High-capacity installations for businesses, cold rooms, telecoms, and industrial facilities." },
-  { icon: "🔧", title: "Maintenance & Repair", desc: "Regular servicing, panel cleaning, inverter diagnostics, and emergency call-outs across Rivers, Delta, and Bayelsa." },
-  { icon: "📊", title: "Energy Audit", desc: "We assess your load, NEPA history, and usage pattern before recommending a system. No upselling. Just the right fit." },
+  { icon: "", title: "Residential Solar", desc: "Full off-grid and hybrid systems for homes across the Niger Delta. Designed around your actual load — not guesswork." },
+  { icon: "", title: "Commercial Systems", desc: "High-capacity installations for businesses, cold rooms, telecoms, and industrial facilities." },
+  { icon: "", title: "Maintenance & Repair", desc: "Regular servicing, panel cleaning, inverter diagnostics, and emergency call-outs across Rivers, Delta, and Bayelsa." },
+  { icon: "", title: "Energy Audit", desc: "We assess your load, NEPA history, and usage pattern before recommending a system. No upselling. Just the right fit." },
 ];
 
 export const PACKAGES: Package[] = [
   {
-    name: "Starter", label: "1–2 Bedroom", kva: "3.5KVA",
-    price: "₦1.8M", priceNote: "from", color: "#157a4e", highlight: false,
+    name: "Starter", label: "1–2 Bedroom", kva: "3KVA",
+    price: "₦1.7M", priceNote: "from", color: "#157a4e", highlight: false,
     appliances: ["4–6 LED lights", "2 ceiling fans", "TV + decoder", "Phone charging", "Small fridge"],
-    includes: ["3.5KVA inverter", "200Ah lithium battery", "4× 400W solar panels", "2-year warranty"],
-    ctaMsg: "I'm interested in the Starter 3.5KVA solar package.",
+    includes: ["3KVA inverter", "3.2kwh lithium battery", "4× 600W solar panels", "2-year warranty"],
+    ctaMsg: "I'm interested in the Starter 3KVA solar package.",
   },
   {
-    name: "Family", label: "3–4 Bedroom", kva: "5KVA",
-    price: "₦2.8M", priceNote: "from", color: "#0d5c3a", highlight: true, badge: "Most Popular",
+    name: "Family", label: "3–4 Bedroom", kva: "6KVA",
+    price: "₦3.8M", priceNote: "from", color: "#0d5c3a", highlight: true, badge: "Most Popular",
     appliances: ["All starter loads", "1× 1.5HP inverter AC", "Washing machine", "Large fridge/freezer", "Security lights"],
-    includes: ["5KVA hybrid inverter", "400Ah lithium battery", "8× 400W solar panels", "2-year warranty"],
-    ctaMsg: "I'm interested in the Family 5KVA solar package.",
+    includes: ["6KVA hybrid inverter", "8kwh lithium battery", "8× 600W solar panels", "2-year warranty"],
+    ctaMsg: "I'm interested in the Family 6KVA solar package.",
   },
   {
     name: "Premium", label: "Large Home / Office", kva: "10KVA+",
@@ -73,16 +73,12 @@ export const GALLERY_ITEMS: GalleryItem[] = [
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    name: "Chukwuemeka O.", location: "GRA Phase 2, Port Harcourt", stars: 5,
-    text: "LumaGrid gave me a detailed quote before I paid anything. They showed up on time, finished in two days, and my light bill is basically zero now. These guys are the real deal.",
+    name: "Okoro E.", location: "", stars: 5,
+    text: "I'm satisfied with the service rendered by LumaGrid and their technicians. I live in Abraka where the light situation is bad, so I decided to get solar for my house and shop. I contacted them for it and I can say, for sure, they did a great job. The connections were neat and obviously done by people who know what they are doing. Now I don't have to be worrying myself about NEPA bill again. I definitely recommend them to anyone wanting to have solar in their homes and offices",
   },
   {
-    name: "Mrs. Adaeze N.", location: "Trans Amadi, Rivers State", stars: 5,
-    text: "I was scared of being scammed after hearing stories. But they documented everything — the panels, the inverter brand, the warranty papers. Six months later, still working perfectly.",
-  },
-  {
-    name: "Tunde F.", location: "Warri, Delta State", stars: 5,
-    text: "Finally no more generator noise at 2am. The system handles my AC and everything. LumaGrid even came back to check on the installation three weeks after. Highly recommended.",
+    name: "Ms. Deborah", location: "", stars: 5,
+    text: "I was originally hesitant to patronize LumaGrid for my solar installation as it is a small and barely known brand. But after my experience, I'm happy to say that I have no regrets. The products were quality ones, the customer service top-notch. The installation was smooth and hitch free, and thanks to LumaGrid, I've started enjoying constant electricity without interruption. I highly recommend LumaGrid to anyone looking for quality products and services",
   },
 ];
 

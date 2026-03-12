@@ -3,7 +3,6 @@
 import { WHATSAPP_URL } from "@/lib/constants";
 import { useBreakpoint } from "@/lib/hooks";
 import { WhatsAppIcon } from "@/components/ui";
-
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";

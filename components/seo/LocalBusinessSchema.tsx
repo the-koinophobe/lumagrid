@@ -6,7 +6,7 @@ interface LocalBusinessSchemaProps {
 export default function LocalBusinessSchema({ description }: LocalBusinessSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
     "@id": "https://lumagridsolar.com/#business",
     name: "LumaGrid Solar",
     description:
@@ -70,7 +70,6 @@ export default function LocalBusinessSchema({ description }: LocalBusinessSchema
       "@type": "ContactPoint",
       telephone: "+2347059497792",
       contactType: "customer service",
-      contactOption: "TollFree",
       availableLanguage: ["English"],
     },
   };
