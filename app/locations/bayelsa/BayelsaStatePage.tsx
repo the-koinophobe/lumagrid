@@ -232,32 +232,32 @@ export default function BayelsaStatePage() {
           >
             {[
               {
-                icon: "🗼",
+                icon: "",
                 title: "Transmission Vandalism Risk",
                 body: "Bayelsa receives grid power via long-distance transmission lines from Ahoada. A single act of vandalism can plunge the entire state into darkness for weeks or months, as seen in 2024.",
               },
               {
-                icon: "🌿",
+                icon: "",
                 title: "River Access Only Communities",
                 body: "Tens of thousands of Bayelsans in Nembe, Brass, Southern Ijaw, and other LGAs are only reachable by boat. The national grid will never serve these communities. Solar is the only answer.",
               },
               {
-                icon: "🛢️",
+                icon: "",
                 title: "Oloibiri: Birthplace of Oil, No Light",
                 body: "Nigeria's first oil well was drilled in Oloibiri, Ogbia LGA in 1956. Decades later, this community still lacks reliable power. We serve Oloibiri and all of Ogbia LGA.",
               },
               {
-                icon: "🏛️",
+                icon: "",
                 title: "Institutions Need Power",
                 body: "Niger Delta University in Amassoma, schools, clinics, and government offices across Yenagoa cannot function without power. Solar ensures they run regardless of grid status.",
               },
               {
-                icon: "💸",
+                icon: "",
                 title: "Generator Fuel Costs Are Catastrophic",
                 body: "During the 2024 blackout, residents in Ekeki and Edepie reported spending N30,000 to N50,000 weekly on fuel. Solar eliminates that recurring drain on household and business income.",
               },
               {
-                icon: "🔋",
+                icon: "",
                 title: "Battery Storage for Rainy Season",
                 body: "Bayelsa's heavy rainfall reduces direct sunlight on some days. Our systems include correctly sized lithium battery banks to cover low-generation periods seamlessly.",
               },
@@ -284,7 +284,7 @@ export default function BayelsaStatePage() {
         </div>
       </section>
 
-      {/* ── LANDMARK AREAS WITH IMAGE PLACEHOLDERS ── */}
+      {/* ── LANDMARK AREAS WITH IMAGE PLACEHOLDERS ── 
       <section className="section">
         <div className="container">
           <FadeIn>
@@ -389,6 +389,7 @@ export default function BayelsaStatePage() {
         </div>
       </section>
 
+      */}
       {/* ── AREAS COVERED ── */}
       <section id="areas" className="section" style={{ background: "var(--green-xl)" }}>
         <div className="container">

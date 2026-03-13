@@ -66,8 +66,8 @@ export default function Hero({ isMobile, isSmall }: { isMobile: boolean; isSmall
         {!isMobile && (
           <div style={{ opacity: visible ? 1 : 0, transition: "opacity 0.8s ease 0.35s" }}>
             <InstallPhoto
-              src="/images/Lumagrid-11.jpg"
-              alt="Solar installation by LumaGrid in Port Harcourt"
+              src="/images/real/5kwh-6Kva-system-abraka.jpeg"
+              alt="Solar installation by LumaGrid in Abraka, Delta State"
               style={{ borderRadius: 16, height: 440, boxShadow: "0 32px 80px rgba(13,92,58,0.2)" }}
               priority
             />

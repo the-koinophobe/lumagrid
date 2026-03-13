@@ -209,32 +209,32 @@ export default function DeltaStatePage() {
           >
             {[
               {
-                icon: "🛢️",
+                icon: "",
                 title: "Oil Money, No Light",
                 body: "Delta produces billions in oil revenue yet grid power in Warri averages under 5 hours daily. Solar ends this contradiction for your home or business permanently.",
               },
               {
-                icon: "🌊",
+                icon: "",
                 title: "Riverine Communities with No Grid",
                 body: "Bomadi, Patani, Burutu, and Forcados Bay communities have never had consistent grid power. Solar-plus-battery is the only viable solution for these locations.",
               },
               {
-                icon: "🏙️",
+                icon: "",
                 title: "Asaba Is Booming",
                 body: "Asaba is one of Nigeria's fastest-growing cities, a UNESCO City of Film with a surge in housing. New construction going in without solar is leaving money on the table.",
               },
               {
-                icon: "⚡",
+                icon: "",
                 title: "Unstable Transmission",
                 body: "Delta's grid depends on transmission lines prone to vandalism and faults. Even when power is scheduled, it often does not arrive. Solar removes that dependency entirely.",
               },
               {
-                icon: "🏭",
+                icon: "",
                 title: "Commercial & Industrial Belt",
                 body: "Sapele, Ughelli, and the Warri industrial corridor run heavy equipment that needs reliable power. We design industrial solar systems that match real commercial loads.",
               },
               {
-                icon: "💰",
+                icon: "",
                 title: "Diesel Is Bleeding You Dry",
                 body: "Businesses in Warri and Effurun burning 15 to 30 litres of diesel daily are losing N250,000 to N500,000 monthly to fuel. Solar payback on that spend is typically under 18 months.",
               },
@@ -261,7 +261,7 @@ export default function DeltaStatePage() {
         </div>
       </section>
 
-      {/* ── LANDMARK AREAS WITH IMAGE PLACEHOLDERS ── */}
+      {/* ── LANDMARK AREAS WITH IMAGE PLACEHOLDERS ── 
       <section className="section">
         <div className="container">
           <FadeIn>
@@ -358,6 +358,7 @@ export default function DeltaStatePage() {
         </div>
       </section>
 
+      */}
       {/* ── AREAS COVERED ── */}
       <section id="areas" className="section" style={{ background: "var(--green-xl)" }}>
         <div className="container">

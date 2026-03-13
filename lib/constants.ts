@@ -66,9 +66,18 @@ export const PROCESS_STEPS: ProcessStep[] = [
 ];
 
 export const GALLERY_ITEMS: GalleryItem[] = [
-  { type: "rooftop", label: "Rooftop Installation — GRA Phase 2, Port Harcourt", img: "/images/Lumagrid-11.jpg" },
-  { type: "indoor",  label: "Inverter & Battery Setup — Trans Amadi",             img: "/images/Lumagrid-12.jpg" },
-  { type: "rooftop", label: "Rooftop Array — Warri, Delta State",                 img: "/images/Lumagrid-13.jpg" },
+  { type: "rooftop", label: "", img: "/images/Lumagrid-11.jpg" },
+  { type: "rooftop",  label: "", img: "/images/real/jinko-panel.jpeg" },
+  { type: "rooftop", label: "", img: "/images/real/jinko-panels.jpeg" },
+  { type: "rooftop", label: "", img: "/images/real/longi-solar-panels.jpeg" },
+  { type: "indoor",  label: "", img: "/images/real/solar-panels-for-lumagrid-install.jpeg" },
+  { type: "indoor", label: "5kwh-6Kva-system-abraka", img: "/images/real/5kwh-6Kva-system-abraka.jpeg" },
+  { type: "rooftop", label: "", img: "/images/real/solar-panels-on-the-roof.jpeg" },
+  { type: "indoor",  label: "", img: "/images/real/LiFePo4-batteries-in-storage.jpeg" },
+  { type: "indoor", label: "", img: "/images/real/movable-LifePo4-batteries.jpeg" },
+  { type: "indoor", label: "", img: "/images/real/lumagrid-deriy-batteries-for-solar-installation.jpeg" },
+  { type: "indoor",  label: "", img: "/images/Lumagrid-12.jpg" },
+  { type: "rooftop", label: "", img: "/images/Lumagrid-13.jpg" },
 ];
 
 export const TESTIMONIALS: Testimonial[] = [

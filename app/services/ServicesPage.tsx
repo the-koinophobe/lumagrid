@@ -1,5 +1,6 @@
 "use client";
 
+import { InstallPhoto } from "@/components/ui";
 import { useBreakpoint } from "@/lib/hooks";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -132,6 +133,7 @@ const services = [
     tag: "For Homes",
     title: "Residential Solar Installation",
     subtitle: "Reliable power for your home. Day and night.",
+    image: "/images/real/5kwh-6Kva-system-abraka.jpeg",
     description:
       "Stop depending on PHCN and diesel generators. We design and install complete solar power systems for houses, apartments, and estates across Rivers State, Delta State, and Bayelsa. Every installation is sized to your actual energy needs so you never pay for capacity you do not use.",
     features: [
@@ -158,6 +160,7 @@ const services = [
     tag: "For Businesses",
     title: "Commercial Solar Installation",
     subtitle: "Cut your diesel bill. Protect your business from outages.",
+    image: "/images/real/movable-LifePo4-batteries.jpeg",
     description:
       "Power cuts cost Nigerian businesses billions every year. LumaGrid designs and deploys commercial-grade solar systems for offices, warehouses, hospitals, schools, hotels, filling stations, and industrial facilities. We handle systems of any scale and manage the full project from site survey to commissioning.",
     features: [
@@ -184,6 +187,7 @@ const services = [
     tag: "Keep It Running",
     title: "Solar System Maintenance & Servicing",
     subtitle: "Your system is an investment. Protect it.",
+    image: "/images/real/jinko-590w-panels.jpeg",
     description:
       "A poorly maintained solar system loses efficiency fast. Dust, loose connections, and aging components quietly rob you of power. Our maintenance service keeps your panels, batteries, and inverters performing at full capacity all year round.",
     features: [
@@ -210,6 +214,7 @@ const services = [
     tag: "Upgrade Service",
     title: "Gel Battery to Lithium Battery Upgrade",
     subtitle: "The single best upgrade you can make to your solar system.",
+    image: "/images/real/deriy-10kwh-battery.jpeg",
     description:
       "Still running gel or flooded lead-acid batteries? You are losing money every month. Lithium batteries last 3 to 5 times longer, charge faster, weigh less, and give you more usable capacity from the same bank size. The upgrade pays for itself within years, not decades.",
     features: [
@@ -622,58 +627,17 @@ export default function ServicesPage() {
 
                   {/* Image placeholder side */}
                   <FadeIn delay={0.1} style={{ direction: "ltr" }}>
-                    <div
+                    <InstallPhoto
+                      src={svc.image}
+                      alt={svc.imagePlaceholder.label}
                       style={{
-                        borderRadius: "16px",
-                        overflow: "hidden",
-                        background: svc.highlight
-                          ? "rgba(255,255,255,0.1)"
-                          : "var(--green-light)",
-                        border: svc.highlight
-                          ? "1px solid rgba(255,255,255,0.2)"
-                          : "1px solid var(--border)",
-                        aspectRatio: svc.imagePlaceholder.aspect,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "0.75rem",
-                        padding: "2rem",
-                        textAlign: "center",
-                        position: "relative",
+                        borderRadius: 16,
+                        height: 340,
+                        boxShadow: svc.highlight
+                          ? "0 24px 64px rgba(0,0,0,0.25)"
+                          : "0 16px 48px rgba(13,92,58,0.15)",
                       }}
-                    >
-                      {/* Swap this div for <InstallPhoto> or <Image> when you have the photo */}
-                      <svg
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke={svc.highlight ? "rgba(255,255,255,0.4)" : "var(--green-mid)"}
-                        strokeWidth="1.5"
-                        aria-hidden
-                      >
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                      </svg>
-                      <p
-                        style={{
-                          fontSize: "0.8rem",
-                          fontWeight: 600,
-                          color: svc.highlight ? "rgba(255,255,255,0.5)" : "var(--muted)",
-                          maxWidth: "220px",
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        {/* PLACEHOLDER: Replace with actual photo */}
-                        {svc.imagePlaceholder.label}
-                        <br />
-                        <span style={{ fontWeight: 400, fontSize: "0.75rem" }}>
-                          {svc.imagePlaceholder.hint}
-                        </span>
-                      </p>
-                    </div>
+                    />
                   </FadeIn>
                 </div>
               </div>
@@ -885,7 +849,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── PHOTO GALLERY PLACEHOLDER ────────────────────────────────── */}
+      {/* ── PHOTO GALLERY PLACEHOLDER ────────────────────────────────── 
       <section
         className="section"
         style={{ background: "var(--green-xl)", borderTop: "1px solid var(--border)" }}
@@ -937,7 +901,7 @@ export default function ServicesPage() {
                     textAlign: "center",
                   }}
                 >
-                  {/* PLACEHOLDER: Replace with <InstallPhoto> component */}
+                  / PLACEHOLDER: Replace with <InstallPhoto> component 
                   <svg
                     width="28"
                     height="28"
@@ -967,6 +931,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      */}
 
       {/* ── FAQ ──────────────────────────────────────────────────────── */}
       <section className="section" style={{ background: "#fff" }}>

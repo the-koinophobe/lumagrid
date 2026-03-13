@@ -3,7 +3,6 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import { Bricolage_Grotesque, Chivo } from "next/font/google";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
-import "@/app/globals.css"
 
 // ─── Site-wide default metadata ───────────────────────────────────────────────
 // Every page inherits these and can override specific fields via generateMetadata()
@@ -77,11 +76,6 @@ export const metadata: Metadata = {
 
   alternates: {
     canonical: "https://lumagridsolar.com",
-  },
-
-  verification: {
-    google: "REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_TOKEN",
-    // Add more verifications here if needed e.g. bing
   },
 
   category: "Solar Energy",

@@ -1,3 +1,5 @@
+"use client";
+
 import { TRUST_BAR, SERVICES, PROCESS_STEPS, LOCATIONS, FAQS } from "@/lib/constants";
 import { FadeIn, SectionHeader } from "@/components/ui";
 import { useState } from "react";
@@ -89,7 +91,7 @@ export function Locations() {
                       <span key={city} style={{ background: "var(--green-light)", color: "var(--green-mid)", fontSize: 12, fontWeight: 500, padding: "5px 11px", borderRadius: 3 }}>{city}</span>
                     ))}
                   </div>
-                  <a href={`/locations/${loc.state.toLowerCase().replace(" ", "-")}`} style={{ display: "inline-block", marginTop: 20, fontSize: 13, color: "var(--green)", fontWeight: 600 }}>
+                  <a href={`/locations/${loc.state.toLowerCase().replace(/\s*state\s*/i, "").trim()}`} style={{ display: "inline-block", marginTop: 20, fontSize: 13, color: "var(--green)", fontWeight: 600 }}>
                     View {loc.state} page →
                   </a>
                 </div>

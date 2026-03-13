@@ -210,32 +210,32 @@ export default function RiversStatePage() {
           >
             {[
               {
-                icon: "☀️",
+                icon: "",
                 title: "Excellent Solar Resource",
                 body: "Port Harcourt generates 4.0 to 5.24 kWh per kW of installed solar capacity daily across all seasons. The science is solid for this location.",
               },
               {
-                icon: "⛽",
+                icon: "",
                 title: "Rising Fuel Costs",
                 body: "A household running a generator 20 hours daily is spending N80,000 to N150,000 on diesel monthly. Solar eliminates that recurring cost.",
               },
               {
-                icon: "🌊",
+                icon: "",
                 title: "Riverine Areas Without Grid",
                 body: "Communities in Bonny, Degema, Okrika, and Kalabari have never had reliable grid power. Solar is not a supplement here — it is the grid.",
               },
               {
-                icon: "🏭",
+                icon: "",
                 title: "Industrial & Commercial Loads",
                 body: "Trans-Amadi, Eleme, and Oyigbo are home to some of Nigeria's most energy-intensive businesses. We design systems to match industrial loads.",
               },
               {
-                icon: "🛡️",
+                icon: "",
                 title: "No More Generator Noise or Soot",
                 body: "Port Harcourt already battles soot pollution. Solar ends your contribution to that problem and gives you silent, clean power 24/7.",
               },
               {
-                icon: "📈",
+                icon: "",
                 title: "Property Value Increase",
                 body: "Solar-equipped homes in Obio-Akpor, GRA, and Woji command higher rents and sale prices. It is an infrastructure upgrade, not just a power solution.",
               },
@@ -262,7 +262,7 @@ export default function RiversStatePage() {
         </div>
       </section>
 
-      {/* ── LANDMARK IMAGE PLACEHOLDERS ── */}
+      {/* ── LANDMARK IMAGE PLACEHOLDERS ── 
       <section className="section">
         <div className="container">
           <FadeIn>
@@ -328,7 +328,7 @@ export default function RiversStatePage() {
                     background: "#fff",
                   }}
                 >
-                  {/* Image placeholder */}
+                  {/* Image placeholder 
                   <div
                     style={{
                       height: "180px",
@@ -366,6 +366,8 @@ export default function RiversStatePage() {
           </div>
         </div>
       </section>
+
+      */}
 
       {/* ── AREAS COVERED ── */}
       <section id="areas" className="section" style={{ background: "var(--green-xl)" }}>

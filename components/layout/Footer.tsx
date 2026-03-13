@@ -13,7 +13,7 @@ export default function Footer({ isMobile, isSmall }: { isMobile: boolean; isSma
   return (
     <footer style={{ background: "#07100d", color: "rgba(255,255,255,0.5)", padding: "56px 24px 32px" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : isSmall ? "1fr" : "2fr 1fr 1fr 1fr", gap: isSmall ? 32 : 48, marginBottom: 48 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isSmall ? "1fr" : isMobile ? "1fr 1fr" : "2fr 1fr 1fr 1fr", gap: isSmall ? 32 : 48, marginBottom: 48 }}>
 
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
