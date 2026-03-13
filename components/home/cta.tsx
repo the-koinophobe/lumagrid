@@ -1,4 +1,4 @@
-import { TESTIMONIALS, WHATSAPP_URL, GBP_REVIEW_URL } from "@/lib/constants";
+import { TESTIMONIALS, WHATSAPP_URL, GBP_REVIEW_URL, FACEBOOK_URL } from "@/lib/constants";
 import { FadeIn, Stars, GoogleIcon, WhatsAppIcon } from "@/components/ui";
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
@@ -69,8 +69,11 @@ export function FinalCta({ isMobile }: { isMobile: boolean }) {
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-wa" style={{ background: "white", color: "var(--green)", fontSize: 16, padding: "17px 36px", boxShadow: "0 8px 32px rgba(0,0,0,0.2)" }}>
               <WhatsAppIcon size={20} color="var(--green)" /> WhatsApp Us Now
             </a>
-            <a href="#packages" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "white" }}>
-              View Packages
+            <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer"
+              className="btn-outline"
+              style={{ borderColor: "rgba(255,255,255,0.4)", color: "white" }}
+            >
+              Follow on Facebook
             </a>
           </div>
         </FadeIn>

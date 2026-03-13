@@ -8,8 +8,8 @@ export const WHATSAPP_MSG = encodeURIComponent(
   "Hello LumaGrid, I'd like a free solar quote for my property."
 );
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
-export const GBP_REVIEW_URL = "https://share.google/DtTq8d4ZtcoUOQ1yH";
-export const GBP_PROFILE_URL = "https://share.google/tWa3IVR0ETFJ0k8FV";
+export const GBP_PROFILE_URL = "https://share.google/7VtLiGINyLqrUfrf3";
+export const GBP_REVIEW_URL  = "https://share.google/7VtLiGINyLqrUfrf3";
 export const FACEBOOK_URL = "https://facebook.com/lumagrid";
 
 export const NAV_LINKS: NavLink[] = [
