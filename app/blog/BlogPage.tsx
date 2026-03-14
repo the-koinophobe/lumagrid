@@ -7,9 +7,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { FadeIn } from "@/components/ui";
 
-// ---------------------------------------------------------------------------
-// Blog data — move to @/lib/constants when wiring up MDX / CMS
-// ---------------------------------------------------------------------------
 const CATEGORIES = ["All", "Solar Tips", "Power Planning", "News", "Case Studies"] as const;
 type Category = (typeof CATEGORIES)[number];
 
@@ -17,91 +14,19 @@ interface BlogPost {
   slug: string;
   title: string;
   excerpt: string;
-  category: Exclude<Category, "All">;
+  category: string;
   date: string;
   readTime: string;
-  // Swap coverGradient for a real image src (Next.js Image) when photos are ready
   coverGradient: string;
   coverEmoji: string;
 }
 
-const POSTS: BlogPost[] = [
-  {
-    slug: "how-much-solar-do-i-need",
-    title: "How much solar do I actually need for my home in Port Harcourt?",
-    excerpt:
-      "Most solar quotes in Nigeria are oversized. Here is a practical guide to sizing your system correctly so you do not overpay.",
-    category: "Power Planning",
-    date: "Mar 5, 2025",
-    readTime: "6 min read",
-    coverGradient: "linear-gradient(135deg, #0d5c3a 0%, #00c06a 100%)",
-    coverEmoji: "🏠",
-  },
-  {
-    slug: "generator-vs-solar-true-cost",
-    title: "Generator vs solar: the true 5-year cost comparison",
-    excerpt:
-      "Diesel generators feel cheaper upfront. We break down the numbers over five years so you can see exactly where your money goes.",
-    category: "Solar Tips",
-    date: "Feb 20, 2025",
-    readTime: "5 min read",
-    coverGradient: "linear-gradient(135deg, #157a4e 0%, #0d5c3a 100%)",
-    coverEmoji: "⚡",
-  },
-  {
-    slug: "understanding-inverter-types",
-    title: "Pure sine wave vs modified sine wave inverters: what to choose",
-    excerpt:
-      "The wrong inverter can damage your appliances. Here is what every Nigerian homeowner needs to know before buying.",
-    category: "Solar Tips",
-    date: "Feb 10, 2025",
-    readTime: "4 min read",
-    coverGradient: "linear-gradient(135deg, #0a4a2e 0%, #157a4e 100%)",
-    coverEmoji: "🔋",
-  },
-  {
-    slug: "lumagrid-installs-bayelsa",
-    title: "LumaGrid completes 3 commercial installs across Bayelsa State",
-    excerpt:
-      "Three businesses in Yenagoa now run entirely on solar. A look at the systems we designed and what the clients are saving monthly.",
-    category: "Case Studies",
-    date: "Jan 28, 2025",
-    readTime: "3 min read",
-    coverGradient: "linear-gradient(135deg, #042a1a 0%, #0d5c3a 100%)",
-    coverEmoji: "🌍",
-  },
-  {
-    slug: "rivy-financing-guide",
-    title: "How to finance your solar system through Rivy: a step-by-step guide",
-    excerpt:
-      "You do not need to pay for your full system upfront. We walk you through applying for solar financing via our Rivy partnership.",
-    category: "News",
-    date: "Jan 15, 2025",
-    readTime: "4 min read",
-    coverGradient: "linear-gradient(135deg, #00a358 0%, #00c06a 100%)",
-    coverEmoji: "💳",
-  },
-  {
-    slug: "maintenance-tips-rainy-season",
-    title: "5 solar maintenance tips for the Niger Delta rainy season",
-    excerpt:
-      "Heavy rain, humidity and salt air affect your panels more than you think. Here is how to keep your system running at its best.",
-    category: "Solar Tips",
-    date: "Dec 30, 2024",
-    readTime: "4 min read",
-    coverGradient: "linear-gradient(135deg, #0d5c3a 0%, #1a7a5e 100%)",
-    coverEmoji: "🌧️",
-  },
-];
-
-const CAT_COLORS: Record<Exclude<Category, "All">, string> = {
+const CAT_COLORS: Record<string, string> = {
   "Solar Tips": "#00c06a",
   "Power Planning": "#157a4e",
   "News": "#0d5c3a",
   "Case Studies": "#0a4a2e",
 };
-
-// ---------------------------------------------------------------------------
 
 function PostCard({ post }: { post: BlogPost }) {
   const [hovered, setHovered] = useState(false);
@@ -127,7 +52,6 @@ function PostCard({ post }: { post: BlogPost }) {
             : "0 2px 8px rgba(0,0,0,0.04)",
         }}
       >
-        {/* Cover */}
         <div style={{ position: "relative", overflow: "hidden", flexShrink: 0 }}>
           <div
             style={{
@@ -143,14 +67,12 @@ function PostCard({ post }: { post: BlogPost }) {
           >
             {post.coverEmoji}
           </div>
-
-          {/* Category pill overlaid on cover — matches reference */}
           <span
             style={{
               position: "absolute",
               top: "0.8rem",
               left: "0.8rem",
-              background: CAT_COLORS[post.category],
+              background: CAT_COLORS[post.category] ?? "var(--green)",
               color: "#fff",
               fontSize: "0.68rem",
               fontWeight: 700,
@@ -163,12 +85,10 @@ function PostCard({ post }: { post: BlogPost }) {
           </span>
         </div>
 
-        {/* Text below cover */}
         <div style={{ padding: "1rem 1.2rem 1.4rem", flex: 1, display: "flex", flexDirection: "column" }}>
           <p style={{ fontSize: "0.7rem", color: "var(--muted)", marginBottom: "0.45rem" }}>
             {post.date} · {post.readTime}
           </p>
-
           <h3
             className="brig"
             style={{
@@ -185,7 +105,6 @@ function PostCard({ post }: { post: BlogPost }) {
           >
             {post.title}
           </h3>
-
           <p
             style={{
               fontSize: "0.8rem",
@@ -205,16 +124,14 @@ function PostCard({ post }: { post: BlogPost }) {
   );
 }
 
-// ---------------------------------------------------------------------------
-
-export default function BlogPage() {
+export default function BlogPage({ posts }: { posts: BlogPost[] }) {
   const { isMobile, isSmall } = useBreakpoint();
   const [activeCategory, setActiveCategory] = useState<Category>("All");
 
   const filtered =
     activeCategory === "All"
-      ? POSTS
-      : POSTS.filter((p) => p.category === activeCategory);
+      ? posts
+      : posts.filter((p) => p.category === activeCategory);
 
   const cols = isMobile ? 1 : isSmall ? 2 : 3;
 
@@ -222,7 +139,6 @@ export default function BlogPage() {
     <>
       <Navbar isMobile={isMobile} />
 
-      {/* ── Hero ── */}
       <section
         style={{
           background: "var(--green)",
@@ -270,11 +186,8 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* ── Posts ── */}
       <section className="section" style={{ background: "var(--green-xl)" }}>
         <div className="container">
-
-          {/* Category filter — centered, matches reference */}
           <FadeIn>
             <div
               style={{
@@ -307,7 +220,6 @@ export default function BlogPage() {
             </div>
           </FadeIn>
 
-          {/* Grid */}
           <FadeIn delay={0.05}>
             {filtered.length === 0 ? (
               <p style={{ textAlign: "center", color: "var(--muted)", padding: "3rem 0" }}>
@@ -329,7 +241,6 @@ export default function BlogPage() {
             )}
           </FadeIn>
 
-          {/* WhatsApp subscribe strip */}
           <FadeIn delay={0.1}>
             <div
               style={{
@@ -353,8 +264,8 @@ export default function BlogPage() {
                   Send us a message and we will add you to our update list.
                 </p>
               </div>
-              <a
-                href="https://wa.me/2347059497792?text=Hi%20LumaGrid%2C%20please%20add%20me%20to%20your%20blog%20update%20list."
+              
+                <a href="https://wa.me/2347059497792?text=Hi%20LumaGrid%2C%20please%20add%20me%20to%20your%20blog%20update%20list."
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -379,7 +290,6 @@ export default function BlogPage() {
               </a>
             </div>
           </FadeIn>
-
         </div>
       </section>
 

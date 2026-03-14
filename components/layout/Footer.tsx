@@ -1,12 +1,12 @@
+"use client";
+
 import Image from "next/image";
-import { WHATSAPP_URL, FACEBOOK_URL, GBP_PROFILE_URL } from "@/lib/constants";
+import { WHATSAPP_URL, FACEBOOK_URL, GBP_PROFILE_URL, GBP_REVIEW_URL } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/ui";
 
 const FOOTER_SERVICES = ["Residential Solar", "Commercial Systems", "Maintenance", "Energy Audit"];
-const FOOTER_CITIES = ["Port Harcourt", "Warri", "Asaba", "Yenagoa"];
 const FOOTER_COMPANY: [string, string][] = [["About Us", "/about"], ["Blog", "/blog"], ["Services", "/services"], ["Financing", "/financing"]];
 
-const mutedLink: React.CSSProperties = { fontSize: 13, color: "rgba(255,255,255,0.5)", transition: "color 0.2s", display: "block", marginBottom: 11 };
 const colHead: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 18 };
 
 export default function Footer({ isMobile, isSmall }: { isMobile: boolean; isSmall: boolean }) {
@@ -33,30 +33,14 @@ export default function Footer({ isMobile, isSmall }: { isMobile: boolean; isSma
           <div>
             <div style={colHead}>Services</div>
             {FOOTER_SERVICES.map(s => (
-              <a key={s} href="/services" style={mutedLink}
-                onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "white"}
-                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.5)"}
-              >{s}</a>
+              <a key={s} href="/services" className="footer-link">{s}</a>
             ))}
           </div>
-
-          {/* <div>
-            <div style={colHead}>Locations</div>
-            {FOOTER_CITIES.map(c => (
-              <a key={c} href="#locations" style={mutedLink}
-                onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "white"}
-                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.5)"}
-              >{c}</a>
-            ))}
-          </div> */}
 
           <div>
             <div style={colHead}>Company</div>
             {FOOTER_COMPANY.map(([label, href]) => (
-              <a key={label} href={href} style={mutedLink}
-                onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "white"}
-                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.5)"}
-              >{label}</a>
+              <a key={label} href={href} className="footer-link">{label}</a>
             ))}
           </div>
         </div>
@@ -67,12 +51,10 @@ export default function Footer({ isMobile, isSmall }: { isMobile: boolean; isSma
             {[
               ["Facebook", FACEBOOK_URL],
               ["Google Business", GBP_PROFILE_URL],
-              ["Leave a Review", GBP_PROFILE_URL],
+              ["Leave a Review", GBP_REVIEW_URL],
             ].map(([label, href]) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", transition: "color 0.2s" }}
-                onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "white"}
-                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.4)"}
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="footer-link"
+                style={{ fontSize: 12, marginBottom: 0 }}
               >{label}</a>
             ))}
           </div>

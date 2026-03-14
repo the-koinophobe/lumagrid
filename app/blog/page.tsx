@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getAllPosts } from "@/lib/blog";
 import BlogPage from "./BlogPage";
 
 export const metadata: Metadata = {
@@ -18,5 +19,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <BlogPage />;
+  const posts = getAllPosts();
+  console.log("Posts found:", posts.length, posts.map(p => p.slug));
+  return <BlogPage posts={posts} />;
 }
