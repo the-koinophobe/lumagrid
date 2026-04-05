@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/ui";
 
@@ -30,51 +30,51 @@ interface CalcResult {
 // ─── DB ──────────────────────────────────────────────────────────────────────
 
 const DB: ApplianceDB[] = [
-  {id:"led9",   cat:"Lighting", name:"LED bulb (9W)",              rw:9,   eff:95, surge:1,   defaultDay:5, defaultNight:4},
-  {id:"led15",  cat:"Lighting", name:"LED bulb (15W)",             rw:15,  eff:95, surge:1,   defaultDay:5, defaultNight:4},
-  {id:"cfl20",  cat:"Lighting", name:"CFL bulb (20W)",             rw:20,  eff:80, surge:1,   defaultDay:4, defaultNight:4},
-  {id:"tube40", cat:"Lighting", name:"Fluorescent tube (40W)",     rw:40,  eff:80, surge:1,   defaultDay:4, defaultNight:4},
-  {id:"flood50",cat:"Lighting", name:"Floodlight (50W)",           rw:50,  eff:90, surge:1,   defaultDay:0, defaultNight:8},
-  {id:"cfan",   cat:"Fans",     name:"Ceiling fan (standard)",     rw:75,  eff:80, surge:1.5, defaultDay:6, defaultNight:8},
-  {id:"cfandc", cat:"Fans",     name:"Ceiling fan (DC motor)",     rw:35,  eff:90, surge:1.2, defaultDay:6, defaultNight:8},
-  {id:"stand",  cat:"Fans",     name:"Standing fan",               rw:60,  eff:80, surge:1.5, defaultDay:5, defaultNight:7},
-  {id:"table",  cat:"Fans",     name:"Table fan",                  rw:40,  eff:80, surge:1.5, defaultDay:4, defaultNight:6},
-  {id:"exhaust",cat:"Fans",     name:"Exhaust fan",                rw:30,  eff:80, surge:1.5, defaultDay:3, defaultNight:0},
-  {id:"ac05",  cat:"Air conditioning", name:"1HP split AC",        rw:850, eff:85, surge:3,   defaultDay:3, defaultNight:7},
-  {id:"ac15",  cat:"Air conditioning", name:"1.5HP split AC",      rw:1120,eff:85, surge:3,   defaultDay:3, defaultNight:7},
-  {id:"ac2",   cat:"Air conditioning", name:"2HP split AC",        rw:1500,eff:85, surge:3,   defaultDay:2, defaultNight:8},
-  {id:"ac25",  cat:"Air conditioning", name:"2.5HP split AC",      rw:1900,eff:85, surge:3,   defaultDay:2, defaultNight:8},
-  {id:"inv15", cat:"Air conditioning", name:"1.5HP inverter AC",   rw:700, eff:95, surge:2,   defaultDay:3, defaultNight:7},
-  {id:"inv2",  cat:"Air conditioning", name:"2HP inverter AC",     rw:950, eff:95, surge:2,   defaultDay:2, defaultNight:8},
-  {id:"frmini", cat:"Refrigeration", name:"Mini fridge (50-100L)",       rw:80,  eff:85, surge:2.5, alwaysOn:true, duty:0.35, defaultDay:8, defaultNight:5},
-  {id:"frsmall",cat:"Refrigeration", name:"Small fridge (100-200L)",     rw:120, eff:85, surge:2.5, alwaysOn:true, duty:0.35, defaultDay:8, defaultNight:5},
-  {id:"frmed",  cat:"Refrigeration", name:"Medium fridge (200-300L)",    rw:150, eff:85, surge:2.5, alwaysOn:true, duty:0.35, defaultDay:8, defaultNight:5},
-  {id:"frlarge",cat:"Refrigeration", name:"Large fridge (300-400L)",     rw:200, eff:85, surge:2.5, alwaysOn:true, duty:0.35, defaultDay:8, defaultNight:5},
-  {id:"chest",  cat:"Refrigeration", name:"Chest freezer (200L)",        rw:150, eff:85, surge:2.5, alwaysOn:true, duty:0.35, defaultDay:8, defaultNight:5},
-  {id:"upright",cat:"Refrigeration", name:"Upright freezer (300L)",      rw:200, eff:85, surge:2.5, alwaysOn:true, duty:0.35, defaultDay:8, defaultNight:5},
-  {id:"wchil",  cat:"Refrigeration", name:"Water dispenser (hot & cold)",rw:100, eff:85, surge:2,   alwaysOn:true, duty:0.3,  defaultDay:8, defaultNight:3},
-  {id:"tv32",  cat:"Entertainment", name:"LED TV 32\"",  rw:50,  eff:85, surge:1, defaultDay:3, defaultNight:4},
-  {id:"tv43",  cat:"Entertainment", name:"LED TV 43\"",  rw:80,  eff:85, surge:1, defaultDay:2, defaultNight:4},
-  {id:"tv55",  cat:"Entertainment", name:"LED TV 55\"",  rw:120, eff:85, surge:1, defaultDay:2, defaultNight:4},
-  {id:"dstv",  cat:"Entertainment", name:"DSTV decoder", rw:15,  eff:85, surge:1, defaultDay:3, defaultNight:4},
-  {id:"gotv",  cat:"Entertainment", name:"GoTV / StarTimes decoder",rw:12,eff:85, surge:1, defaultDay:3, defaultNight:4},
-  {id:"speaker",cat:"Entertainment",name:"Home theatre / soundbar",rw:80, eff:80, surge:1, defaultDay:2, defaultNight:3},
-  {id:"laptop", cat:"Computing", name:"Laptop (14-15\")",         rw:65,  eff:85, surge:1,   defaultDay:6, defaultNight:2},
-  {id:"desktop",cat:"Computing", name:"Desktop PC",              rw:200, eff:85, surge:1.2, defaultDay:6, defaultNight:1},
-  {id:"router", cat:"Computing", name:"WiFi router",             rw:15,  eff:85, surge:1,   alwaysOn:true, duty:1, defaultDay:12,defaultNight:12},
-  {id:"cctv",   cat:"Computing", name:"CCTV (4 cameras)",        rw:60,  eff:85, surge:1,   alwaysOn:true, duty:1, defaultDay:12,defaultNight:12},
-  {id:"phone",  cat:"Phones",   name:"Smartphone charger",       rw:10,  eff:85, surge:1,   defaultDay:2, defaultNight:3},
-  {id:"phone2", cat:"Phones",   name:"Smartphone x2 chargers",   rw:20,  eff:85, surge:1,   defaultDay:2, defaultNight:3},
-  {id:"micro",  cat:"Kitchen",  name:"Microwave (800W)",          rw:1000,eff:85, surge:1.5, defaultDay:0.5, defaultNight:0},
-  {id:"kettle", cat:"Kitchen",  name:"Electric kettle",           rw:1500,eff:100,surge:1,   defaultDay:0.2, defaultNight:0},
-  {id:"iron",   cat:"Laundry",  name:"Clothes iron",              rw:1000,eff:100,surge:1,   defaultDay:1, defaultNight:0},
-  {id:"washmach",cat:"Laundry", name:"Washing machine",           rw:500, eff:78, surge:3,   defaultDay:1, defaultNight:0},
-  {id:"pump05", cat:"Pumps",    name:"Submersible pump (0.5HP)",  rw:370, eff:75, surge:3,   defaultDay:2, defaultNight:0},
-  {id:"pump1",  cat:"Pumps",    name:"Submersible pump (1HP)",    rw:750, eff:75, surge:3,   defaultDay:2, defaultNight:0},
-  {id:"pump15", cat:"Pumps",    name:"Submersible pump (1.5HP)",  rw:1100,eff:75, surge:3,   defaultDay:2, defaultNight:0},
-  {id:"alarm",  cat:"Security", name:"Alarm system",              rw:20,  eff:85, surge:1,   alwaysOn:true, duty:1, defaultDay:12,defaultNight:12},
-  {id:"cpap",   cat:"Medical",  name:"CPAP machine",              rw:30,  eff:85, surge:1,   defaultDay:0, defaultNight:8},
-  {id:"oxygen", cat:"Medical",  name:"Oxygen concentrator (5L)",  rw:300, eff:80, surge:1.5, defaultDay:4, defaultNight:4},
+  { id: "led9", cat: "Lighting", name: "LED bulb (9W)", rw: 9, eff: 95, surge: 1, defaultDay: 5, defaultNight: 4 },
+  { id: "led15", cat: "Lighting", name: "LED bulb (15W)", rw: 15, eff: 95, surge: 1, defaultDay: 5, defaultNight: 4 },
+  { id: "cfl20", cat: "Lighting", name: "CFL bulb (20W)", rw: 20, eff: 80, surge: 1, defaultDay: 4, defaultNight: 4 },
+  { id: "tube40", cat: "Lighting", name: "Fluorescent tube (40W)", rw: 40, eff: 80, surge: 1, defaultDay: 4, defaultNight: 4 },
+  { id: "flood50", cat: "Lighting", name: "Floodlight (50W)", rw: 50, eff: 90, surge: 1, defaultDay: 0, defaultNight: 8 },
+  { id: "cfan", cat: "Fans", name: "Ceiling fan (standard)", rw: 75, eff: 80, surge: 1.5, defaultDay: 6, defaultNight: 8 },
+  { id: "cfandc", cat: "Fans", name: "Ceiling fan (DC motor)", rw: 35, eff: 90, surge: 1.2, defaultDay: 6, defaultNight: 8 },
+  { id: "stand", cat: "Fans", name: "Standing fan", rw: 60, eff: 80, surge: 1.5, defaultDay: 5, defaultNight: 7 },
+  { id: "table", cat: "Fans", name: "Table fan", rw: 40, eff: 80, surge: 1.5, defaultDay: 4, defaultNight: 6 },
+  { id: "exhaust", cat: "Fans", name: "Exhaust fan", rw: 30, eff: 80, surge: 1.5, defaultDay: 3, defaultNight: 0 },
+  { id: "ac05", cat: "Air conditioning", name: "1HP split AC", rw: 850, eff: 85, surge: 3, defaultDay: 3, defaultNight: 7 },
+  { id: "ac15", cat: "Air conditioning", name: "1.5HP split AC", rw: 1120, eff: 85, surge: 3, defaultDay: 3, defaultNight: 7 },
+  { id: "ac2", cat: "Air conditioning", name: "2HP split AC", rw: 1500, eff: 85, surge: 3, defaultDay: 2, defaultNight: 8 },
+  { id: "ac25", cat: "Air conditioning", name: "2.5HP split AC", rw: 1900, eff: 85, surge: 3, defaultDay: 2, defaultNight: 8 },
+  { id: "inv15", cat: "Air conditioning", name: "1.5HP inverter AC", rw: 700, eff: 95, surge: 2, defaultDay: 3, defaultNight: 7 },
+  { id: "inv2", cat: "Air conditioning", name: "2HP inverter AC", rw: 950, eff: 95, surge: 2, defaultDay: 2, defaultNight: 8 },
+  { id: "frmini", cat: "Refrigeration", name: "Mini fridge (50-100L)", rw: 80, eff: 85, surge: 2.5, alwaysOn: true, duty: 0.35, defaultDay: 8, defaultNight: 5 },
+  { id: "frsmall", cat: "Refrigeration", name: "Small fridge (100-200L)", rw: 120, eff: 85, surge: 2.5, alwaysOn: true, duty: 0.35, defaultDay: 8, defaultNight: 5 },
+  { id: "frmed", cat: "Refrigeration", name: "Medium fridge (200-300L)", rw: 150, eff: 85, surge: 2.5, alwaysOn: true, duty: 0.35, defaultDay: 8, defaultNight: 5 },
+  { id: "frlarge", cat: "Refrigeration", name: "Large fridge (300-400L)", rw: 200, eff: 85, surge: 2.5, alwaysOn: true, duty: 0.35, defaultDay: 8, defaultNight: 5 },
+  { id: "chest", cat: "Refrigeration", name: "Chest freezer (200L)", rw: 150, eff: 85, surge: 2.5, alwaysOn: true, duty: 0.35, defaultDay: 8, defaultNight: 5 },
+  { id: "upright", cat: "Refrigeration", name: "Upright freezer (300L)", rw: 200, eff: 85, surge: 2.5, alwaysOn: true, duty: 0.35, defaultDay: 8, defaultNight: 5 },
+  { id: "wchil", cat: "Refrigeration", name: "Water dispenser (hot & cold)", rw: 100, eff: 85, surge: 2, alwaysOn: true, duty: 0.3, defaultDay: 8, defaultNight: 3 },
+  { id: "tv32", cat: "Entertainment", name: "LED TV 32\"", rw: 50, eff: 85, surge: 1, defaultDay: 3, defaultNight: 4 },
+  { id: "tv43", cat: "Entertainment", name: "LED TV 43\"", rw: 80, eff: 85, surge: 1, defaultDay: 2, defaultNight: 4 },
+  { id: "tv55", cat: "Entertainment", name: "LED TV 55\"", rw: 120, eff: 85, surge: 1, defaultDay: 2, defaultNight: 4 },
+  { id: "dstv", cat: "Entertainment", name: "DSTV decoder", rw: 15, eff: 85, surge: 1, defaultDay: 3, defaultNight: 4 },
+  { id: "gotv", cat: "Entertainment", name: "GoTV / StarTimes decoder", rw: 12, eff: 85, surge: 1, defaultDay: 3, defaultNight: 4 },
+  { id: "speaker", cat: "Entertainment", name: "Home theatre / soundbar", rw: 80, eff: 80, surge: 1, defaultDay: 2, defaultNight: 3 },
+  { id: "laptop", cat: "Computing", name: "Laptop (14-15\")", rw: 65, eff: 85, surge: 1, defaultDay: 6, defaultNight: 2 },
+  { id: "desktop", cat: "Computing", name: "Desktop PC", rw: 200, eff: 85, surge: 1.2, defaultDay: 6, defaultNight: 1 },
+  { id: "router", cat: "Computing", name: "WiFi router", rw: 15, eff: 85, surge: 1, alwaysOn: true, duty: 1, defaultDay: 12, defaultNight: 12 },
+  { id: "cctv", cat: "Computing", name: "CCTV (4 cameras)", rw: 60, eff: 85, surge: 1, alwaysOn: true, duty: 1, defaultDay: 12, defaultNight: 12 },
+  { id: "phone", cat: "Phones", name: "Smartphone charger", rw: 10, eff: 85, surge: 1, defaultDay: 2, defaultNight: 3 },
+  { id: "phone2", cat: "Phones", name: "Smartphone x2 chargers", rw: 20, eff: 85, surge: 1, defaultDay: 2, defaultNight: 3 },
+  { id: "micro", cat: "Kitchen", name: "Microwave (800W)", rw: 1000, eff: 85, surge: 1.5, defaultDay: 0.5, defaultNight: 0 },
+  { id: "kettle", cat: "Kitchen", name: "Electric kettle", rw: 1500, eff: 100, surge: 1, defaultDay: 0.2, defaultNight: 0 },
+  { id: "iron", cat: "Laundry", name: "Clothes iron", rw: 1000, eff: 100, surge: 1, defaultDay: 1, defaultNight: 0 },
+  { id: "washmach", cat: "Laundry", name: "Washing machine", rw: 500, eff: 78, surge: 3, defaultDay: 1, defaultNight: 0 },
+  { id: "pump05", cat: "Pumps", name: "Submersible pump (0.5HP)", rw: 370, eff: 75, surge: 3, defaultDay: 2, defaultNight: 0 },
+  { id: "pump1", cat: "Pumps", name: "Submersible pump (1HP)", rw: 750, eff: 75, surge: 3, defaultDay: 2, defaultNight: 0 },
+  { id: "pump15", cat: "Pumps", name: "Submersible pump (1.5HP)", rw: 1100, eff: 75, surge: 3, defaultDay: 2, defaultNight: 0 },
+  { id: "alarm", cat: "Security", name: "Alarm system", rw: 20, eff: 85, surge: 1, alwaysOn: true, duty: 1, defaultDay: 12, defaultNight: 12 },
+  { id: "cpap", cat: "Medical", name: "CPAP machine", rw: 30, eff: 85, surge: 1, defaultDay: 0, defaultNight: 8 },
+  { id: "oxygen", cat: "Medical", name: "Oxygen concentrator (5L)", rw: 300, eff: 80, surge: 1.5, defaultDay: 4, defaultNight: 4 },
 ];
 
 const INV_SIZES = [3, 3.5, 4, 5, 6, 7.5, 8, 10, 12, 15, 20, 25, 30];
@@ -182,8 +182,8 @@ function Flag({ type, title, desc }: { type: "warn" | "info"; title: string; des
 
 const LOCATIONS = [
   { state: "Rivers", psh: 4.5, cities: "Port Harcourt, Obio-Akpor, Bonny" },
-  { state: "Delta",  psh: 4.6, cities: "Warri, Asaba, Sapele, Abraka" },
-  { state: "Bayelsa",psh: 4.4, cities: "Yenagoa, Brass, Ogbia" },
+  { state: "Delta", psh: 4.6, cities: "Warri, Asaba, Sapele, Abraka" },
+  { state: "Bayelsa", psh: 4.4, cities: "Yenagoa, Brass, Ogbia" },
 ];
 
 function Step1({ location, onSelect, onNext }: { location: string; onSelect: (s: string, p: number) => void; onNext: () => void }) {
@@ -559,16 +559,16 @@ export default function SolarCalculator() {
   const [appliances, setAppliances] = useState<Appliance[]>([]);
   const [counter, setCounter] = useState(0);
 
+  const counterRef = useRef(0);
+
   const addAppliance = useCallback((a: ApplianceDB) => {
-    setCounter(c => {
-      const uid = c + 1;
-      setAppliances(prev => [...prev, {
-        uid, id: a.id, name: a.name, rw: a.rw, eff: a.eff,
-        surge: a.surge ?? 1, alwaysOn: !!a.alwaysOn, duty: a.duty ?? 1,
-        qty: 1, dayH: a.defaultDay, nightH: a.defaultNight,
-      }]);
-      return uid;
-    });
+    counterRef.current += 1;
+    const uid = counterRef.current;
+    setAppliances(prev => [...prev, {
+      uid, id: a.id, name: a.name, rw: a.rw, eff: a.eff,
+      surge: a.surge ?? 1, alwaysOn: !!a.alwaysOn, duty: a.duty ?? 1,
+      qty: 1, dayH: a.defaultDay, nightH: a.defaultNight,
+    }]);
   }, []);
 
   const changeAppliance = useCallback((uid: number, field: "qty" | "dayH" | "nightH", val: number) => {
@@ -580,7 +580,7 @@ export default function SolarCalculator() {
   }, []);
 
   function restart() {
-    setAppliances([]); setCounter(0); setLocation("Rivers"); setPsh(4.5); setStep(1);
+    setAppliances([]); counterRef.current = 0; setLocation("Rivers"); setPsh(4.5); setStep(1);
   }
 
   return (
