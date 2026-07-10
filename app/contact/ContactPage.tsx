@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useBreakpoint } from "@/lib/hooks";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { WhatsAppIcon, FadeIn } from "@/components/ui";
+import { FadeIn } from "@/components/ui";
 
 // ---------------------------------------------------------------------------
 // Contact channels
@@ -282,7 +282,7 @@ export default function ContactPage() {
                 marginBottom: "0.75rem",
               }}
             >
-              Let's talk solar
+              Let&apos;s talk solar
             </h1>
             <p style={{ fontSize: "1rem", opacity: 0.8, maxWidth: "440px", lineHeight: 1.7 }}>
               Whether you need a quote, have questions about financing, or want after-sales support, we are here.

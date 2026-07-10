@@ -168,7 +168,7 @@ export default function RiversStatePage() {
                 lineHeight: 1.7,
               }}
             >
-              Port Harcourt is one of Nigeria's most solar-ready cities. With average daily output of up to 5.24 kWh per kW installed,
+              Port Harcourt is one of Nigeria&apos;s most solar-ready cities. With average daily output of up to 5.24 kWh per kW installed,
               your investment works hard here year-round. We serve all 23 LGAs across Rivers State, from GRA to Bonny Island to Degema.
             </p>
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
@@ -459,7 +459,7 @@ export default function RiversStatePage() {
                   }}
                 >
                   <Stars count={t.rating} />
-                  <p style={{ color: "#333", lineHeight: 1.7, margin: "14px 0 18px", fontSize: "0.93rem" }}>"{t.text}"</p>
+                  <p style={{ color: "#333", lineHeight: 1.7, margin: "14px 0 18px", fontSize: "0.93rem" }}>&quot;{t.text}&quot;</p>
                   <div>
                     <strong style={{ color: "var(--green)", fontSize: "0.92rem" }}>{t.name}</strong>
                     <p style={{ color: "var(--muted)", fontSize: "0.82rem" }}>{t.area}</p>

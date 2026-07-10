@@ -82,7 +82,7 @@ export default function Packages({ isMobile, isTablet }: { isMobile: boolean; is
             <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ color: "var(--green)", fontWeight: 600 }}>
               WhatsApp us
             </a>{" "}
-            — we'll help you figure it out for free.
+            — we&apos;ll help you figure it out for free.
           </p>
         </FadeIn>
       </div>

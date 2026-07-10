@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { useScrollY } from "@/lib/hooks";
+import Link from "next/link";
+import { useScrollY, useBreakpoint } from "@/lib/hooks";
 import { NAV_LINKS, WHATSAPP_URL } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/ui";
 
-export default function Navbar({ isMobile }: { isMobile: boolean }) {
+export default function Navbar({ isMobile: isMobileProp }: { isMobile?: boolean } = {}) {
+  const bp = useBreakpoint();
+  const isMobile = isMobileProp ?? bp.isMobile;
   const scrollY = useScrollY();
   const [open, setOpen] = useState(false);
   const scrolled = scrollY > 40;
@@ -20,20 +23,20 @@ export default function Navbar({ isMobile }: { isMobile: boolean }) {
       transition: "all 0.3s ease",
     }}>
       <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 68, padding: "0 24px" }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 34, height: 34, borderRadius: 7, overflow: "hidden", position: "relative" }}>
             <Image src="/images/logo.png" alt="LumaGrid Solar Logo" fill style={{ objectFit: "contain" }} />
           </div>
           <span className="brig" style={{ fontWeight: 800, fontSize: 18, color: "var(--green)", letterSpacing: "-0.02em" }}>LumaGrid</span>
-        </a>
+        </Link>
 
         {!isMobile && (
           <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
             {NAV_LINKS.map(l => (
-              <a key={l.label} href={l.href} style={{ fontSize: 14, fontWeight: 500, color: "var(--muted)", transition: "color 0.2s" }}
+              <Link key={l.label} href={l.href} style={{ fontSize: 14, fontWeight: 500, color: "var(--muted)", transition: "color 0.2s" }}
                 onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "var(--green)"}
                 onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "var(--muted)"}
-              >{l.label}</a>
+              >{l.label}</Link>
             ))}
           </div>
         )}
@@ -67,10 +70,10 @@ export default function Navbar({ isMobile }: { isMobile: boolean }) {
         <div style={{ maxHeight: open ? "400px" : "0", overflow: "hidden", transition: "max-height 0.35s ease", background: "white", borderTop: open ? "1px solid var(--border)" : "none" }}>
           <div style={{ padding: "16px 24px 24px", display: "flex", flexDirection: "column", gap: 4 }}>
             {NAV_LINKS.map(l => (
-              <a key={l.label} href={l.href} onClick={() => setOpen(false)}
+              <Link key={l.label} href={l.href} onClick={() => setOpen(false)}
                 style={{ fontSize: 16, fontWeight: 500, color: "var(--text)", padding: "12px 0", borderBottom: "1px solid var(--border)" }}>
                 {l.label}
-              </a>
+              </Link>
             ))}
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
               onClick={() => setOpen(false)} className="btn-wa" style={{ marginTop: 16, justifyContent: "center" }}>

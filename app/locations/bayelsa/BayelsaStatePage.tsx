@@ -172,7 +172,7 @@ export default function BayelsaStatePage() {
                 lineHeight: 1.7,
               }}
             >
-              Bayelsa's power crisis is real and well-documented. Transmission vandalism, infrastructure gaps, and geography combine to
+              Bayelsa&apos;s power crisis is real and well-documented. Transmission vandalism, infrastructure gaps, and geography combine to
               make the national grid unreliable here by default. Solar is not an upgrade for Bayelsa — it is the solution. We install
               across all 8 LGAs, including riverine and island communities.
             </p>
@@ -479,7 +479,7 @@ export default function BayelsaStatePage() {
                   }}
                 >
                   <Stars count={t.rating} />
-                  <p style={{ color: "#333", lineHeight: 1.7, margin: "14px 0 18px", fontSize: "0.93rem" }}>"{t.text}"</p>
+                  <p style={{ color: "#333", lineHeight: 1.7, margin: "14px 0 18px", fontSize: "0.93rem" }}>&quot;{t.text}&quot;</p>
                   <div>
                     <strong style={{ color: "var(--green)", fontSize: "0.92rem" }}>{t.name}</strong>
                     <p style={{ color: "var(--muted)", fontSize: "0.82rem" }}>{t.area}</p>
@@ -527,7 +527,7 @@ export default function BayelsaStatePage() {
               Ready to Go Solar in Bayelsa State?
             </h2>
             <p style={{ color: "rgba(255,255,255,0.85)", marginBottom: "28px", lineHeight: 1.7 }}>
-              Do not wait for the next transmission tower vandalism or grid failure. Get a solar system designed for Bayelsa's
+              Do not wait for the next transmission tower vandalism or grid failure. Get a solar system designed for Bayelsa&apos;s
               climate and geography. Free assessment, honest recommendation.
             </p>
             <a

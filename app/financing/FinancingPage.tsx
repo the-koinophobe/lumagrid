@@ -5,7 +5,6 @@ import { useBreakpoint } from "@/lib/hooks";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { WhatsAppIcon, FadeIn, SectionHeader } from "@/components/ui";
-import { WHATSAPP_URL } from "@/lib/constants";
 
 // Rivy partner config
 const RIVY_APPLY_URL = "https://app.rivy.co/signup";
@@ -392,7 +391,7 @@ function FinancingCalculator() {
 
                   {/* T&C footnote */}
                   <p style={{ fontSize: "0.72rem", color: "var(--muted)", lineHeight: 1.6, textAlign: "center" }}>
-                    Figures are estimates for planning purposes only. Final terms are subject to Rivy's credit assessment.{" "}
+                    Figures are estimates for planning purposes only. Final terms are subject to Rivy&apos;s credit assessment.{" "}
                     <a href={RIVY_TERMS_URL} target="_blank" rel="noopener noreferrer" style={{ color: "var(--green-mid)", textDecoration: "underline" }}>
                       Terms and conditions apply.
                     </a>

@@ -125,7 +125,7 @@ function PostCard({ post }: { post: BlogPost }) {
 }
 
 export default function BlogPage({ posts }: { posts: BlogPost[] }) {
-  const { isMobile, isSmall } = useBreakpoint();
+  const { isMobile, isTablet, isSmall } = useBreakpoint();
   const [activeCategory, setActiveCategory] = useState<Category>("All");
 
   const filtered =
@@ -133,7 +133,7 @@ export default function BlogPage({ posts }: { posts: BlogPost[] }) {
       ? posts
       : posts.filter((p) => p.category === activeCategory);
 
-  const cols = isMobile ? 1 : isSmall ? 2 : 3;
+  const cols = isMobile ? 1 : isTablet ? 2 : 3;
 
   return (
     <>

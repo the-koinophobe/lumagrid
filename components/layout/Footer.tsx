@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useBreakpoint } from "@/lib/hooks";
 import { WHATSAPP_URL, FACEBOOK_URL, GBP_PROFILE_URL, GBP_REVIEW_URL } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/ui";
 
@@ -9,7 +11,16 @@ const FOOTER_COMPANY: [string, string][] = [["About Us", "/about"], ["Blog", "/b
 
 const colHead: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 18 };
 
-export default function Footer({ isMobile, isSmall }: { isMobile: boolean; isSmall: boolean }) {
+export default function Footer({
+  isMobile: isMobileProp,
+  isSmall: isSmallProp,
+}: {
+  isMobile?: boolean;
+  isSmall?: boolean;
+} = {}) {
+  const bp = useBreakpoint();
+  const isMobile = isMobileProp ?? bp.isMobile;
+  const isSmall = isSmallProp ?? bp.isSmall;
   return (
     <footer style={{ background: "#07100d", color: "rgba(255,255,255,0.5)", padding: "56px 24px 32px" }}>
       <div className="container">
@@ -33,14 +44,14 @@ export default function Footer({ isMobile, isSmall }: { isMobile: boolean; isSma
           <div>
             <div style={colHead}>Services</div>
             {FOOTER_SERVICES.map(s => (
-              <a key={s} href="/services" className="footer-link">{s}</a>
+              <Link key={s} href="/services" className="footer-link">{s}</Link>
             ))}
           </div>
 
           <div>
             <div style={colHead}>Company</div>
             {FOOTER_COMPANY.map(([label, href]) => (
-              <a key={label} href={href} className="footer-link">{label}</a>
+              <Link key={label} href={href} className="footer-link">{label}</Link>
             ))}
           </div>
         </div>

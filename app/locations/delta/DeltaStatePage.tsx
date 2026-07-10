@@ -448,7 +448,7 @@ export default function DeltaStatePage() {
                   }}
                 >
                   <Stars count={t.rating} />
-                  <p style={{ color: "#333", lineHeight: 1.7, margin: "14px 0 18px", fontSize: "0.93rem" }}>"{t.text}"</p>
+                  <p style={{ color: "#333", lineHeight: 1.7, margin: "14px 0 18px", fontSize: "0.93rem" }}>&quot;{t.text}&quot;</p>
                   <div>
                     <strong style={{ color: "var(--green)", fontSize: "0.92rem" }}>{t.name}</strong>
                     <p style={{ color: "var(--muted)", fontSize: "0.82rem" }}>{t.area}</p>

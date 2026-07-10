@@ -25,7 +25,7 @@ export function Testimonials() {
             <FadeIn key={i} delay={i * 0.12}>
               <div className="card-hover" style={{ padding: 32, border: "1.5px solid var(--border)", borderRadius: 12, background: "white", display: "flex", flexDirection: "column", gap: 16 }}>
                 <Stars count={t.stars} />
-                <p style={{ fontSize: 15, color: "var(--text)", lineHeight: 1.75, fontStyle: "italic", flexGrow: 1 }}>"{t.text}"</p>
+                <p style={{ fontSize: 15, color: "var(--text)", lineHeight: 1.75, fontStyle: "italic", flexGrow: 1 }}>&quot;{t.text}&quot;</p>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 16, borderTop: "1px solid var(--border)" }}>
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 700 }}>{t.name}</div>
@@ -63,7 +63,7 @@ export function FinalCta({ isMobile }: { isMobile: boolean }) {
             Ready to end your<br />generator bill forever?
           </h2>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.7)", maxWidth: 480, margin: "0 auto 40px", lineHeight: 1.8 }}>
-            Message us on WhatsApp. We'll schedule a free site visit, assess your load, and send you a full itemised proposal — every naira accounted for.
+            Message us on WhatsApp. We&apos;ll schedule a free site visit, assess your load, and send you a full itemised proposal — every naira accounted for.
           </p>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 16, justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-wa" style={{ background: "white", color: "var(--green)", fontSize: 16, padding: "17px 36px", boxShadow: "0 8px 32px rgba(0,0,0,0.2)" }}>

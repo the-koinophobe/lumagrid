@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { WHATSAPP_URL } from "@/lib/constants";
-import { WhatsAppIcon, InstallPhoto, FadeIn } from "@/components/ui";
+import { WhatsAppIcon, InstallPhoto } from "@/components/ui";
 
 const TRUST_STATS = [
   { val: "3",    lbl: "States covered" },

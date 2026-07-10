@@ -54,7 +54,7 @@ export default function GeneratorCalculator({ isMobile, isSmall }: { isMobile: b
 
         <div style={{ background: "white", borderRadius: 16, padding: isMobile ? "24px 18px" : "40px", boxShadow: "0 8px 40px rgba(13,92,58,0.12)", border: "1.5px solid var(--border)" }}>
           <h3 className="brig" style={{ fontSize: 20, fontWeight: 800, marginBottom: 6 }}>Generator vs Solar — Real Numbers</h3>
-          <p style={{ fontSize: 14, color: "var(--muted)", marginBottom: 32, lineHeight: 1.6 }}>Enter your current generator usage to see what you're actually spending.</p>
+          <p style={{ fontSize: 14, color: "var(--muted)", marginBottom: 32, lineHeight: 1.6 }}>Enter your current generator usage to see what you&apos;re actually spending.</p>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 20, marginBottom: 36 }}>
             <Slider label="Litres of fuel/day"      value={litres} min={1}       max={30}       onChange={setLitres} />
@@ -71,7 +71,7 @@ export default function GeneratorCalculator({ isMobile, isSmall }: { isMobile: b
 
           <div style={{ background: "var(--green)", borderRadius: 10, padding: "20px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
             <div>
-              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginBottom: 4 }}>At current fuel prices, you're spending</div>
+              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginBottom: 4 }}>At current fuel prices, you&apos;re spending</div>
               <div className="brig" style={{ fontSize: 20, fontWeight: 800, color: "white" }}>{fmt(Math.round(yearlyTotal / 12))}/month on your generator</div>
             </div>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-wa" style={{ flexShrink: 0 }}>

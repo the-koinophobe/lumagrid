@@ -347,7 +347,7 @@ function Step2({ appliances, onAdd, onChange, onRemove, onBack, onNext }: {
 
       {/* Custom toggle */}
       <button onClick={() => setShowCustom(!showCustom)} style={{ fontSize: 13, color: "var(--green-mid)", background: "none", border: "none", cursor: "pointer", padding: "4px 0", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}>
-        {showCustom ? "−" : "+"} Can't find it? Add manually
+        {showCustom ? "−" : "+"} Can&apos;t find it? Add manually
       </button>
 
       {showCustom && (
@@ -557,7 +557,6 @@ export default function SolarCalculator() {
   const [location, setLocation] = useState("Rivers");
   const [psh, setPsh] = useState(4.5);
   const [appliances, setAppliances] = useState<Appliance[]>([]);
-  const [counter, setCounter] = useState(0);
 
   const counterRef = useRef(0);
 

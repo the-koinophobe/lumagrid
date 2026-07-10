@@ -216,7 +216,7 @@ function StorySection({ isMobile }: { isMobile: boolean }) {
                   style={{ fontSize: "1.05rem", lineHeight: 1.5, position: "relative", zIndex: 1 }}
                 >
                   <span style={{ color: "#f5a623" }}>In 2015,</span> Nigerians marched to NEPA offices
-                  demanding electricity after 2 months without light. When they arrived, NEPA's own{" "}
+                  demanding electricity after 2 months without light. When they arrived, NEPA&apos;s own{" "}
                   <span style={{ color: "#f5a623" }}>generator</span> was on.
                 </p>
                 <p
@@ -414,7 +414,7 @@ function WhyUsSection({ isMobile }: { isMobile: boolean }) {
                   zIndex: 1,
                 }}
               >
-                "The sun rises every day in the Niger Delta. That energy belongs to you."
+                &quot;The sun rises every day in the Niger Delta. That energy belongs to you.&quot;
               </p>
               <p
                 style={{

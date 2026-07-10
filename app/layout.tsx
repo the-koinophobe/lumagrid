@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Bricolage_Grotesque, Chivo } from "next/font/google";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
@@ -74,11 +75,11 @@ export const metadata: Metadata = {
     images: ["/og/default.jpg"],
   },
 
-  alternates: {
-    canonical: "https://lumagridsolar.com",
-  },
-
   category: "Solar Energy",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0d5c3a",
 };
 
 
@@ -105,29 +106,20 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/*
-          Preconnect to Google Fonts for faster font loading.
-          The actual @import is in globals.css / component styles.
+          Fonts are self-hosted via next/font — no external font requests.
+          Icons and manifest are auto-served by Next from app/ (favicon.ico,
+          apple-icon.png, icon0.svg, icon1.png, manifest.json).
         */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <LocalBusinessSchema />
-
-        {/* Favicon set — generate these at realfavicongenerator.net */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
-        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#0d5c3a" />
-        <meta name="msapplication-TileColor" content="#0d5c3a" />
-        <meta name="theme-color" content="#0d5c3a" />
       </head>
 
       <body
         className={`${bricolage.variable} ${chivo.variable} antialiased`}
       >
         {children}
-        
+
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
