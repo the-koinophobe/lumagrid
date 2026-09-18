@@ -3,8 +3,11 @@ export interface NavLink {
   href: string;
 }
 
+/** Key into the icon map in components/home/sections.tsx — not an emoji. */
+export type ServiceIcon = "bolt" | "wrench" | "clock" | "audit";
+
 export interface Service {
-  icon: string;
+  icon: ServiceIcon;
   title: string;
   desc: string;
 }

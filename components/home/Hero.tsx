@@ -1,84 +1,152 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Image from "next/image";
 import { WHATSAPP_URL } from "@/lib/constants";
-import { WhatsAppIcon, InstallPhoto } from "@/components/ui";
+import { WhatsAppIcon } from "@/components/ui";
+import { ArrowRight, ArrowUpRight } from "@/components/ui/icons";
 
-const TRUST_STATS = [
-  { val: "3",    lbl: "States covered" },
-  { val: "2yr",  lbl: "Warranty" },
-  { val: "1–3d", lbl: "Install time" },
-  { val: "Free", lbl: "Site assessment" },
-];
-
-export default function Hero({ isMobile, isSmall }: { isMobile: boolean; isSmall: boolean }) {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setVisible(true), 80); return () => clearTimeout(t); }, []);
-
+/**
+ * Full-bleed hero. Layout is CSS-only (no breakpoint hook) so phones get the
+ * right composition on the very first paint instead of reflowing after mount.
+ */
+export default function Hero() {
   return (
-    <section className="grid-dot" style={{
-      minHeight: "100vh", display: "flex", alignItems: "center",
-      paddingTop: 68, position: "relative", overflow: "hidden",
-      background: "linear-gradient(155deg, #ffffff 0%, var(--green-xl) 55%, var(--green-light) 100%)",
-    }}>
-      {/* Decorative circles */}
-      {[700, 500, 320].map((s, i) => (
-        <div key={i} style={{ position: "absolute", right: -s * 0.25, top: "50%", transform: "translateY(-50%)", width: s, height: s, borderRadius: "50%", border: "1px solid var(--border)", opacity: 0.5 - i * 0.1, pointerEvents: "none" }} />
-      ))}
+    <section
+      style={{
+        position: "relative",
+        minHeight: "min(90vh, 780px)",
+        display: "flex",
+        alignItems: "flex-end",
+        overflow: "hidden",
+        paddingTop: 68,
+      }}
+    >
+      <Image
+        src="/images/real/solar-panels-on-the-roof.jpeg"
+        alt="Rooftop solar array installed by LumaGrid in the Niger Delta"
+        fill
+        priority
+        sizes="100vw"
+        style={{ objectFit: "cover" }}
+      />
 
-      <div className="container" style={{ padding: isMobile ? "100px 20px 60px" : "80px 24px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 64, alignItems: "center" }}>
+      {/* Legibility scrim — heavier at the bottom where the copy sits */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(180deg, rgba(8,21,15,0.62) 0%, rgba(8,21,15,0.25) 32%, rgba(8,21,15,0.55) 62%, rgba(8,21,15,0.93) 100%)",
+        }}
+      />
 
-        {/* Left — copy */}
-        <div style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s" }}>
-          <span className="tag">Rivers · Delta · Bayelsa</span>
-          <h1 className="brig" style={{ fontSize: "clamp(36px, 5.5vw, 64px)", fontWeight: 800, lineHeight: 1.07, letterSpacing: "-0.03em", marginBottom: 24 }}>
-            No more<br />
-            <span style={{ color: "var(--green)" }}>power outages</span><br />
-            Switch to Solar today!.
-          </h1>
-          <p style={{ fontSize: 17, color: "var(--muted)", lineHeight: 1.75, maxWidth: 460, marginBottom: 36 }}>
-            LumaGrid installs reliable solar systems across the Niger Delta, with full transparency, genuine panel brands, real warranties, and engineers you can call back.
-          </p>
+      <div
+        className="container"
+        style={{ position: "relative", padding: "0 20px 40px", width: "100%" }}
+      >
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 32 }}>
+          <div style={{ maxWidth: 720 }}>
+            <span
+              style={{
+                display: "inline-block",
+                background: "rgba(255,255,255,0.14)",
+                backdropFilter: "blur(6px)",
+                color: "#fff",
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                padding: "6px 13px",
+                borderRadius: 3,
+                marginBottom: 18,
+              }}
+            >
+              Rivers · Delta · Bayelsa
+            </span>
 
-          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 14, flexWrap: "wrap", alignItems: isMobile ? "stretch" : "center" }}>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-wa" style={{ fontSize: 16, padding: "16px 32px", justifyContent: "center" }}>
-              <WhatsAppIcon size={20} /> Get Free Quote on WhatsApp
-            </a>
-            <a href="#packages" className="btn-outline" style={{ justifyContent: "center" }}>See Packages →</a>
+            <h1
+              className="brig"
+              style={{
+                fontSize: "clamp(32px, 8vw, 68px)",
+                fontWeight: 800,
+                lineHeight: 1.04,
+                letterSpacing: "-0.035em",
+                color: "#fff",
+                marginBottom: 18,
+              }}
+            >
+              <span style={{ color: "var(--lime)" }}>Stop burning money</span>
+              <br />
+              on petrol every week.
+            </h1>
+
+            <p
+              style={{
+                fontSize: "clamp(15px, 2.2vw, 18px)",
+                color: "rgba(255,255,255,0.82)",
+                lineHeight: 1.7,
+                maxWidth: 520,
+                marginBottom: 26,
+              }}
+            >
+              Work out exactly what your generator costs you each year, and what
+              it would take to replace it. Takes about a minute.
+            </p>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              <a href="#calculator" className="btn-lime" style={{ fontSize: 16, padding: "15px 26px" }}>
+                Calculate my savings <ArrowRight size={18} />
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline"
+                style={{
+                  borderColor: "rgba(255,255,255,0.45)",
+                  color: "#fff",
+                  fontSize: 16,
+                  padding: "14px 24px",
+                }}
+              >
+                <WhatsAppIcon size={18} /> Talk to us
+              </a>
+            </div>
           </div>
 
-          {/* Trust card */}
-          <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: isSmall ? "1fr 1fr" : "repeat(4, 1fr)", background: "white", borderRadius: 12, boxShadow: "0 8px 32px rgba(13,92,58,0.12)", border: "1.5px solid var(--border)", overflow: "hidden", maxWidth: 460 }}>
-            {TRUST_STATS.map((s, i) => (
-              <div key={i} style={{
-                padding: "16px 12px", textAlign: "center",
-                borderRight: isSmall ? (i % 2 === 0 ? "1px solid var(--border)" : "none") : (i < 3 ? "1px solid var(--border)" : "none"),
-                borderBottom: isSmall && i < 2 ? "1px solid var(--border)" : "none",
-              }}>
-                <div className="brig" style={{ fontSize: 20, fontWeight: 800, color: "var(--green)" }}>{s.val}</div>
-                <div style={{ fontSize: 11, color: "var(--muted)", fontWeight: 500, marginTop: 3 }}>{s.lbl}</div>
-              </div>
-            ))}
-          </div>
+          {/* Floating project card — desktop only, mirrors the brand template */}
+          <a
+            href="#gallery"
+            className="only-desktop"
+            style={{
+              width: 250,
+              flexShrink: 0,
+              background: "#fff",
+              borderRadius: 12,
+              padding: 14,
+              boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
+            }}
+          >
+            <div style={{ position: "relative", height: 132, borderRadius: 8, overflow: "hidden", marginBottom: 12 }}>
+              <Image
+                src="/images/real/5kwh-6Kva-system-abraka.jpeg"
+                alt="5kWh, 6kVA system installed in Abraka, Delta State"
+                fill
+                sizes="250px"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+              <span style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.4 }}>
+                See our recent installs
+              </span>
+              <span className="icon-badge" style={{ width: 34, height: 34 }}>
+                <ArrowUpRight size={17} />
+              </span>
+            </div>
+          </a>
         </div>
-
-        {/* Right — image (desktop only) */}
-        {!isMobile && (
-          <div style={{ opacity: visible ? 1 : 0, transition: "opacity 0.8s ease 0.35s" }}>
-            <InstallPhoto
-              src="/images/real/5kwh-6Kva-system-abraka.jpeg"
-              alt="Solar installation by LumaGrid in Abraka, Delta State"
-              style={{ borderRadius: 16, height: 440, boxShadow: "0 32px 80px rgba(13,92,58,0.2)" }}
-              priority
-            />
-          </div>
-        )}
-      </div>
-
-      {/* Scroll indicator */}
-      <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, opacity: 0.35 }}>
-        <span style={{ fontSize: 10, letterSpacing: "0.12em", color: "var(--muted)", textTransform: "uppercase" }}>Scroll</span>
-        <div style={{ width: 1, height: 36, background: "var(--green)" }} />
       </div>
     </section>
   );

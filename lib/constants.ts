@@ -29,11 +29,46 @@ export const TRUST_BAR: TrustItem[] = [
 ];
 
 export const SERVICES: Service[] = [
-  { icon: "", title: "Residential Solar", desc: "Full off-grid and hybrid systems for homes across the Niger Delta. Designed around your actual load — not guesswork." },
-  { icon: "", title: "Commercial Systems", desc: "High-capacity installations for businesses, cold rooms, telecoms, and industrial facilities." },
-  { icon: "", title: "Maintenance & Repair", desc: "Regular servicing, panel cleaning, inverter diagnostics, and emergency call-outs across Rivers, Delta, and Bayelsa." },
-  { icon: "", title: "Energy Audit", desc: "We assess your load, NEPA history, and usage pattern before recommending a system. No upselling. Just the right fit." },
+  { icon: "bolt", title: "Residential Solar", desc: "Full off-grid and hybrid systems for homes across the Niger Delta. Designed around your actual load — not guesswork." },
+  { icon: "wrench", title: "Commercial Systems", desc: "High-capacity installations for businesses, cold rooms, telecoms, and industrial facilities." },
+  { icon: "clock", title: "Maintenance & Repair", desc: "Regular servicing, panel cleaning, inverter diagnostics, and emergency call-outs across Rivers, Delta, and Bayelsa." },
+  { icon: "audit", title: "Energy Audit", desc: "We assess your load, NEPA history, and usage pattern before recommending a system. No upselling. Just the right fit." },
 ];
+
+// ─── Fuel & cost assumptions (calculator) ─────────────────────────────────────
+
+/**
+ * Default petrol pump price, naira per litre.
+ *
+ * Sourced August 2026 from Port Harcourt pump prices: Dangote gantry ₦1,165,
+ * NNPC retail ₦1,255 (Lagos), Matrix Port Harcourt ₦1,220. Retail across PH
+ * stations sat in the ₦1,220–1,290 band, so 1,250 is a fair midpoint.
+ *
+ * ── UPDATE POINT ──────────────────────────────────────────────────────────
+ * This is the ONLY place the price is defined. Change the number and the date
+ * below, and it updates everywhere — calculator, homepage, and all copy.
+ * Visitors can also override it themselves with the in-calculator slider.
+ */
+export const PETROL_PRICE_NGN = 1250;
+export const PETROL_PRICE_ASOF = "August 2026";
+export const PETROL_PRICE_NOTE = "Port Harcourt average pump price";
+
+/** Generator servicing: oil, filters, plugs, and typical repairs per year. */
+export const GENERATOR_SERVICE_NGN_PER_YEAR = 180_000;
+
+/**
+ * Rule-of-thumb install pricing, back-fitted from our own quoted packages
+ * (3kVA/3.2kWh ≈ ₦1.7M, 6kVA/8kWh ≈ ₦3.8M). Used to show an estimate RANGE
+ * only — every real number still comes from a site assessment.
+ */
+export const PRICING = {
+  perKvaInverter: 110_000,
+  perKwhBattery: 220_000,
+  perKwPanel: 170_000,
+  balanceOfSystem: 250_000,
+  /** Estimate is shown as ±this fraction, e.g. "₦3.4M – ₦4.3M". */
+  rangeSpread: 0.12,
+} as const;
 
 export const PACKAGES: Package[] = [
   {
@@ -100,9 +135,9 @@ export const FINANCING_STEPS: FinancingStep[] = [
 ];
 
 export const LOCATIONS: Location[] = [
-  { state: "Rivers State",  cities: ["Port Harcourt", "Obio-Akpor", "Eleme", "Bonny", "Okrika"],   color: "#0d5c3a" },
-  { state: "Delta State",   cities: ["Warri", "Asaba", "Sapele", "Ughelli", "Abraka"],              color: "#157a4e" },
-  { state: "Bayelsa State", cities: ["Yenagoa", "Brass", "Ogbia", "Sagbama", "Ekeremor"],           color: "#1a9460" },
+  { state: "Rivers State",  cities: ["Port Harcourt", "Obio-Akpor", "Eleme", "Bonny", "Okrika"],   color: "#08150f" },
+  { state: "Delta State",   cities: ["Warri", "Asaba", "Sapele", "Ughelli", "Abraka"],              color: "#14261c" },
+  { state: "Bayelsa State", cities: ["Yenagoa", "Brass", "Ogbia", "Sagbama", "Ekeremor"],           color: "#20382a" },
 ];
 
 export const FAQS: Faq[] = [

@@ -1,42 +1,42 @@
-"use client";
-
 import { WHATSAPP_URL } from "@/lib/constants";
-import { useBreakpoint } from "@/lib/hooks";
 import { WhatsAppIcon } from "@/components/ui";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";
-import { TrustBar, Services, HowItWorks, Locations, Faq } from "@/components/home/sections";
+import CalculatorSection from "@/components/home/CalculatorSection";
+import { TrustBar, Services, Benefits, HowItWorks, Locations, Faq } from "@/components/home/sections";
 import Packages from "@/components/home/Packages";
-import GeneratorCalculator from "@/components/home/GeneratorCalculator";
 import Gallery from "@/components/home/Gallery";
 import Financing from "@/components/home/Financing";
 import { Testimonials, FinalCta } from "@/components/home/cta";
 
+/**
+ * Section order puts the savings calculator directly under the hero — it is
+ * the strongest conversion tool on the site, so it sits above every other
+ * pitch rather than buried halfway down the page.
+ */
 export default function LumaGridHome() {
-  const { isMobile, isTablet, isSmall } = useBreakpoint();
-
   return (
     <>
-      {/* Floating WhatsApp FAB */}
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="wa-fab" title="Chat on WhatsApp">
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="wa-fab" aria-label="Chat with LumaGrid on WhatsApp">
         <WhatsAppIcon size={28} />
       </a>
 
-      <Navbar isMobile={isMobile} />
-      <Hero isMobile={isMobile} isSmall={isSmall} />
-      <TrustBar isMobile={isMobile} />
+      <Navbar />
+      <Hero />
+      <TrustBar />
+      <CalculatorSection />
       <Services />
-      <Packages isMobile={isMobile} isTablet={isTablet} />
-      <GeneratorCalculator isMobile={isMobile} isSmall={isSmall} />
+      <Benefits />
+      <Packages />
+      <Gallery />
       <HowItWorks />
-      <Gallery isMobile={isMobile} />
-      <Financing isMobile={isMobile} />
+      <Financing />
       <Testimonials />
       <Locations />
       <Faq />
-      <FinalCta isMobile={isMobile} />
-      <Footer isMobile={isMobile} isSmall={isSmall} />
+      <FinalCta />
+      <Footer />
     </>
   );
 }

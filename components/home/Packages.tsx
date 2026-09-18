@@ -1,9 +1,9 @@
 import { PACKAGES, WHATSAPP_NUMBER } from "@/lib/constants";
 import { FadeIn, SectionHeader, WhatsAppIcon, Check } from "@/components/ui";
 
-export default function Packages({ isMobile, isTablet }: { isMobile: boolean; isTablet: boolean }) {
+export default function Packages() {
   return (
-    <section id="packages" className="section" style={{ background: "var(--green-xl)" }}>
+    <section id="packages" className="section" style={{ background: "var(--sand)" }}>
       <div className="container">
         <SectionHeader
           tag="System Packages"
@@ -11,17 +11,16 @@ export default function Packages({ isMobile, isTablet }: { isMobile: boolean; is
           subtitle="Every home is different — but these packages cover 90% of what we install. All prices are indicative. Your actual quote depends on your site assessment."
         />
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : isTablet ? "1fr 1fr" : "repeat(3, 1fr)", gap: 24, alignItems: "start" }}>
+        <div className="auto-3" style={{ alignItems: "start" }}>
           {PACKAGES.map((pkg, i) => (
-            <FadeIn key={i} delay={i * 0.12}>
+            <FadeIn key={i} delay={i * 0.1}>
               <div style={{
                 borderRadius: 14, overflow: "hidden", position: "relative", background: "white",
-                border: pkg.highlight ? "2.5px solid var(--green)" : "1.5px solid var(--border)",
-                boxShadow: pkg.highlight ? "0 16px 48px rgba(13,92,58,0.18)" : "0 4px 16px rgba(0,0,0,0.06)",
-                transform: pkg.highlight && !isMobile ? "scale(1.03)" : "scale(1)",
+                border: pkg.highlight ? "2.5px solid var(--ink)" : "1.5px solid var(--border)",
+                boxShadow: pkg.highlight ? "0 16px 48px rgba(8,21,15,0.16)" : "0 4px 16px rgba(0,0,0,0.05)",
               }}>
                 {pkg.badge && (
-                  <div style={{ position: "absolute", top: 16, right: 16, background: "var(--accent)", color: "white", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 20, letterSpacing: "0.05em" }}>
+                  <div style={{ position: "absolute", top: 16, right: 16, background: "var(--lime)", color: "var(--ink)", fontSize: 11, fontWeight: 700, padding: "5px 11px", borderRadius: 20, letterSpacing: "0.05em" }}>
                     {pkg.badge}
                   </div>
                 )}
@@ -62,12 +61,13 @@ export default function Packages({ isMobile, isTablet }: { isMobile: boolean; is
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
                       width: "100%", padding: "14px", borderRadius: 6,
+                      minHeight: 48,
                       background: pkg.highlight ? "var(--wa)" : "var(--green-light)",
-                      color: pkg.highlight ? "white" : "var(--green)",
+                      color: pkg.highlight ? "white" : "var(--ink)",
                       fontWeight: 700, fontSize: 14, border: "none", cursor: "pointer",
                     }}
                   >
-                    <WhatsAppIcon size={16} color={pkg.highlight ? "white" : "var(--green)"} />
+                    <WhatsAppIcon size={16} color={pkg.highlight ? "white" : "var(--ink)"} />
                     {pkg.price === "Custom" ? "Get a Custom Quote" : `Get Quote for ${pkg.name}`}
                   </a>
                 </div>
@@ -76,13 +76,17 @@ export default function Packages({ isMobile, isTablet }: { isMobile: boolean; is
           ))}
         </div>
 
-        <FadeIn delay={0.3}>
-          <p style={{ textAlign: "center", marginTop: 32, fontSize: 13, color: "var(--muted)" }}>
-            Not sure which package fits?{" "}
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ color: "var(--green)", fontWeight: 600 }}>
+        <FadeIn delay={0.25}>
+          <p style={{ textAlign: "center", marginTop: 32, fontSize: 13.5, color: "var(--muted)", lineHeight: 1.7 }}>
+            Not sure which fits?{" "}
+            <a href="#calculator" style={{ fontWeight: 700, textDecoration: "underline", textDecorationColor: "var(--lime)", textDecorationThickness: 2 }}>
+              Size it with the calculator
+            </a>{" "}
+            — or{" "}
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700, textDecoration: "underline", textDecorationColor: "var(--lime)", textDecorationThickness: 2 }}>
               WhatsApp us
             </a>{" "}
-            — we&apos;ll help you figure it out for free.
+            and we will help for free.
           </p>
         </FadeIn>
       </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useBreakpoint } from "@/lib/hooks";
+import { Sun } from "@/components/ui/icons";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { FadeIn } from "@/components/ui";
@@ -18,14 +19,13 @@ interface BlogPost {
   date: string;
   readTime: string;
   coverGradient: string;
-  coverEmoji: string;
 }
 
 const CAT_COLORS: Record<string, string> = {
-  "Solar Tips": "#00c06a",
-  "Power Planning": "#157a4e",
-  "News": "#0d5c3a",
-  "Case Studies": "#0a4a2e",
+  "Solar Tips": "#08150f",
+  "Power Planning": "#14261c",
+  "News": "#20382a",
+  "Case Studies": "#2b4a37",
 };
 
 function PostCard({ post }: { post: BlogPost }) {
@@ -60,12 +60,12 @@ function PostCard({ post }: { post: BlogPost }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "3.5rem",
+              color: "var(--lime)",
               transition: "transform 0.35s",
               transform: hovered ? "scale(1.05)" : "scale(1)",
             }}
           >
-            {post.coverEmoji}
+            <Sun size={30} />
           </div>
           <span
             style={{

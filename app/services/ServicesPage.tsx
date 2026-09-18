@@ -982,7 +982,7 @@ export default function ServicesPage() {
                       aria-hidden
                       style={{
                         fontSize: "1.2rem",
-                        color: "var(--accent)",
+                        color: "var(--ink)",
                         flexShrink: 0,
                         marginLeft: "1rem",
                       }}

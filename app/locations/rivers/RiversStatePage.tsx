@@ -352,7 +352,7 @@ export default function RiversStatePage() {
                     </p>
                   </div>
                   <div style={{ padding: "20px" }}>
-                    <span style={{ fontSize: "0.75rem", color: "var(--accent)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    <span style={{ fontSize: "0.75rem", color: "var(--green-mid)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
                       {item.sublabel}
                     </span>
                     <h3 className="brig" style={{ fontSize: "1.05rem", color: "var(--green)", margin: "6px 0 8px" }}>

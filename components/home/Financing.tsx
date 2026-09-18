@@ -8,13 +8,13 @@ const ringStyle = (size: number): React.CSSProperties => ({
   border: "1px solid rgba(255,255,255,0.06)", pointerEvents: "none",
 });
 
-export default function Financing({ isMobile }: { isMobile: boolean }) {
+export default function Financing() {
   return (
-    <section id="financing" className="section" style={{ background: "var(--green)", position: "relative", overflow: "hidden" }}>
+    <section id="financing" className="section" style={{ background: "var(--ink)", position: "relative", overflow: "hidden" }}>
       <div style={ringStyle(700)} />
       <div style={ringStyle(460)} />
 
-      <div className="container" style={{ position: "relative", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 48 : 80, alignItems: "center" }}>
+      <div className="container split" style={{ position: "relative" }}>
 
         {/* Left */}
         <FadeIn>
@@ -29,14 +29,14 @@ export default function Financing({ isMobile }: { isMobile: boolean }) {
           </p>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap", marginBottom: 36 }}>
             {[["30%", "Minimum deposit"], ["18mo", "Max repayment"], ["Same day", "Installation"]].map(([val, lbl]) => (
-              <div key={lbl} style={{ borderLeft: "3px solid var(--accent)", paddingLeft: 14 }}>
+              <div key={lbl} style={{ borderLeft: "3px solid var(--lime)", paddingLeft: 14 }}>
                 <div className="brig" style={{ fontSize: 22, fontWeight: 800, color: "white" }}>{val}</div>
                 <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>{lbl}</div>
               </div>
             ))}
           </div>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-wa" style={{ background: "white", color: "var(--green)" }}>
-            <WhatsAppIcon size={18} color="var(--green)" /> Ask About Financing
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-lime">
+            <WhatsAppIcon size={18} color="var(--ink)" /> Ask about financing
           </a>
         </FadeIn>
 
@@ -45,7 +45,7 @@ export default function Financing({ isMobile }: { isMobile: boolean }) {
           {FINANCING_STEPS.map((s, i) => (
             <FadeIn key={i} delay={i * 0.1}>
               <div style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
-                <div className="brig" style={{ minWidth: 40, height: 40, borderRadius: 8, background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800, color: "var(--accent)" }}>
+                <div className="brig" style={{ minWidth: 40, height: 40, borderRadius: 8, background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800, color: "var(--lime)" }}>
                   {s.step}
                 </div>
                 <div>

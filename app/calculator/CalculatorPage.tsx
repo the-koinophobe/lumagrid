@@ -1,52 +1,90 @@
 "use client";
 
-import { useBreakpoint } from "@/lib/hooks";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SolarCalculator from "@/components/tools/SolarCalculator";
 import { FadeIn } from "@/components/ui";
+import { PETROL_PRICE_NGN, PETROL_PRICE_ASOF, PETROL_PRICE_NOTE } from "@/lib/constants";
+import { FuelPump } from "@/components/ui/icons";
 
 export default function CalculatorPage() {
-  const { isMobile, isSmall } = useBreakpoint();
-
   return (
     <>
-      <Navbar isMobile={isMobile} />
+      <Navbar />
 
-      <section style={{
-        background: "linear-gradient(160deg, var(--green) 0%, var(--green-mid) 100%)",
-        paddingTop: isMobile ? "5rem" : "7rem",
-        paddingBottom: "3rem",
-        color: "#fff",
-        textAlign: "center",
-        position: "relative",
-        overflow: "hidden",
-      }}>
-        {[600, 400].map(s => (
-          <div key={s} style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: s, height: s, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.07)", pointerEvents: "none" }} />
-        ))}
-        <div className="container" style={{ position: "relative" }}>
+      <section
+        style={{
+          background: "var(--ink)",
+          padding: "112px 20px 44px",
+          color: "#fff",
+        }}
+      >
+        <div className="container" style={{ maxWidth: 720 }}>
           <FadeIn>
-            <span className="tag" style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "1px solid rgba(255,255,255,0.3)" }}>
-              Free Tool
+            <span
+              style={{
+                display: "inline-block",
+                background: "rgba(255,255,255,0.12)",
+                color: "var(--lime)",
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                padding: "6px 13px",
+                borderRadius: 3,
+                marginBottom: 16,
+              }}
+            >
+              Free tool
             </span>
-            <h1 className="brig" style={{ fontSize: isMobile ? "2rem" : "2.8rem", fontWeight: 800, lineHeight: 1.15, margin: "1rem 0 0.75rem" }}>
-              Solar Sizing Calculator
+
+            <h1
+              className="brig"
+              style={{
+                fontSize: "clamp(28px, 7vw, 46px)",
+                fontWeight: 800,
+                lineHeight: 1.08,
+                letterSpacing: "-0.03em",
+                marginBottom: 14,
+              }}
+            >
+              What does your generator{" "}
+              <span style={{ color: "var(--lime)" }}>really cost?</span>
             </h1>
-            <p style={{ fontSize: "1rem", opacity: 0.85, maxWidth: 520, margin: "0 auto", lineHeight: 1.75 }}>
-              Add your appliances, set your daily hours, and get an instant panel, battery, and inverter recommendation — sized for Niger Delta rainy season conditions.
+
+            <p style={{ fontSize: "var(--step-lead)", color: "rgba(255,255,255,0.75)", lineHeight: 1.75 }}>
+              Work out your yearly fuel spend, then see the solar system that
+              would replace it — panels, battery, inverter, and how long it takes
+              to pay for itself. Sized for Niger Delta rainy season, not
+              best-case sunshine.
             </p>
+
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 9,
+                marginTop: 18,
+                padding: "9px 14px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.07)",
+                border: "1px solid rgba(255,255,255,0.13)",
+                color: "rgba(255,255,255,0.8)",
+                fontSize: 12.5,
+              }}
+            >
+              <span style={{ color: "var(--lime)" }}><FuelPump size={16} /></span>
+              ₦{PETROL_PRICE_NGN.toLocaleString("en-NG")}/litre · {PETROL_PRICE_NOTE}, {PETROL_PRICE_ASOF}
+            </div>
           </FadeIn>
         </div>
       </section>
 
-      <section style={{ background: "var(--green-xl)", padding: "48px 24px 80px" }}>
-        <FadeIn>
-          <SolarCalculator />
-        </FadeIn>
+      <section style={{ background: "var(--sand)", padding: "36px 20px 72px" }}>
+        <SolarCalculator />
       </section>
 
-      <Footer isMobile={isMobile} isSmall={isSmall} />
+      <Footer />
     </>
   );
 }

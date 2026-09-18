@@ -6,12 +6,12 @@ import { FadeIn, SectionHeader, InstallPhoto, WhatsAppIcon } from "@/components/
 
 type Filter = "all" | "rooftop" | "indoor";
 
-export default function Gallery({ isMobile }: { isMobile: boolean }) {
+export default function Gallery() {
   const [filter, setFilter] = useState<Filter>("all");
   const items = filter === "all" ? GALLERY_ITEMS : GALLERY_ITEMS.filter(g => g.type === filter);
 
   return (
-    <section id="gallery" className="section" style={{ background: "var(--white)" }}>
+    <section id="gallery" className="section" style={{ background: "var(--paper)", scrollMarginTop: 68 }}>
       <div className="container">
         <SectionHeader
           tag="Our Work"
@@ -20,16 +20,16 @@ export default function Gallery({ isMobile }: { isMobile: boolean }) {
         />
 
         <FadeIn delay={0.1}>
-          <div style={{ display: "flex", gap: 10, marginBottom: 36, flexWrap: "wrap" }}>
+          <div className="chip-row no-scrollbar" style={{ marginBottom: 28 }}>
             {(["all", "rooftop", "indoor"] as Filter[]).map(f => (
-              <button key={f} className={`filter-btn ${filter === f ? "active" : ""}`} onClick={() => setFilter(f)}>
-                {f === "all" ? "All Installs" : f === "rooftop" ? "Rooftop Panels" : "Indoor Systems"}
+              <button key={f} type="button" className={`filter-btn ${filter === f ? "active" : ""}`} onClick={() => setFilter(f)}>
+                {f === "all" ? "All installs" : f === "rooftop" ? "Rooftop panels" : "Indoor systems"}
               </button>
             ))}
           </div>
         </FadeIn>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 16 }}>
+        <div className="auto-3">
           {items.map((item, i) => (
             <FadeIn key={`${item.img}-${i}`} delay={i * 0.07}>
               <div

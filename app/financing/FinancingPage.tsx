@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useBreakpoint } from "@/lib/hooks";
+import { Handshake, Sun, Smartphone, CheckCircle, Bolt } from "@/components/ui/icons";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { WhatsAppIcon, FadeIn, SectionHeader } from "@/components/ui";
@@ -132,10 +133,10 @@ function FinancingCalculator() {
                 alignItems: "center",
                 justifyContent: "center",
                 flexShrink: 0,
-                fontSize: "1rem",
+                color: "var(--ink)",
               }}
             >
-              🤝
+              <Handshake size={17} />
             </div>
             <p style={{ fontSize: "0.82rem", color: "var(--muted)", lineHeight: 1.6, flex: 1 }}>
               Financing is provided by{" "}
@@ -242,7 +243,7 @@ function FinancingCalculator() {
                       borderRadius: "2rem",
                       border: `1.5px solid ${tenure === m ? "var(--accent)" : "var(--border)"}`,
                       background: tenure === m ? "var(--accent)" : "transparent",
-                      color: tenure === m ? "#fff" : "var(--muted)",
+                      color: tenure === m ? "var(--ink)" : "var(--muted)",
                       fontSize: "0.8rem",
                       fontWeight: 600,
                       cursor: "pointer",
@@ -282,8 +283,8 @@ function FinancingCalculator() {
                     flex: 1,
                   }}
                 >
-                  <div style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%", background: "var(--green-light)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem", marginBottom: "1rem" }}>
-                    ☀️
+                  <div style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%", background: "var(--green-light)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink)", marginBottom: "1rem" }}>
+                    <Sun size={24} />
                   </div>
                   <p className="brig" style={{ color: "var(--green)", fontSize: "1rem" }}>
                     Enter a project cost of ₦1,000,000 or more to see your financing breakdown
@@ -418,19 +419,19 @@ function FinancingCalculator() {
                   step: "01",
                   title: "Apply on Rivy",
                   body: "Sign up and submit your application on the Rivy app. Takes just a few minutes.",
-                  icon: "📱",
+                  icon: Smartphone,
                 },
                 {
                   step: "02",
                   title: "Get approved",
                   body: "Check your eligibility and receive a financing offer within 30 minutes.",
-                  icon: "✅",
+                  icon: CheckCircle,
                 },
                 {
                   step: "03",
                   title: "We install",
                   body: "Loan is disbursed within 12 hours and LumaGrid Solar gets your system installed.",
-                  icon: "⚡",
+                  icon: Bolt,
                 },
               ].map((s) => (
                 <div
@@ -457,7 +458,7 @@ function FinancingCalculator() {
                   >
                     {s.step}
                   </span>
-                  <div style={{ fontSize: "1.5rem", marginBottom: "0.75rem" }}>{s.icon}</div>
+                  <div className="icon-badge" style={{ marginBottom: "0.75rem" }}><s.icon size={20} /></div>
                   <p className="brig" style={{ fontSize: "0.95rem", color: "var(--green)", marginBottom: "0.4rem" }}>
                     {s.title}
                   </p>

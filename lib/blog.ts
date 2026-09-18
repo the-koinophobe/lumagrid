@@ -12,7 +12,6 @@ export interface BlogPost {
   date: string;
   readTime: string;
   coverGradient: string;
-  coverEmoji: string;
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -29,8 +28,7 @@ export function getAllPosts(): BlogPost[] {
         category: data.category,
         date: data.date,
         readTime: data.readTime,
-        coverGradient: data.coverGradient ?? "linear-gradient(135deg, #0d5c3a 0%, #00c06a 100%)",
-        coverEmoji: data.coverEmoji ?? "☀️",
+        coverGradient: data.coverGradient ?? "linear-gradient(135deg, #08150f 0%, #2b4a37 100%)",
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

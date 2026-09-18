@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useBreakpoint } from "@/lib/hooks";
+import { Star } from "@/components/ui/icons";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { FadeIn } from "@/components/ui";
@@ -350,11 +351,11 @@ export default function ContactPage() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontSize: "1.1rem",
                       flexShrink: 0,
+                      color: "var(--ink)",
                     }}
                   >
-                    ⭐
+                    <Star size={18} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <p className="brig" style={{ fontSize: "0.88rem", color: "#1a2e24", marginBottom: "0.1rem" }}>

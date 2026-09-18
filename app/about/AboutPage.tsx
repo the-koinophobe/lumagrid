@@ -4,28 +4,29 @@ import { useBreakpoint } from "@/lib/hooks";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { WHATSAPP_URL } from "@/lib/constants";
+import { Bolt, Handshake, Wrench, MapPin } from "@/components/ui/icons";
 import { FadeIn, SectionHeader, WhatsAppIcon, Check } from "@/components/ui";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const MISSION_VALUES = [
   {
-    icon: "⚡",
+    icon: Bolt,
     title: "Energy Independence",
     body: "We exist to cut every home and business loose from a grid that was never built to serve them. Your power should come from the sun, not NEPA.",
   },
   {
-    icon: "🤝",
+    icon: Handshake,
     title: "Honest Work",
     body: "No inflated quotes. No hidden markups. You get a clear breakdown of what you're paying for and exactly what you'll get in return.",
   },
   {
-    icon: "🛠️",
+    icon: Wrench,
     title: "Quality That Lasts",
     body: "We install systems we'd put in our own homes. Tier-1 panels, certified inverters, and workmanship that holds up through harmattan and rainy season alike.",
   },
   {
-    icon: "📍",
+    icon: MapPin,
     title: "Built for This Region",
     body: "We know the Niger Delta. We understand the load demands, the weather patterns, and the voltage swings that generic installers overlook.",
   },
@@ -88,9 +89,9 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
           <span
             className="tag"
             style={{
-              background: "rgba(0,192,106,0.15)",
+              background: "rgba(255,255,255,0.12)",
               color: "var(--accent)",
-              border: "1px solid rgba(0,192,106,0.3)",
+              border: "1px solid rgba(255,255,255,0.22)",
               marginBottom: "24px",
               display: "inline-block",
             }}
@@ -251,7 +252,7 @@ function StorySection({ isMobile }: { isMobile: boolean }) {
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
-                      background: "var(--accent)",
+                      background: "var(--ink)",
                       marginTop: "6px",
                       flexShrink: 0,
                     }}
@@ -326,7 +327,7 @@ function MissionSection({ isMobile }: { isMobile: boolean }) {
                   height: "100%",
                 }}
               >
-                <div style={{ fontSize: "2rem", marginBottom: "14px" }}>{item.icon}</div>
+                <div className="icon-badge" style={{ marginBottom: "14px" }}><item.icon size={21} /></div>
                 <h3
                   className="brig"
                   style={{
@@ -508,10 +509,10 @@ function CoverageSection({ isMobile }: { isMobile: boolean }) {
                     alignItems: "center",
                     justifyContent: "center",
                     margin: "0 auto 20px",
-                    fontSize: "1.5rem",
+                    color: "var(--ink)",
                   }}
                 >
-                  📍
+                  <MapPin size={22} />
                 </div>
                 <h3 className="brig" style={{ fontSize: "1.15rem", color: "var(--green)", marginBottom: "8px" }}>
                   {area.name}
@@ -564,9 +565,9 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
           <span
             className="tag"
             style={{
-              background: "rgba(0,192,106,0.15)",
+              background: "rgba(255,255,255,0.12)",
               color: "var(--accent)",
-              border: "1px solid rgba(0,192,106,0.3)",
+              border: "1px solid rgba(255,255,255,0.22)",
               marginBottom: "24px",
               display: "inline-block",
             }}
