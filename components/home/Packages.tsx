@@ -1,4 +1,5 @@
-import { PACKAGES, WHATSAPP_NUMBER } from "@/lib/constants";
+import { PACKAGES } from "@/lib/constants";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 import { FadeIn, SectionHeader, WhatsAppIcon, Check } from "@/components/ui";
 
 export default function Packages() {
@@ -55,9 +56,8 @@ export default function Packages() {
                     ))}
                   </ul>
 
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(pkg.ctaMsg)}`}
-                    target="_blank" rel="noopener noreferrer"
+                  <WhatsAppButton
+                    source={`${pkg.name} ${pkg.kva} package (${pkg.price === "Custom" ? "custom" : `from ${pkg.price}`})`}
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
                       width: "100%", padding: "14px", borderRadius: 6,
@@ -69,7 +69,7 @@ export default function Packages() {
                   >
                     <WhatsAppIcon size={16} color={pkg.highlight ? "white" : "var(--ink)"} />
                     {pkg.price === "Custom" ? "Get a Custom Quote" : `Get Quote for ${pkg.name}`}
-                  </a>
+                  </WhatsAppButton>
                 </div>
               </div>
             </FadeIn>
@@ -83,9 +83,9 @@ export default function Packages() {
               Size it with the calculator
             </a>{" "}
             — or{" "}
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700, textDecoration: "underline", textDecorationColor: "var(--lime)", textDecorationThickness: 2 }}>
+            <WhatsAppButton source="Packages - not sure which fits" style={{ background: "none", padding: 0, font: "inherit", color: "inherit", fontWeight: 700, textDecoration: "underline", textDecorationColor: "var(--lime)", textDecorationThickness: 2 }}>
               WhatsApp us
-            </a>{" "}
+            </WhatsAppButton>{" "}
             and we will help for free.
           </p>
         </FadeIn>

@@ -39,12 +39,6 @@ export interface Testimonial {
   text: string;
 }
 
-export interface FinancingStep {
-  step: string;
-  title: string;
-  desc: string;
-}
-
 export interface Location {
   state: string;
   cities: string[];

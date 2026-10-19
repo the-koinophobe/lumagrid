@@ -4,7 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useScrollY } from "@/lib/hooks";
-import { NAV_LINKS, WHATSAPP_URL } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/constants";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 import { ArrowUpRight, X, Bolt } from "@/components/ui/icons";
 
 /**
@@ -13,11 +14,14 @@ import { ArrowUpRight, X, Bolt } from "@/components/ui/icons";
  *
  * `isMobile` is accepted for backwards compatibility with pages that still
  * pass it, but layout is CSS-driven so it is not required.
+ *
+ * Pass `solid` on pages that start on a light background (blog posts), where
+ * the transparent white-text state would be invisible.
  */
-export default function Navbar({ isMobile }: { isMobile?: boolean } = {}) {
+export default function Navbar({ isMobile, solid: forceSolid = false }: { isMobile?: boolean; solid?: boolean } = {}) {
   const scrollY = useScrollY();
   const [open, setOpen] = useState(false);
-  const solid = scrollY > 40 || open;
+  const solid = forceSolid || scrollY > 40 || open;
 
   void isMobile;
 
@@ -87,15 +91,13 @@ export default function Navbar({ isMobile }: { isMobile?: boolean } = {}) {
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppButton
+              source="Navbar"
               className="btn-lime only-desktop"
               style={{ padding: "10px 18px", fontSize: 13.5 }}
             >
-              Contact us <ArrowUpRight size={15} />
-            </a>
+              Get a quote <ArrowUpRight size={15} />
+            </WhatsAppButton>
 
             {/* Mobile toggle */}
             <button
@@ -189,16 +191,14 @@ export default function Navbar({ isMobile }: { isMobile?: boolean } = {}) {
           <Bolt size={18} /> Calculate my savings
         </a>
 
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppButton
+          source="Mobile menu"
           onClick={() => setOpen(false)}
           className="btn-outline"
           style={{ marginTop: 10, width: "100%", borderColor: "rgba(255,255,255,0.4)", color: "#fff", fontSize: 16 }}
         >
-          Chat on WhatsApp
-        </a>
+          Get a quote on WhatsApp
+        </WhatsAppButton>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 
 // Inline UI components — no external UI imports needed
 
@@ -120,11 +121,6 @@ function CheckIcon({ size = 14, style = {} }: { size?: number; style?: React.CSS
 // };
 
 
-const WHATSAPP_BASE = `https://wa.me/2347059497792`;
-
-function waLink(msg: string) {
-  return `${WHATSAPP_BASE}?text=${encodeURIComponent(msg)}`;
-}
 
 // ─── Service card data ───────────────────────────────────────────────────────
 const services = [
@@ -420,15 +416,13 @@ export default function ServicesPage() {
             </p>
 
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-              <a
-                href={waLink("Hi LumaGrid, I'd like to get a free solar quote.")}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Services page"
                 className="btn-wa"
               >
                 <WhatsAppIcon size={18} />
                 Get a Free Quote
-              </a>
+              </WhatsAppButton>
               <a href="#services" className="btn-outline" style={{ color: "#fff", borderColor: "rgba(255,255,255,0.5)" }}>
                 See All Services
               </a>
@@ -614,15 +608,13 @@ export default function ServicesPage() {
                       {svc.accent}
                     </p>
 
-                    <a
-                      href={waLink(svc.waMsg)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <WhatsAppButton
+                      source={svc.title}
                       className="btn-wa"
                     >
                       <WhatsAppIcon size={16} />
                       Enquire About This Service
-                    </a>
+                    </WhatsAppButton>
                   </FadeIn>
 
                   {/* Image placeholder side */}
@@ -768,17 +760,13 @@ export default function ServicesPage() {
             </div>
 
             <div style={{ textAlign: "center", marginTop: "2rem" }}>
-              <a
-                href={waLink(
-                  "Hi LumaGrid, I'd like to know more about upgrading my gel batteries to lithium."
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Services page"
                 className="btn-wa"
               >
                 <WhatsAppIcon size={16} />
                 Ask About Battery Upgrade Pricing
-              </a>
+              </WhatsAppButton>
             </div>
           </FadeIn>
         </div>
@@ -1079,16 +1067,14 @@ export default function ServicesPage() {
                 justifyContent: "center",
               }}
             >
-              <a
-                href={waLink("Hi LumaGrid, I'd like to discuss a solar project.")}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Services page"
                 className="btn-wa"
                 style={{ fontSize: "1rem", padding: "0.9rem 1.75rem" }}
               >
                 <WhatsAppIcon size={20} />
                 Chat With Us on WhatsApp
-              </a>
+              </WhatsAppButton>
               <a
                 href="tel:+2347059497792"
                 className="btn-outline"

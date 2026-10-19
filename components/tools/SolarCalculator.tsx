@@ -15,7 +15,6 @@
 
 import { useState, useCallback, useMemo, useRef } from "react";
 import {
-  WHATSAPP_NUMBER,
   PETROL_PRICE_NGN,
   PETROL_PRICE_ASOF,
   PETROL_PRICE_NOTE,
@@ -23,6 +22,8 @@ import {
   PRICING,
 } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/ui";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
+import type { QuoteState } from "@/lib/quote";
 import {
   Home, Building, Store, Sliders, FuelPump, TrendDown, Calendar,
   SolarPanel, Battery, Inverter, MapPin, Search, Check, AlertTriangle, Info,
@@ -814,7 +815,7 @@ function Step3({ appliances, location, psh, weekly, petrol, onBack, onRestart }:
     const gen = hasGen
       ? `\n*My generator today:*\n  ${naira(weekly)}/week fuel at ${naira(petrol)}/litre\n  ≈ ${naira(genYear)}/year with servicing\n`
       : "";
-    return `Hello LumaGrid Solar! I used your calculator.\n\n*Location:* ${location} State${gen}\n*Appliances:*\n${lines}\n\n*Suggested system:*\n  Panels: ${r.panelKW.toFixed(2)} kW (~${r.panelCount} x 400W)\n  Battery: ${r.battKWh.toFixed(2)} kWh\n  Inverter: ${fmtKVA(r.invKVA)} kVA\n  System voltage: ${r.sysVoltage}V\n  Daily energy: ${(r.totalWh / 1000).toFixed(2)} kWh/day\n\nPlease send me a proper quote. Thank you.`;
+    return `*From the calculator:*${gen}\n*Appliances:*\n${lines}\n\n*Suggested system:*\n  Panels: ${r.panelKW.toFixed(2)} kW (~${r.panelCount} x 400W)\n  Battery: ${r.battKWh.toFixed(2)} kWh\n  Inverter: ${fmtKVA(r.invKVA)} kVA\n  System voltage: ${r.sysVoltage}V\n  Daily energy: ${(r.totalWh / 1000).toFixed(2)} kWh/day`;
   }
 
   function copyResults() {
@@ -822,7 +823,7 @@ function Step3({ appliances, location, psh, weekly, petrol, onBack, onRestart }:
     const gen = hasGen
       ? `GENERATOR TODAY:\n  ${naira(weekly)}/week fuel at ${naira(petrol)}/L\n  ${naira(genYear)}/year including servicing\n  ${naira(gen5)} over 5 years\n\n`
       : "";
-    const text = `LumaGrid Solar -- System Sizing Result\nLocation: ${location} State (rainy season sizing)\n\n${gen}APPLIANCES:\n${lines}\n\nSUGGESTED SYSTEM:\n  Solar panels:   ${r.panelKW.toFixed(2)} kW (~${r.panelCount} x 400W panels)\n  Battery bank:   ${r.battKWh.toFixed(2)} kWh usable\n  Inverter:       ${fmtKVA(r.invKVA)} kVA\n  System voltage: ${r.sysVoltage}V\n  Daily energy:   ${(r.totalWh / 1000).toFixed(2)} kWh/day\n  Backup time:    ~${r.backupHrs} hours\n  Indicative:     ${naira(r.estLow)} - ${naira(r.estHigh)}\n\nGet a quote: wa.me/${WHATSAPP_NUMBER}`;
+    const text = `LumaGrid Solar -- System Sizing Result\nLocation: ${location} State (rainy season sizing)\n\n${gen}APPLIANCES:\n${lines}\n\nSUGGESTED SYSTEM:\n  Solar panels:   ${r.panelKW.toFixed(2)} kW (~${r.panelCount} x 400W panels)\n  Battery bank:   ${r.battKWh.toFixed(2)} kWh usable\n  Inverter:       ${fmtKVA(r.invKVA)} kVA\n  System voltage: ${r.sysVoltage}V\n  Daily energy:   ${(r.totalWh / 1000).toFixed(2)} kWh/day\n  Backup time:    ~${r.backupHrs} hours\n  Indicative:     ${naira(r.estLow)} - ${naira(r.estHigh)}\n\nGet a quote: lumagridsolar.com/contact`;
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
@@ -1039,10 +1040,13 @@ function Step3({ appliances, location, psh, weekly, petrol, onBack, onRestart }:
         <p style={{ fontSize: 13, color: "rgba(8,21,15,0.72)", marginBottom: 14, lineHeight: 1.6 }}>
           Your full summary goes across on WhatsApp. We reply within 24 hours, and the site assessment is free.
         </p>
-        <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWAMsg())}`}
-          target="_blank" rel="noopener noreferrer" className="btn-ink" style={{ width: "100%" }}>
+        <WhatsAppButton
+          source="Solar calculator result"
+          state={location as QuoteState}
+          extra={buildWAMsg()}
+          className="btn-ink" style={{ width: "100%" }}>
           <WhatsAppIcon size={18} /> Send my results on WhatsApp
-        </a>
+        </WhatsAppButton>
       </div>
 
       <div style={{ display: "flex", gap: 8 }}>

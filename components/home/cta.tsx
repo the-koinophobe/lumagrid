@@ -1,6 +1,7 @@
 "use client";
 
-import { TESTIMONIALS, WHATSAPP_URL, GBP_REVIEW_URL } from "@/lib/constants";
+import { TESTIMONIALS, GBP_REVIEW_URL } from "@/lib/constants";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 import { FadeIn, Stars, GoogleIcon, WhatsAppIcon } from "@/components/ui";
 import { ArrowRight } from "@/components/ui/icons";
 
@@ -118,15 +119,13 @@ export function FinalCta() {
               load, and send an itemised proposal — every naira accounted for.
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Homepage final CTA"
                 className="btn-ink"
                 style={{ fontSize: 16, padding: "15px 28px" }}
               >
                 <WhatsAppIcon size={19} /> Get my free assessment
-              </a>
+              </WhatsAppButton>
               <a
                 href="#calculator"
                 className="btn-outline"

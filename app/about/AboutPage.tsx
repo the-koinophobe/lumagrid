@@ -3,7 +3,7 @@
 import { useBreakpoint } from "@/lib/hooks";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { WHATSAPP_URL } from "@/lib/constants";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 import { Bolt, Handshake, Wrench, MapPin } from "@/components/ui/icons";
 import { FadeIn, SectionHeader, WhatsAppIcon, Check } from "@/components/ui";
 
@@ -597,10 +597,8 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
             Talk to our team today. We will assess your needs, explain your options, and give you a
             clear quote with no pressure and no hidden fees.
           </p>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppButton
+            source="About page"
             className="btn-wa"
             style={{
               display: "inline-flex",
@@ -611,7 +609,7 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
           >
             <WhatsAppIcon size={20} />
             Chat With Us on WhatsApp
-          </a>
+          </WhatsAppButton>
         </FadeIn>
       </div>
     </section>

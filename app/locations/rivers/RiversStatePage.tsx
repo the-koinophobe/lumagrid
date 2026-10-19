@@ -6,7 +6,10 @@ import Footer from "@/components/layout/Footer";
 import { FadeIn, SectionHeader, WhatsAppIcon, Stars } from "@/components/ui";
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-import { WHATSAPP_URL } from "@/lib/constants";
+import JsonLd from "@/components/seo/JsonLd";
+import TownLinks from "@/components/locations/TownLinks";
+import { serviceSchema } from "@/lib/schema";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: "3px" }}>
@@ -31,6 +34,14 @@ const areas = [
 ];
 
 const faqs = [
+  {
+    q: "How much does a solar system cost in Port Harcourt?",
+    a: "A 3kVA starter system with a 3.2kWh lithium battery and four panels starts from about ₦1.7M installed, and a 6kVA family system with 8kWh of lithium storage starts from about ₦3.8M. Your final quote depends on your load and roof, and is itemised line by line after a free site assessment. See our pricing page for what changes the cost.",
+  },
+  {
+    q: "Can you install solar panels on an upstairs (storey) building in Rivers State?",
+    a: "Yes. We install on bungalows, duplexes, storey buildings and blocks of flats. On an upstairs building we plan safe roof access, fix the panels to the roof structure, and run the cables neatly to an inverter room on whichever floor suits you. For shared roofs we confirm access with the landlord first.",
+  },
   {
     q: "How long does a solar installation take in Port Harcourt?",
     a: "Most residential installations in Port Harcourt are completed within 1 to 2 days. Commercial projects in areas like Trans-Amadi or Eleme may take 3 to 5 days depending on system size.",
@@ -79,37 +90,14 @@ export default function RiversStatePage() {
 
   return (
     <>
-      {/* ── JSON-LD structured data ── */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            name: "LumaGrid Solar",
-            description:
-              "Professional solar panel installation company serving Port Harcourt, Rivers State, and all 23 LGAs. Residential, commercial and industrial solar systems.",
-            url: "https://lumagridsolar.com/locations/rivers-state",
-            telephone: "+2347059497792",
-            areaServed: {
-              "@type": "State",
-              name: "Rivers State",
-              containsPlace: [
-                { "@type": "City", name: "Port Harcourt" },
-                { "@type": "City", name: "Obio-Akpor" },
-                { "@type": "City", name: "Bonny" },
-                { "@type": "City", name: "Okrika" },
-                { "@type": "City", name: "Eleme" },
-                { "@type": "City", name: "Oyigbo" },
-                { "@type": "City", name: "Ahoada" },
-                { "@type": "City", name: "Degema" },
-              ],
-            },
-            serviceType: ["Solar Panel Installation", "Solar Battery Storage", "Off-Grid Solar Systems"],
-            priceRange: "₦₦",
-            sameAs: ["https://facebook.com/lumagrid"],
-          }),
-        }}
+      <JsonLd
+        data={serviceSchema({
+          name: "Solar installation in Rivers State",
+          description:
+            "Solar panel, hybrid inverter and lithium battery installation for homes and businesses across Rivers State, including Port Harcourt, Obio-Akpor, Eleme, Oyigbo, Bonny, Okrika, Ahoada, Omoku and Bori. Free site assessment and itemised quotes.",
+          url: "/locations/rivers",
+          areaServed: [{ type: "State", name: "Rivers State" }, { type: "City", name: "Port Harcourt", state: "Rivers State" }, { type: "City", name: "Obio-Akpor", state: "Rivers State" }, { type: "City", name: "Eleme", state: "Rivers State" }, { type: "City", name: "Oyigbo", state: "Rivers State" }, { type: "City", name: "Bonny", state: "Rivers State" }, { type: "City", name: "Okrika", state: "Rivers State" }, { type: "City", name: "Ahoada", state: "Rivers State" }, { type: "City", name: "Omoku", state: "Rivers State" }, { type: "City", name: "Bori", state: "Rivers State" }],
+        })}
       />
 
       <Navbar isMobile={isMobile} />
@@ -172,16 +160,15 @@ export default function RiversStatePage() {
               your investment works hard here year-round. We serve all 23 LGAs across Rivers State, from GRA to Bonny Island to Degema.
             </p>
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Rivers State page"
+                state="Rivers"
                 className="btn-wa"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
               >
                 <WhatsAppIcon size={20} />
                 Get a Free Quote
-              </a>
+              </WhatsAppButton>
               <a href="#areas" className="btn-outline" style={{ color: "#fff", borderColor: "rgba(255,255,255,0.5)" }}>
                 View Areas We Cover
               </a>
@@ -414,16 +401,15 @@ export default function RiversStatePage() {
               <p style={{ color: "var(--muted)", marginBottom: "16px" }}>
                 Not sure if we cover your area? Message us directly.
               </p>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Rivers State page"
+                state="Rivers"
                 className="btn-wa"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
               >
                 <WhatsAppIcon size={18} />
                 Chat With Us on WhatsApp
-              </a>
+              </WhatsAppButton>
             </div>
           </FadeIn>
         </div>
@@ -470,6 +456,12 @@ export default function RiversStatePage() {
           </div>
         </div>
       </section>
+
+      <TownLinks
+        state="Rivers"
+        title="Solar installation in every part of Rivers State"
+        subtitle="Pick your town for local details: the areas we cover, what changes about the install there, and answers to the questions people in your area ask us most."
+      />
 
       {/* ── FAQ ── */}
       <section className="section" style={{ background: "var(--green-xl)" }}>
@@ -518,16 +510,15 @@ export default function RiversStatePage() {
             <p style={{ color: "rgba(255,255,255,0.85)", marginBottom: "28px", lineHeight: 1.7 }}>
               Get a free site assessment and quote. No pressure, no obligation. We will tell you exactly what you need and what it will cost before any work begins.
             </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppButton
+              source="Rivers State page"
+              state="Rivers"
               className="btn-wa"
               style={{ fontSize: "1rem", padding: "14px 28px", display: "inline-flex", alignItems: "center", gap: "10px" }}
             >
               <WhatsAppIcon size={20} />
               Get Your Free Quote Now
-            </a>
+            </WhatsAppButton>
           </FadeIn>
         </div>
       </section>

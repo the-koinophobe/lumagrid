@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { WHATSAPP_URL } from "@/lib/constants";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 import { WhatsAppIcon } from "@/components/ui";
 import { ArrowRight, ArrowUpRight } from "@/components/ui/icons";
 
@@ -98,10 +98,8 @@ export default function Hero() {
               <a href="#calculator" className="btn-lime" style={{ fontSize: 16, padding: "15px 26px" }}>
                 Calculate my savings <ArrowRight size={18} />
               </a>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Homepage hero"
                 className="btn-outline"
                 style={{
                   borderColor: "rgba(255,255,255,0.45)",
@@ -111,7 +109,7 @@ export default function Hero() {
                 }}
               >
                 <WhatsAppIcon size={18} /> Talk to us
-              </a>
+              </WhatsAppButton>
             </div>
           </div>
 

@@ -1,13 +1,10 @@
-import { WHATSAPP_URL } from "@/lib/constants";
-import { WhatsAppIcon } from "@/components/ui";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";
 import CalculatorSection from "@/components/home/CalculatorSection";
-import { TrustBar, Services, Benefits, HowItWorks, Locations, Faq } from "@/components/home/sections";
+import { TrustBar, Services, Benefits, HowItWorks, Locations, Faq, Guides } from "@/components/home/sections";
 import Packages from "@/components/home/Packages";
 import Gallery from "@/components/home/Gallery";
-import Financing from "@/components/home/Financing";
 import { Testimonials, FinalCta } from "@/components/home/cta";
 
 /**
@@ -18,10 +15,6 @@ import { Testimonials, FinalCta } from "@/components/home/cta";
 export default function LumaGridHome() {
   return (
     <>
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="wa-fab" aria-label="Chat with LumaGrid on WhatsApp">
-        <WhatsAppIcon size={28} />
-      </a>
-
       <Navbar />
       <Hero />
       <TrustBar />
@@ -31,9 +24,9 @@ export default function LumaGridHome() {
       <Packages />
       <Gallery />
       <HowItWorks />
-      <Financing />
       <Testimonials />
       <Locations />
+      <Guides />
       <Faq />
       <FinalCta />
       <Footer />

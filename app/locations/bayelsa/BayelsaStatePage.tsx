@@ -6,7 +6,10 @@ import Footer from "@/components/layout/Footer";
 import { FadeIn, SectionHeader, WhatsAppIcon, Stars } from "@/components/ui";
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-import { WHATSAPP_URL } from "@/lib/constants";
+import JsonLd from "@/components/seo/JsonLd";
+import TownLinks from "@/components/locations/TownLinks";
+import { serviceSchema } from "@/lib/schema";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: "3px" }}>
@@ -31,6 +34,14 @@ const areas = [
 ];
 
 const faqs = [
+  {
+    q: "How much does a solar system cost in Yenagoa?",
+    a: "A 3kVA starter system with a 3.2kWh lithium battery and four panels starts from about ₦1.7M installed, and a 6kVA family system with 8kWh of lithium storage starts from about ₦3.8M. Your final quote depends on your load and roof, and is itemised line by line after a free site assessment. See our pricing page for what changes the cost.",
+  },
+  {
+    q: "Can you install solar panels on an upstairs (storey) building in Bayelsa State?",
+    a: "Yes. We install on bungalows, duplexes, storey buildings and blocks of flats. On an upstairs building we plan safe roof access, fix the panels to the roof structure, and run the cables neatly to an inverter room on whichever floor suits you. For shared roofs we confirm access with the landlord first.",
+  },
   {
     q: "Does Bayelsa have special power challenges compared to other states?",
     a: "Yes. Bayelsa is supplied via transmission lines from Ahoada in Rivers State. These lines have been repeatedly vandalised, causing blackouts lasting months at a time. In late 2024, much of Yenagoa went without grid power for over four months. Solar removes this dependency entirely.",
@@ -79,42 +90,14 @@ export default function BayelsaStatePage() {
 
   return (
     <>
-      {/* ── JSON-LD structured data ── */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            name: "LumaGrid Solar",
-            description:
-              "Professional solar installation in Yenagoa, Nembe, Brass, Ogbia and all 8 LGAs of Bayelsa State. Specialists in off-grid solar for riverine Niger Delta communities.",
-            url: "https://lumagridsolar.com/locations/bayelsa-state",
-            telephone: "+2347059497792",
-            areaServed: {
-              "@type": "State",
-              name: "Bayelsa State",
-              containsPlace: [
-                { "@type": "City", name: "Yenagoa" },
-                { "@type": "City", name: "Nembe" },
-                { "@type": "City", name: "Brass" },
-                { "@type": "City", name: "Ogbia" },
-                { "@type": "City", name: "Sagbama" },
-                { "@type": "City", name: "Amassoma" },
-                { "@type": "City", name: "Ekeremor" },
-                { "@type": "City", name: "Kaiama" },
-              ],
-            },
-            serviceType: [
-              "Solar Panel Installation",
-              "Off-Grid Solar Systems",
-              "Solar Battery Storage",
-              "Riverine Community Solar",
-            ],
-            priceRange: "₦₦",
-            sameAs: ["https://facebook.com/lumagrid"],
-          }),
-        }}
+      <JsonLd
+        data={serviceSchema({
+          name: "Solar installation in Bayelsa State",
+          description:
+            "Solar panel, hybrid inverter and lithium battery installation for homes and businesses across Bayelsa State, including Yenagoa, Amassoma, Ogbia, Otuoke, Sagbama, Kaiama, Odi and Brass. Free site assessment and itemised quotes.",
+          url: "/locations/bayelsa",
+          areaServed: [{ type: "State", name: "Bayelsa State" }, { type: "City", name: "Yenagoa", state: "Bayelsa State" }, { type: "City", name: "Amassoma", state: "Bayelsa State" }, { type: "City", name: "Otuoke", state: "Bayelsa State" }, { type: "City", name: "Sagbama", state: "Bayelsa State" }, { type: "City", name: "Kaiama", state: "Bayelsa State" }, { type: "City", name: "Odi", state: "Bayelsa State" }, { type: "City", name: "Brass", state: "Bayelsa State" }],
+        })}
       />
 
       <Navbar isMobile={isMobile} />
@@ -177,16 +160,15 @@ export default function BayelsaStatePage() {
               across all 8 LGAs, including riverine and island communities.
             </p>
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Bayelsa State page"
+                state="Bayelsa"
                 className="btn-wa"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
               >
                 <WhatsAppIcon size={20} />
                 Get a Free Quote
-              </a>
+              </WhatsAppButton>
               <a href="#areas" className="btn-outline" style={{ color: "#fff", borderColor: "rgba(255,255,255,0.5)" }}>
                 View Areas We Cover
               </a>
@@ -435,16 +417,15 @@ export default function BayelsaStatePage() {
               <p style={{ color: "var(--muted)", marginBottom: "16px" }}>
                 Your community not listed? We cover all of Bayelsa. Message us.
               </p>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Bayelsa State page"
+                state="Bayelsa"
                 className="btn-wa"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
               >
                 <WhatsAppIcon size={18} />
                 Chat With Us on WhatsApp
-              </a>
+              </WhatsAppButton>
             </div>
           </FadeIn>
         </div>
@@ -491,6 +472,12 @@ export default function BayelsaStatePage() {
         </div>
       </section>
 
+      <TownLinks
+        state="Bayelsa"
+        title="Solar installation in Yenagoa and across Bayelsa State"
+        subtitle="Pick your town for local details: the areas we cover, what changes about the install there, and answers to the questions people in your area ask us most."
+      />
+
       {/* ── FAQ ── */}
       <section className="section" style={{ background: "var(--green-xl)" }}>
         <div className="container" style={{ maxWidth: "760px" }}>
@@ -530,16 +517,15 @@ export default function BayelsaStatePage() {
               Do not wait for the next transmission tower vandalism or grid failure. Get a solar system designed for Bayelsa&apos;s
               climate and geography. Free assessment, honest recommendation.
             </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppButton
+              source="Bayelsa State page"
+              state="Bayelsa"
               className="btn-wa"
               style={{ fontSize: "1rem", padding: "14px 28px", display: "inline-flex", alignItems: "center", gap: "10px" }}
             >
               <WhatsAppIcon size={20} />
               Get Your Free Quote Now
-            </a>
+            </WhatsAppButton>
           </FadeIn>
         </div>
       </section>

@@ -1,24 +1,28 @@
 import type {
   NavLink, Service, Package, GalleryItem,
-  Testimonial, FinancingStep, Location, TrustItem, Faq, ProcessStep,
+  Testimonial, Location, TrustItem, Faq, ProcessStep,
 } from "./types";
 
+export const SITE_URL = "https://lumagridsolar.com";
+export const BUSINESS_NAME = "LumaGrid Solar";
 export const WHATSAPP_NUMBER = "2347059497792";
-export const WHATSAPP_MSG = encodeURIComponent(
-  "Hello LumaGrid, I'd like a free solar quote for my property."
-);
-export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
+export const PHONE_E164 = "+2347059497792";
+export const PHONE_DISPLAY = "+234 705 949 7792";
+export const EMAIL = "info@lumagridsolar.com";
+export const INSTAGRAM_URL = "https://instagram.com/lumagrid";
+export const GBP_MAP_URL = "https://share.google/DtTq8d4ZtcoUOQ1yH";
 export const GBP_PROFILE_URL = "https://share.google/7VtLiGINyLqrUfrf3";
 export const GBP_REVIEW_URL  = "https://share.google/7VtLiGINyLqrUfrf3";
 export const FACEBOOK_URL = "https://facebook.com/lumagrid";
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Financing", href: "/financing" },
+  { label: "Prices", href: "/pricing" },
+  { label: "Areas", href: "/solar-installation" },
   { label: "Calculator", href: "/calculator" },
-  { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const TRUST_BAR: TrustItem[] = [
@@ -127,23 +131,25 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-export const FINANCING_STEPS: FinancingStep[] = [
-  { step: "01", title: "Get a Quote First", desc: "We size your system and give you a full cost breakdown before any financing conversation begins." },
-  { step: "02", title: "Choose Your Plan", desc: "Our financing partner offers 6, 12, and 24-month repayment plans. We'll help you pick what works for your cash flow." },
-  { step: "03", title: "Simple Approval", desc: "Straightforward documentation process. No hidden charges. You'll know your monthly payment before signing anything." },
-  { step: "04", title: "Install Now, Pay Monthly", desc: "Your system is installed immediately. You start saving on generator costs from day one while spreading the investment." },
-];
-
 export const LOCATIONS: Location[] = [
-  { state: "Rivers State",  cities: ["Port Harcourt", "Obio-Akpor", "Eleme", "Bonny", "Okrika"],   color: "#08150f" },
-  { state: "Delta State",   cities: ["Warri", "Asaba", "Sapele", "Ughelli", "Abraka"],              color: "#14261c" },
-  { state: "Bayelsa State", cities: ["Yenagoa", "Brass", "Ogbia", "Sagbama", "Ekeremor"],           color: "#20382a" },
+  { state: "Rivers State",  cities: ["Port Harcourt", "Obio-Akpor", "Eleme", "Oyigbo", "Bonny Island", "Okrika", "Ahoada", "Omoku", "Bori"], color: "#08150f" },
+  { state: "Delta State",   cities: ["Warri", "Effurun", "Asaba", "Sapele", "Ughelli", "Abraka", "Agbor"],                                  color: "#14261c" },
+  { state: "Bayelsa State", cities: ["Yenagoa", "Amassoma", "Ogbia & Otuoke", "Sagbama", "Kaiama & Odi", "Brass"],                        color: "#20382a" },
 ];
 
+/**
+ * Homepage FAQ, also emitted as FAQPage schema. Answers are written to be
+ * quoted on their own (by Google or an AI assistant), so each one names the
+ * place, the numbers and LumaGrid without relying on the question.
+ */
 export const FAQS: Faq[] = [
-  { q: "How much does a solar system cost in Port Harcourt?", a: "A basic 3.5KVA system for a 2-bedroom home typically ranges from ₦1.8M to ₦2.8M depending on battery capacity and panel brand. We provide itemised quotes so you see exactly what you're paying for." },
-  { q: "Can solar power an air conditioner in Nigeria?", a: "Yes. A 1.5HP inverter AC on a 5KVA hybrid system is very achievable. We size the system specifically around your AC usage pattern during the site assessment." },
-  { q: "Do you install in Warri and Yenagoa?", a: "Yes. We cover Rivers, Delta, and Bayelsa states. Travel costs for sites outside Port Harcourt are discussed upfront — no surprise charges." },
-  { q: "What happens if something breaks after installation?", a: "You WhatsApp us. We respond within 24 hours. Our 2-year workmanship warranty covers any installation-related fault at no cost to you." },
-  { q: "Can I finance a solar system in Nigeria?", a: "Yes. We work with a financing partner who offers 6, 12, and 24-month repayment plans. You can start with as little as 30% deposit and pay the rest monthly." },
+  { q: "How much does a solar system cost in Port Harcourt?", a: "LumaGrid Solar's installed systems start from about ₦1.7M for a 3kVA inverter with a 3.2kWh lithium battery and four 600W panels, and from about ₦3.8M for a 6kVA system with 8kWh of lithium storage that can run a 1.5HP inverter AC. Every quote is itemised after a free site assessment." },
+  { q: "Who installs solar in Port Harcourt, Warri and Yenagoa?", a: "LumaGrid Solar is a CAC-registered solar installer based in Port Harcourt that installs solar panels, hybrid inverters and lithium batteries across Rivers, Delta and Bayelsa States, including Port Harcourt, Obio-Akpor, Eleme, Bonny, Warri, Effurun, Asaba, Sapele, Ughelli, Abraka, Yenagoa, Ogbia and Amassoma." },
+  { q: "Can solar power an air conditioner in Nigeria?", a: "Yes. One 1.5HP inverter AC needs at least a 5kVA pure sine wave hybrid inverter, about 3kW to 4kW of panels and enough lithium battery for the hours you run it at night. Our 6kVA package with 8kWh of storage is built for a home with one AC." },
+  { q: "Can you install solar on an upstairs building or duplex?", a: "Yes. We install on bungalows, upstairs (storey) buildings, duplexes, blocks of flats and shops. On storey buildings we plan safe roof access, fix the panels to the roof structure and run correctly sized cables to the inverter room." },
+  { q: "How long does a solar installation take?", a: "Most homes are installed in one to two days after the free site assessment. Larger commercial systems take three to five days." },
+  { q: "Does solar work during the rainy season in the Niger Delta?", a: "Yes. Panels keep producing under cloud at reduced output. We size every system for rainy-season sunshine in Rivers, Delta and Bayelsa, not dry-season peaks, so it keeps up from April to October." },
+  { q: "How long do solar batteries last?", a: "The LiFePO4 lithium batteries we install typically last 8 to 15 years with daily use, compared with 1.5 to 3 years for gel and tubular lead-acid batteries." },
+  { q: "Do you install in Warri and Yenagoa?", a: "Yes. We cover Rivers, Delta and Bayelsa States. Equipment prices are the same everywhere; any transport cost for sites outside Port Harcourt is shown on your quote before you pay." },
+  { q: "What happens if something breaks after installation?", a: "You WhatsApp us and we respond within 24 hours. Our 2-year workmanship warranty covers any installation-related fault at no cost to you, and panels carry a 10-year performance warranty." },
 ];

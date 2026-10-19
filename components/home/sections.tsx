@@ -3,8 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { TRUST_BAR, SERVICES, PROCESS_STEPS, LOCATIONS, FAQS, WHATSAPP_URL } from "@/lib/constants";
+import { TRUST_BAR, SERVICES, PROCESS_STEPS, LOCATIONS, FAQS } from "@/lib/constants";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 import type { ServiceIcon } from "@/lib/types";
+import { CITIES } from "@/lib/cities";
 import { FadeIn, SectionHeader } from "@/components/ui";
 import {
   Bolt, Wrench, Clock, ClipboardCheck, Check, Plus, ArrowRight, MapPin,
@@ -283,8 +285,9 @@ export function Locations() {
                 <div style={{ padding: "18px 20px" }}>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
                     {loc.cities.map(city => (
-                      <span
+                      <Link
                         key={city}
+                        href={`/solar-installation/${CITIES.find(c => c.name === city)?.slug ?? ""}`}
                         style={{
                           background: "var(--green-light)",
                           color: "var(--green-mid)",
@@ -295,7 +298,7 @@ export function Locations() {
                         }}
                       >
                         {city}
-                      </span>
+                      </Link>
                     ))}
                   </div>
                   <Link
@@ -395,9 +398,44 @@ export function Faq() {
         </div>
 
         <div style={{ textAlign: "center", marginTop: 28 }}>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-outline">
+          <WhatsAppButton source="Homepage FAQ" className="btn-outline">
             Ask us something else
-          </a>
+          </WhatsAppButton>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+// ── Guides — links into the blog answers people search for ───────────────────
+
+const GUIDES: [string, string][] = [
+  ["How much does solar cost in Port Harcourt in 2026?", "/blog/how-much-does-solar-cost-in-port-harcourt"],
+  ["What can a 3kVA, 5kVA or 10kVA system power?", "/blog/what-can-3kva-5kva-10kva-power"],
+  ["Can solar power an air conditioner?", "/blog/solar-ac"],
+  ["How many panels does a 5kVA inverter need?", "/blog/how-many-solar-panels-for-5kva-inverter"],
+  ["Installing solar on an upstairs building", "/blog/solar-on-upstairs-building"],
+  ["Is solar worth it in Nigeria in 2026?", "/blog/is-solar-worth-it-in-nigeria-2026"],
+];
+
+export function Guides() {
+  return (
+    <section className="section" style={{ background: "#fff" }}>
+      <div className="container" style={{ maxWidth: 900 }}>
+        <SectionHeader tag="Solar guides" title={<>Answers before<br />you spend a naira.</>} />
+        <ul className="guide-list">
+          {GUIDES.map(([label, href]) => (
+            <li key={href}>
+              <Link href={href}>
+                <span>{label}</span> <ArrowRight size={15} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div style={{ marginTop: 20, display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <Link href="/blog" className="btn-outline" style={{ fontSize: 14 }}>All solar guides</Link>
+          <Link href="/pricing" className="btn-outline" style={{ fontSize: 14 }}>Solar prices</Link>
         </div>
       </div>
     </section>

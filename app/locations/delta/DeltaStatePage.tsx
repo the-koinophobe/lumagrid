@@ -6,7 +6,10 @@ import Footer from "@/components/layout/Footer";
 import { FadeIn, SectionHeader, WhatsAppIcon, Stars } from "@/components/ui";
 import FAQSchema from "@/components/seo/FAQSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-import { WHATSAPP_URL } from "@/lib/constants";
+import JsonLd from "@/components/seo/JsonLd";
+import TownLinks from "@/components/locations/TownLinks";
+import { serviceSchema } from "@/lib/schema";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: "3px" }}>
@@ -31,6 +34,14 @@ const areas = [
 ];
 
 const faqs = [
+  {
+    q: "How much does a solar system cost in Warri?",
+    a: "A 3kVA starter system with a 3.2kWh lithium battery and four panels starts from about ₦1.7M installed, and a 6kVA family system with 8kWh of lithium storage starts from about ₦3.8M. Your final quote depends on your load and roof, and is itemised line by line after a free site assessment. See our pricing page for what changes the cost.",
+  },
+  {
+    q: "Can you install solar panels on an upstairs (storey) building in Delta State?",
+    a: "Yes. We install on bungalows, duplexes, storey buildings and blocks of flats. On an upstairs building we plan safe roof access, fix the panels to the roof structure, and run the cables neatly to an inverter room on whichever floor suits you. For shared roofs we confirm access with the landlord first.",
+  },
   {
     q: "Do you serve both Warri and Asaba in Delta State?",
     a: "Yes. We cover all 25 LGAs in Delta State including both Warri and Asaba, as well as Sapele, Ughelli, Abraka, and remote LGAs like Bomadi and Burutu.",
@@ -79,37 +90,14 @@ export default function DeltaStatePage() {
 
   return (
     <>
-      {/* ── JSON-LD structured data ── */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            name: "LumaGrid Solar",
-            description:
-              "Professional solar panel installation in Warri, Asaba, Sapele, Ughelli and all 25 LGAs across Delta State. Residential, commercial and off-grid solar solutions.",
-            url: "https://lumagridsolar.com/locations/delta-state",
-            telephone: "+2347059497792",
-            areaServed: {
-              "@type": "State",
-              name: "Delta State",
-              containsPlace: [
-                { "@type": "City", name: "Warri" },
-                { "@type": "City", name: "Asaba" },
-                { "@type": "City", name: "Sapele" },
-                { "@type": "City", name: "Ughelli" },
-                { "@type": "City", name: "Abraka" },
-                { "@type": "City", name: "Agbor" },
-                { "@type": "City", name: "Ozoro" },
-                { "@type": "City", name: "Kwale" },
-              ],
-            },
-            serviceType: ["Solar Panel Installation", "Solar Battery Storage", "Off-Grid Solar Systems", "Commercial Solar"],
-            priceRange: "₦₦",
-            sameAs: ["https://facebook.com/lumagrid"],
-          }),
-        }}
+      <JsonLd
+        data={serviceSchema({
+          name: "Solar installation in Delta State",
+          description:
+            "Solar panel, hybrid inverter and lithium battery installation for homes and businesses across Delta State, including Warri, Effurun, Asaba, Sapele, Ughelli, Abraka and Agbor. Free site assessment and itemised quotes.",
+          url: "/locations/delta",
+          areaServed: [{ type: "State", name: "Delta State" }, { type: "City", name: "Warri", state: "Delta State" }, { type: "City", name: "Effurun", state: "Delta State" }, { type: "City", name: "Asaba", state: "Delta State" }, { type: "City", name: "Sapele", state: "Delta State" }, { type: "City", name: "Ughelli", state: "Delta State" }, { type: "City", name: "Abraka", state: "Delta State" }, { type: "City", name: "Agbor", state: "Delta State" }],
+        })}
       />
 
       <Navbar isMobile={isMobile} />
@@ -171,16 +159,15 @@ export default function DeltaStatePage() {
               across all 25 LGAs, serving homes, businesses, cold rooms, and off-grid communities.
             </p>
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Delta State page"
+                state="Delta"
                 className="btn-wa"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
               >
                 <WhatsAppIcon size={20} />
                 Get a Free Quote
-              </a>
+              </WhatsAppButton>
               <a href="#areas" className="btn-outline" style={{ color: "#fff", borderColor: "rgba(255,255,255,0.5)" }}>
                 View Areas We Cover
               </a>
@@ -404,16 +391,15 @@ export default function DeltaStatePage() {
               <p style={{ color: "var(--muted)", marginBottom: "16px" }}>
                 Do not see your town listed? Message us. We cover all of Delta State.
               </p>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
+                source="Delta State page"
+                state="Delta"
                 className="btn-wa"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
               >
                 <WhatsAppIcon size={18} />
                 Chat With Us on WhatsApp
-              </a>
+              </WhatsAppButton>
             </div>
           </FadeIn>
         </div>
@@ -460,6 +446,12 @@ export default function DeltaStatePage() {
         </div>
       </section>
 
+      <TownLinks
+        state="Delta"
+        title="Solar installation in Warri, Asaba and across Delta State"
+        subtitle="Pick your town for local details: the areas we cover, what changes about the install there, and answers to the questions people in your area ask us most."
+      />
+
       {/* ── FAQ ── */}
       <section className="section" style={{ background: "var(--green-xl)" }}>
         <div className="container" style={{ maxWidth: "760px" }}>
@@ -499,16 +491,15 @@ export default function DeltaStatePage() {
               Get a free assessment anywhere in Delta State. Whether you are in Warri GRA, along the Niger Bridge in Asaba, or in a
               Forcados riverine community, we come to you.
             </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppButton
+              source="Delta State page"
+              state="Delta"
               className="btn-wa"
               style={{ fontSize: "1rem", padding: "14px 28px", display: "inline-flex", alignItems: "center", gap: "10px" }}
             >
               <WhatsAppIcon size={20} />
               Get Your Free Quote Now
-            </a>
+            </WhatsAppButton>
           </FadeIn>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Bricolage_Grotesque, Chivo } from "next/font/google";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
+import QuoteProvider from "@/components/quote/QuoteProvider";
 
 // ─── Site-wide default metadata ───────────────────────────────────────────────
 // Every page inherits these and can override specific fields via generateMetadata()
@@ -31,7 +32,6 @@ export const metadata: Metadata = {
     "solar company Port Harcourt",
     "solar panel price Nigeria",
     "inverter installation Port Harcourt",
-    "solar financing Nigeria",
   ],
 
   authors: [{ name: "LumaGrid Solar", url: "https://lumagridsolar.com" }],
@@ -116,7 +116,7 @@ export default function RootLayout({
       <body
         className={`${bricolage.variable} ${chivo.variable} antialiased`}
       >
-        {children}
+        <QuoteProvider>{children}</QuoteProvider>
 
         <Analytics />
         <SpeedInsights />

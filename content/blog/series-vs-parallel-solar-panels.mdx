@@ -1,0 +1,72 @@
+---
+title: "Series vs Parallel Solar Panel Wiring: Simple Guide for Nigerian Homes"
+description: "Series vs parallel solar panel connection explained simply: what happens to voltage and current, shade, cable size and why your installer chooses one or both."
+date: "2026-10-19"
+category: "Comparisons"
+readTime: "5 min read"
+author: "LumaGrid Solar"
+tags: ["series vs parallel solar", "solar panel wiring", "solar string", "MPPT voltage", "Nigeria solar"]
+image: "longi-panels"
+summary: "Wiring panels in series adds up their voltage and keeps current the same, which suits MPPT hybrid inverters and long cable runs. Wiring in parallel adds up current and keeps voltage the same, which helps with shade but needs thicker cables. Most home systems use series strings, sometimes with two strings in parallel, designed to fit the inverter's voltage limits."
+tldr:
+  - "Series: voltage adds up. Current stays the same."
+  - "Parallel: current adds up. Voltage stays the same."
+  - "Series suits MPPT inverters and long cables."
+  - "Never pass the inverter's maximum voltage."
+related: ["mppt-vs-pwm-charge-controller", "how-many-solar-panels-for-5kva-inverter", "half-cut-vs-full-cell-solar-panels"]
+faqs:
+  - q: "Is it better to connect solar panels in series or parallel?"
+    a: "For most hybrid inverters with MPPT, series strings work best because they reach the inverter's working voltage and use thinner cables. Parallel helps when parts of the array get different shade."
+  - q: "What happens if I connect too many panels in series?"
+    a: "The voltage can go above the inverter's limit, especially on cool mornings, and damage the charge controller. Always check the datasheet."
+  - q: "Can I mix different panels in one string?"
+    a: "It is best not to. Different panels in one string drag each other down. Keep the same model in each string."
+---
+
+When an installer fixes your panels, they connect them in **series**, **parallel**, or a mix. This changes how power reaches your inverter.
+
+## Series: like a chain
+
+Connect the plus of one panel to the minus of the next.
+
+- **Voltage adds up.**
+- **Current stays the same.**
+
+Example: 4 panels of about 40V each in series ≈ 160V.
+
+## Parallel: side by side
+
+Connect all pluses together and all minuses together.
+
+- **Current adds up.**
+- **Voltage stays the same.**
+
+Example: 4 panels of about 13A in parallel ≈ 52A at 40V.
+
+## Side by side
+
+<div className="table-scroll">
+
+| | Series | Parallel |
+|---|---|---|
+| Voltage | Adds up | Stays the same |
+| Current | Stays the same | Adds up |
+| Cable thickness | Thinner | Thicker |
+| Best with | MPPT inverters | Low-voltage controllers |
+| Shade | One shaded panel affects the string | Less effect on others |
+
+</div>
+
+## Why most home systems use series
+
+Modern hybrid inverters with MPPT want a higher voltage. Series wiring gives that. Lower current means thinner, cheaper cables and less power lost on long runs, like on an [upstairs building](/blog/solar-on-upstairs-building).
+
+## When parallel helps
+
+If some panels face a different direction, or one part of the roof gets shade, two separate strings in parallel can help. Many inverters also have **two MPPT inputs** for this.
+
+## The voltage limit
+
+Every inverter has a maximum input voltage. Panel voltage rises on cool mornings. Too many panels in series can go over the limit and damage the inverter. A good installer calculates this. Read [how many panels for a 5kVA inverter](/blog/how-many-solar-panels-for-5kva-inverter).
+
+<QuoteButton source="Blog: series vs parallel">Get a proper design</QuoteButton>

@@ -490,3 +490,141 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 .blog-lead { font-size: 18px; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; }
 .blog-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
 .divider-dot { opacity: 0.5; }
+
+/* ============================================================================
+   Quote prequalification — modal + form (components/quote)
+   ============================================================================ */
+
+.qm-backdrop {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(8, 21, 15, 0.6);
+  display: flex; align-items: flex-end; justify-content: center;
+  animation: qm-fade 0.2s ease;
+}
+.qm {
+  background: #fff; width: 100%; max-width: 560px;
+  max-height: 92vh; overflow-y: auto; outline: none;
+  border-radius: 16px 16px 0 0;
+  padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+  animation: qm-rise 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 640px) {
+  .qm-backdrop { align-items: center; padding: 24px; }
+  .qm { border-radius: 16px; padding: 26px 26px 22px; }
+}
+@keyframes qm-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes qm-rise { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.qm-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+.qm-head h2 { font-size: clamp(20px, 5vw, 24px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+.qm-head p { font-size: 13.5px; color: var(--muted); margin-top: 4px; }
+.qm-close {
+  width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%;
+  border: 1.5px solid var(--border); background: #fff; color: var(--ink);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+
+.qf-field { border: none; margin: 0 0 16px; padding: 0; min-width: 0; }
+.qf-label {
+  display: block; font-size: 13px; font-weight: 700; color: var(--ink);
+  margin-bottom: 8px; padding: 0;
+}
+.qf-hint { font-weight: 500; color: var(--muted); margin-left: 4px; }
+.qf-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.qf-chips .chip { min-height: 40px; padding: 8px 14px; font-size: 13.5px; }
+.qf-input {
+  width: 100%; padding: 12px 14px; min-height: var(--tap);
+  border: 1.5px solid var(--border); border-radius: 9px;
+  background: #fff; color: var(--ink); outline: none;
+  transition: border-color 0.15s;
+}
+.qf-input:focus { border-color: var(--ink); }
+.qf-foot { font-size: 12px; color: var(--muted); text-align: center; margin-top: 10px; line-height: 1.5; }
+.qf-stop {
+  background: #fff8eb; border: 1.5px solid #f5d38a; border-radius: 10px;
+  padding: 14px 16px; font-size: 14px; line-height: 1.6;
+}
+.qf-stop p { margin: 6px 0 10px; color: #5c4a1f; }
+.qf-stop-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.qf-stop-links a {
+  font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 999px;
+  background: #fff; border: 1.5px solid #f5d38a;
+}
+
+/* ── Town links (state pages, city pages, hub) ─────────────────────────── */
+.town-grid { display: grid; gap: 10px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .town-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .town-grid { grid-template-columns: repeat(3, 1fr); } }
+.town-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; min-height: 64px;
+  border: 1.5px solid var(--border); border-radius: 10px; background: #fff;
+  font-size: 14.5px; line-height: 1.35;
+}
+.town-sub { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+
+/* ── Town / pricing / blog shared blocks ───────────────────────────────── */
+.crumbs { font-size: 13px; color: rgba(255,255,255,0.6); display: flex; flex-wrap: wrap; gap: 6px; }
+.crumbs a { color: rgba(255,255,255,0.85); text-decoration: underline; text-decoration-color: rgba(212,245,12,0.6); }
+.crumbs.light { color: var(--muted); }
+.crumbs.light a { color: var(--ink); }
+
+.facts { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 18px; }
+.facts dl { display: grid; gap: 0; }
+.facts dl > div { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 10px 0; border-top: 1px solid var(--border); }
+@media (min-width: 640px) { .facts dl > div { grid-template-columns: 170px 1fr; gap: 16px; } }
+.facts dt { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.facts dd { font-size: 14.5px; line-height: 1.6; }
+.facts a { font-weight: 700; text-decoration: underline; text-decoration-color: var(--lime); text-decoration-thickness: 2px; }
+
+.area-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+.area-chips li { background: var(--green-light); color: var(--green-mid); font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 4px; }
+
+.table-wrap { overflow-x: auto; border: 1.5px solid var(--border); border-radius: 10px; }
+.table-wrap table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+.table-wrap th { background: var(--ink); color: #fff; text-align: left; padding: 10px 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.table-wrap td { padding: 11px 14px; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+.table-wrap tr:nth-child(even) td { background: var(--green-xl); }
+
+.steps { padding-left: 1.3rem; display: grid; gap: 12px; font-size: 15px; line-height: 1.7; color: #2d3a35; }
+
+.faq-list { display: grid; gap: 10px; }
+.faq-list details { border: 1.5px solid var(--border); border-radius: 10px; background: #fff; padding: 0 18px; }
+.faq-list summary { cursor: pointer; font-weight: 700; font-size: 15.5px; line-height: 1.4; padding: 16px 0; list-style-position: outside; }
+.faq-list details[open] summary { padding-bottom: 8px; }
+.faq-list details p { font-size: 15px; color: var(--muted); line-height: 1.75; padding-bottom: 16px; }
+
+.guide-list { list-style: none; display: grid; gap: 8px; }
+.guide-list a {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 16px; min-height: 52px; border: 1.5px solid var(--border); border-radius: 10px;
+  font-weight: 600; font-size: 14.5px; line-height: 1.4; transition: border-color 0.2s;
+}
+.guide-list a:hover { border-color: var(--ink); }
+
+/* ── Blog post template ────────────────────────────────────────────────── */
+.blog-hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; margin: 0.5rem 0 1rem; color: var(--ink); }
+.quick-answer {
+  border: 2px solid var(--ink); border-left: 8px solid var(--lime); border-radius: 10px;
+  padding: 16px 18px; margin: 0 0 2rem; background: #fff;
+}
+.quick-answer strong { font-family: var(--font-bricolage), sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; }
+.quick-answer p { margin-top: 6px; font-size: 16px; line-height: 1.7; }
+.blog-faq { margin-top: 2.5rem; }
+.blog-faq h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 800; margin-bottom: 1rem; }
+.blog-cta { background: var(--ink); color: #fff; border-radius: 14px; padding: 2rem 1.5rem; text-align: center; margin-top: 2.5rem; }
+.blog-cta h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; }
+.blog-cta p { margin-bottom: 1.25rem; opacity: 0.85; font-size: 0.95rem; line-height: 1.6; }
+.prose .callout { border-left: 4px solid var(--lime); background: var(--green-xl); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 1.75rem 0; }
+.prose .table-scroll { overflow-x: auto; margin: 1.5rem 0; }
+.prose .table-scroll table { margin: 0; min-width: 520px; }
+.prose p > .btn-wa { text-decoration: none; }
+
+.footer-towns { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; }
+.footer-towns a { color: rgba(255,255,255,0.62); min-height: 32px; display: inline-flex; align-items: center; }
+.footer-towns a:hover { color: #fff; }
+
+.post-image { margin: 0 0 2rem; }
+.post-image figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.post-image figcaption a { text-decoration: underline; }
+.quick-answer ul { margin: 10px 0 0 1.1rem; display: grid; gap: 6px; font-size: 15.5px; line-height: 1.6; }

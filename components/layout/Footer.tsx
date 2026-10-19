@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { WHATSAPP_URL, FACEBOOK_URL, GBP_PROFILE_URL, GBP_REVIEW_URL, WHATSAPP_NUMBER } from "@/lib/constants";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
+import { FACEBOOK_URL, GBP_PROFILE_URL, GBP_REVIEW_URL, WHATSAPP_NUMBER } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/ui";
 import { Facebook, Instagram, Phone, ArrowUpRight } from "@/components/ui/icons";
+import { CITIES } from "@/lib/cities";
 
 const FOOTER_SERVICES: [string, string][] = [
   ["Residential Solar", "/services"],
@@ -15,8 +17,8 @@ const FOOTER_SERVICES: [string, string][] = [
 
 const FOOTER_COMPANY: [string, string][] = [
   ["About Us", "/about"],
+  ["Solar Prices", "/pricing"],
   ["Blog", "/blog"],
-  ["Financing", "/financing"],
   ["Contact", "/contact"],
 ];
 
@@ -24,7 +26,17 @@ const FOOTER_AREAS: [string, string][] = [
   ["Rivers State", "/locations/rivers"],
   ["Delta State", "/locations/delta"],
   ["Bayelsa State", "/locations/bayelsa"],
+  ["All towns we cover", "/solar-installation"],
   ["Savings Calculator", "/calculator"],
+];
+
+const FOOTER_GUIDES: [string, string][] = [
+  ["How much solar costs in 2026", "/blog/how-much-does-solar-cost-in-port-harcourt"],
+  ["What 3kVA, 5kVA & 10kVA can power", "/blog/what-can-3kva-5kva-10kva-power"],
+  ["Panels needed for a 5kVA inverter", "/blog/how-many-solar-panels-for-5kva-inverter"],
+  ["Can solar power an AC?", "/blog/solar-ac"],
+  ["Solar on an upstairs building", "/blog/solar-on-upstairs-building"],
+  ["Lithium vs lead-acid batteries", "/blog/lifep04-vs-acid"],
 ];
 
 const colHead: React.CSSProperties = {
@@ -59,9 +71,9 @@ export default function Footer({ isMobile, isSmall }: { isMobile?: boolean; isSm
               Solar installation across Rivers, Delta, and Bayelsa states. CAC
               registered. Genuine brands. Real warranties.
             </p>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-lime" style={{ fontSize: 13.5, padding: "11px 18px" }}>
+            <WhatsAppButton source="Footer" className="btn-lime" style={{ fontSize: 13.5, padding: "11px 18px" }}>
               <WhatsAppIcon size={15} color="var(--ink)" /> Chat on WhatsApp
-            </a>
+            </WhatsAppButton>
           </div>
 
           <div>
@@ -82,6 +94,22 @@ export default function Footer({ isMobile, isSmall }: { isMobile?: boolean; isSm
             <div style={colHead}>Where we work</div>
             {FOOTER_AREAS.map(([label, href]) => (
               <Link key={label} href={href} className="footer-link">{label}</Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Town + guide links: one crawlable path to every local page */}
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.09)", paddingTop: 22, marginBottom: 22 }}>
+          <div style={colHead}>Solar installation in</div>
+          <div className="footer-towns">
+            {CITIES.map(c => (
+              <Link key={c.slug} href={`/solar-installation/${c.slug}`}>{c.name}</Link>
+            ))}
+          </div>
+          <div style={{ ...colHead, marginTop: 20 }}>Popular guides</div>
+          <div className="footer-towns">
+            {FOOTER_GUIDES.map(([label, href]) => (
+              <Link key={href} href={href}>{label}</Link>
             ))}
           </div>
         </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { GALLERY_ITEMS, WHATSAPP_URL } from "@/lib/constants";
+import { GALLERY_ITEMS } from "@/lib/constants";
+import WhatsAppButton from "@/components/quote/WhatsAppButton";
 import { FadeIn, SectionHeader, InstallPhoto, WhatsAppIcon } from "@/components/ui";
 
 type Filter = "all" | "rooftop" | "indoor";
@@ -48,9 +49,9 @@ export default function Gallery() {
 
         <FadeIn delay={0.2}>
           <div style={{ marginTop: 40, textAlign: "center" }}>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">
+            <WhatsAppButton source="Gallery - site assessment" className="btn-wa">
               <WhatsAppIcon size={18} /> Book Your Free Site Assessment
-            </a>
+            </WhatsAppButton>
           </div>
         </FadeIn>
       </div>
