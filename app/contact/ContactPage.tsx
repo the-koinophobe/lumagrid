@@ -27,8 +27,8 @@ export default function ContactPage() {
       <Navbar />
 
       <PageHero
-        eyebrow="Contact"
-        title={<>Let&apos;s talk <span className="hl">solar.</span></>}
+        eyebrow="Let's talk solar"
+        title={<>Contact LumaGrid Solar for a <span className="hl">Free Solar Quote</span></>}
         lead="Answer five quick questions and we open WhatsApp with your details filled in, so our first reply is a real recommendation. Prefer to talk? Call us."
         image="/images/real/solar-panels-on-the-roof.jpeg"
         crumbs={[{ name: "Home", href: "/" }, { name: "Contact" }]}
@@ -37,7 +37,7 @@ export default function ContactPage() {
       <section className="sec sec--sand" style={{ paddingTop: 48 }}>
         <div className="wrap contact-grid">
           <div className="card reveal" style={{ padding: "26px 22px" }}>
-            <h2 className="h3" style={{ fontSize: 24, marginBottom: 6 }}>Get a solar quote</h2>
+            <h2 className="h3" style={{ fontSize: 24, marginBottom: 6 }}>Get a solar installation quote</h2>
             <p className="muted" style={{ fontSize: 14.5, lineHeight: 1.6, marginBottom: 22 }}>
               Free site assessment. Itemised quote. No obligation.
             </p>
@@ -46,7 +46,7 @@ export default function ContactPage() {
 
           <aside className="reveal" style={{ "--d": ".1s" } as React.CSSProperties}>
             <div className="card">
-              <h2 className="h3" style={{ marginBottom: 6 }}>Other ways to reach us</h2>
+              <h2 className="h3" style={{ marginBottom: 6 }}>Call, email or visit LumaGrid Solar</h2>
               <a href={`tel:${PHONE_E164}`} style={row}>
                 <span style={ic}><Phone size={19} /></span>
                 <span><strong>Call or WhatsApp</strong><br /><span className="muted">{PHONE_DISPLAY}</span></span>
@@ -79,7 +79,7 @@ export default function ContactPage() {
 
       <section className="sec sec--paper">
         <div className="wrap wrap--narrow">
-          <SectionHead eyebrow="FAQ" title="Before you message us." center />
+          <SectionHead eyebrow="FAQ" title="Solar quote FAQs" center />
           <FaqList faqs={FAQS} />
         </div>
       </section>

@@ -38,7 +38,7 @@ export default function Page() {
       />
       <BlogIndex
         posts={posts}
-        title={<>Solar answers for the <span className="hl">Niger Delta.</span></>}
+        title={<>Solar Energy Blog: <span className="hl">Guides for Port Harcourt &amp; the Niger Delta</span></>}
         lead={`${posts.length} plain-English guides on prices, batteries, sizing and local conditions in Rivers, Delta and Bayelsa.`}
         crumbs={[{ name: "Home", href: "/" }, { name: "Guides" }]}
       />

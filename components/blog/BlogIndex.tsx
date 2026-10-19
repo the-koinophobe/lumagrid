@@ -12,13 +12,15 @@ import { getCategories, type BlogPost } from "@/lib/blog";
  * crawlable; BlogSearch filters them client-side.
  */
 export default function BlogIndex({
-  posts, activeSlug, title, lead, crumbs,
+  posts, activeSlug, title, lead, crumbs, listHeading = "Latest solar guides",
 }: {
   posts: BlogPost[];
   activeSlug?: string;
   title: React.ReactNode;
   lead: string;
   crumbs: { name: string; href?: string }[];
+  /** H2 above the post grid, so post titles (H3) sit under a section heading. */
+  listHeading?: string;
 }) {
   const categories = getCategories();
   const [featured, ...rest] = posts;
@@ -41,6 +43,8 @@ export default function BlogIndex({
             </nav>
             <BlogSearch total={posts.length} />
           </div>
+
+          <h2 className="h3" style={{ marginBottom: 18 }}>{listHeading}</h2>
 
           {featured && (
             <div data-post={searchText(featured)} style={{ marginBottom: 22 }}>

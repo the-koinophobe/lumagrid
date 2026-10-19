@@ -118,8 +118,8 @@ export default function ServicesPage() {
       <Navbar />
 
       <PageHero
-        eyebrow="Services"
-        title={<>Solar installation, upgrades <span className="hl">and support.</span></>}
+        eyebrow="Solar installation, upgrades and support"
+        title={<>Solar Installation Services in <span className="hl">Port Harcourt &amp; the Niger Delta</span></>}
         lead="Home and business solar, lithium battery upgrades and maintenance across Rivers, Delta and Bayelsa. Designed for rainy season, installed in 1 to 2 days, backed by a 2-year workmanship warranty."
         image="/blog/solar-small-business-rivers-state/hero.jpg"
         crumbs={[{ name: "Home", href: "/" }, { name: "Services" }]}
@@ -157,7 +157,7 @@ export default function ServicesPage() {
 
       <section className="sec sec--paper">
         <div className="wrap wrap--narrow">
-          <SectionHead eyebrow="Why we fit lithium" title="Gel or tubular vs LiFePO4 lithium." lead="The battery is the most expensive part of a solar system. Here is why we install lithium." />
+          <SectionHead eyebrow="Why we fit lithium" title="Lithium vs tubular batteries for solar" lead="The battery is the most expensive part of a solar system. Here is why we install lithium." />
           <div className="table-wrap reveal">
             <table className="compare">
               <thead><tr><th>What matters</th><th>Gel / tubular</th><th>LiFePO4 lithium</th></tr></thead>
@@ -172,7 +172,7 @@ export default function ServicesPage() {
 
       <section className="sec sec--sand">
         <div className="wrap wrap--narrow">
-          <SectionHead eyebrow="FAQ" title="Service questions." center />
+          <SectionHead eyebrow="FAQ" title="Solar installation service FAQs" center />
           <FaqList faqs={FAQS} />
         </div>
       </section>

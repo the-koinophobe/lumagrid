@@ -92,7 +92,7 @@ export default function PricingPage() {
 
       <PageHero
         eyebrow={`Prices · Updated ${PETROL_PRICE_ASOF}`}
-        title={<>What solar costs in Port Harcourt, <span className="hl">Warri and Yenagoa.</span></>}
+        title={<>Solar Prices in Nigeria (2026): <span className="hl">Port Harcourt, Warri &amp; Yenagoa</span></>}
         lead="Installed prices for complete solar systems in Rivers, Delta and Bayelsa, and the things that move a quote up or down."
         image="/images/real/longi-panel-pallets.jpeg"
         crumbs={[{ name: "Home", href: "/" }, { name: "Prices" }]}
@@ -115,7 +115,7 @@ export default function PricingPage() {
 
       <section className="sec sec--sand" style={{ paddingTop: 24 }}>
         <div className="wrap">
-          <SectionHead eyebrow="Packages" title="Our standard packages." />
+          <SectionHead eyebrow="Packages" title="Solar packages and installed prices" />
           <div className="g3">
             {PACKAGES.map((p, i) => (
               <article key={p.name} className={`plan reveal${p.highlight ? " plan--featured" : ""}`} style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
@@ -147,7 +147,7 @@ export default function PricingPage() {
 
       <section className="sec sec--paper">
         <div className="wrap">
-          <SectionHead eyebrow="By size" title="Solar system prices by size." lead={<>3kVA and 6kVA are standard packages. 5kVA and 10kVA are estimates from the same pricing the <Link href="/calculator" className="link-arrow">calculator</Link> uses.</>} />
+          <SectionHead eyebrow="By size" title="Solar system prices by size: 3kVA, 5kVA, 6kVA & 10kVA" lead={<>3kVA and 6kVA are standard packages. 5kVA and 10kVA are estimates from the same pricing the <Link href="/calculator" className="link-arrow">calculator</Link> uses.</>} />
           <div className="table-wrap reveal">
             <table className="compare">
               <thead><tr><th>Inverter</th><th>Battery</th><th>Panels</th><th>Suits</th><th>Installed price</th></tr></thead>
@@ -163,7 +163,7 @@ export default function PricingPage() {
 
       <section className="sec sec--sand">
         <div className="wrap">
-          <SectionHead eyebrow="What moves the price" title="Six things that change a quote." />
+          <SectionHead eyebrow="What moves the price" title="What affects the cost of solar in Nigeria" />
           <div className="g3">
             {FACTORS.map((f, i) => (
               <div key={f.title} className="card reveal" style={{ "--d": `${(i % 3) * 0.06}s` } as React.CSSProperties}>
@@ -181,7 +181,7 @@ export default function PricingPage() {
         <div className="wrap split2">
           <div className="reveal">
             <span className="eyebrow">Every quote</span>
-            <h2 className="h2">What a LumaGrid price includes.</h2>
+            <h2 className="h2">What is included in a solar installation price</h2>
             <ul className="ticks" style={{ marginTop: 22 }}>{INCLUDES.map(x => <li key={x}>{x}</li>)}</ul>
             <div style={{ marginTop: 24 }}><Link href="/blog/how-to-read-a-solar-quote" className="link-arrow">How to read a solar quote <ArrowRight size={15} /></Link></div>
           </div>
@@ -193,7 +193,7 @@ export default function PricingPage() {
 
       <section className="sec sec--sand">
         <div className="wrap wrap--narrow">
-          <SectionHead eyebrow="FAQ" title="Solar price questions." center />
+          <SectionHead eyebrow="FAQ" title="Solar price FAQs" center />
           <FaqList faqs={FAQS} />
           <p className="muted" style={{ marginTop: 26, textAlign: "center", lineHeight: 1.8 }}>
             Prices for your town:{" "}

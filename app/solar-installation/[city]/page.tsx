@@ -92,7 +92,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
 
       <PageHero
         eyebrow={`${st.label} · ${c.lga}`}
-        title={<>Solar installation in <span className="hl">{c.name}</span></>}
+        title={<>Solar Installation in <span className="hl">{c.name}</span></>}
         lead={c.intro}
         image={img.src}
         imageAlt={img.alt}
@@ -114,7 +114,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         <div className="wrap split2">
           <div className="reveal">
             <span className="eyebrow">Local conditions</span>
-            <h2 className="h2" style={{ fontSize: "clamp(26px, 4.4vw, 40px)" }}>The power situation in {c.name}.</h2>
+            <h2 className="h2" style={{ fontSize: "clamp(26px, 4.4vw, 40px)" }}>Electricity supply and solar power in {c.name}</h2>
             <p className="lead" style={{ marginTop: 14 }}>{c.power}</p>
             <h3 className="h3" style={{ marginTop: 28 }}>What we plan for in {c.name}</h3>
             <p style={{ marginTop: 10, lineHeight: 1.8, color: "var(--muted)" }}>{c.install}</p>
@@ -130,7 +130,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
 
       <section className="sec sec--sand">
         <div className="wrap">
-          <SectionHead eyebrow="Areas" title={`Neighbourhoods we cover in ${c.name}.`} lead={<>Not listed? We cover all of {c.lga} LGA and the rest of <Link href={st.href} className="link-arrow">{st.label}</Link>.</>} />
+          <SectionHead eyebrow="Areas" title={`Solar installation areas in ${c.name}`} lead={<>Not listed? We cover all of {c.lga} LGA and the rest of <Link href={st.href} className="link-arrow">{st.label}</Link>.</>} />
           <ul className="area-chips reveal" style={{ gap: 9 }}>
             {c.areas.map(a => <li key={a} style={{ background: "#fff", border: "1px solid var(--line)", padding: "9px 14px", fontSize: 14 }}>{a}</li>)}
           </ul>
@@ -140,7 +140,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       <section className="sec sec--paper">
         <div className="wrap">
           <div className="sec-head-row">
-            <SectionHead eyebrow="Sizes & prices" title={`What people in ${c.name} buy.`} lead={c.typical} />
+            <SectionHead eyebrow="Sizes & prices" title={`Solar system sizes and prices in ${c.name}`} lead={c.typical} />
             <Link href="/pricing" className="link-arrow">Full price guide <ArrowRight size={15} /></Link>
           </div>
           <div className="g3">
@@ -168,7 +168,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
 
       <section className="sec sec--sand">
         <div className="wrap">
-          <SectionHead eyebrow="How it works" title={`Getting solar in ${c.name}.`} center />
+          <SectionHead eyebrow="How it works" title={`How to get solar installed in ${c.name}`} center />
           <ol className="steps2">
             {PROCESS_STEPS.map((s, i) => (
               <li key={s.num} className="reveal" style={{ "--d": `${i * 0.06}s` } as React.CSSProperties}><h3 className="h3">{s.title}</h3><p>{s.desc}</p></li>
@@ -179,7 +179,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
 
       <section className="sec sec--paper">
         <div className="wrap wrap--narrow">
-          <SectionHead eyebrow="FAQ" title={`Solar questions from ${c.name}.`} center />
+          <SectionHead eyebrow="FAQ" title={`Solar installation FAQs: ${c.name}`} center />
           <FaqList faqs={faqs} />
         </div>
       </section>
@@ -187,7 +187,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       {posts.length > 0 && (
         <section className="sec sec--sand">
           <div className="wrap">
-            <SectionHead eyebrow="Guides" title={`Guides for ${c.name} homeowners.`} />
+            <SectionHead eyebrow="Guides" title={`Solar guides for ${c.name}`} />
             <div className="g3">{posts.map(p => <PostCard key={p.slug} post={p} />)}</div>
           </div>
         </section>

@@ -32,8 +32,8 @@ export default function AboutPage() {
       <Navbar />
 
       <PageHero
-        eyebrow="About LumaGrid"
-        title={<>We got tired of waiting for <span className="hl">light that never comes.</span></>}
+        eyebrow="We got tired of waiting for light that never comes"
+        title={<>About LumaGrid Solar: <span className="hl">Solar Installers in Port Harcourt</span></>}
         lead="LumaGrid Solar is a CAC-registered solar installer based in Port Harcourt. We design and install solar panels, hybrid inverters and lithium batteries for homes and businesses across Rivers, Delta and Bayelsa."
         image="/images/Lumagrid-12.jpg"
         crumbs={[{ name: "Home", href: "/" }, { name: "About" }]}
@@ -45,7 +45,7 @@ export default function AboutPage() {
         <div className="wrap split2">
           <div className="reveal">
             <span className="eyebrow">Our story</span>
-            <h2 className="h2">The grid failed us all. We chose to do something about it.</h2>
+            <h2 className="h2">Our story: why we started a solar company in Port Harcourt</h2>
             <div className="stack" style={{ marginTop: 20, fontSize: 17, lineHeight: 1.8, color: "var(--muted)" }}>
               <p>
                 Every Nigerian knows the routine. You plan your day around when light might come. You buy fuel for a
@@ -75,7 +75,7 @@ export default function AboutPage() {
 
       <section className="sec sec--ink">
         <div className="wrap">
-          <SectionHead eyebrow="What we stand for" title="Four rules behind every installation." />
+          <SectionHead eyebrow="What we stand for" title="Our solar installation standards" />
           <div className="g4">
             {VALUES.map((v, i) => (
               <div key={v.title} className="card card--ink reveal" style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
@@ -92,7 +92,7 @@ export default function AboutPage() {
         <div className="wrap split2 split2--rev">
           <div className="reveal">
             <span className="eyebrow">Our promise</span>
-            <h2 className="h2">We do not cut corners. And we do not disappear.</h2>
+            <h2 className="h2">Quality equipment and real after-sales support</h2>
             <p className="lead" style={{ marginTop: 14 }}>Plenty of people will sell you solar in Port Harcourt. Not all of them will still pick up your call six months later. We built LumaGrid on the standard we wished existed when we were looking for someone to trust.</p>
             <ul className="ticks" style={{ marginTop: 24 }}>{PROMISES.map(p => <li key={p}>{p}</li>)}</ul>
             <div style={{ marginTop: 26 }}>
@@ -107,12 +107,12 @@ export default function AboutPage() {
 
       <section className="sec sec--paper">
         <div className="wrap">
-          <SectionHead eyebrow="Where we work" title="Three states. Twenty-two towns." lead="Port Harcourt is our base. We travel across the Niger Delta, including island and riverine communities, with transport costs shown on your quote before you pay." />
+          <SectionHead eyebrow="Where we work" title="Solar installation areas: Rivers, Delta & Bayelsa" lead="Port Harcourt is our base. We travel across the Niger Delta, including island and riverine communities, with transport costs shown on your quote before you pay." />
           <div className="g3">
             {states.map((st, i) => (
               <Link key={st} href={STATE_PAGES[st].href} className="card card--hover reveal" style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
                 <span className="card-icon"><MapPin size={22} /></span>
-                <h3 className="h3">{STATE_PAGES[st].label}</h3>
+                <h3 className="h3">Solar installation in {STATE_PAGES[st].label}</h3>
                 <p>{CITIES.filter(c => c.state === st).map(c => c.name).join(", ")}</p>
                 <span className="link-arrow" style={{ marginTop: 14, fontSize: 14 }}>Solar in {STATE_PAGES[st].label} <ArrowRight size={14} /></span>
               </Link>

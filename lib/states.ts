@@ -35,7 +35,7 @@ const upstairsFaq = (state: string): StateFaq => ({
 export const STATES: Record<StatePageData["slug"], StatePageData> = {
   rivers: {
     key: "Rivers", slug: "rivers", label: "Rivers State", mainTown: "Port Harcourt", disco: "PHED", lgas: 23,
-    heroTitle: "Solar installation in Port Harcourt & Rivers State",
+    heroTitle: "Solar Installation in Port Harcourt & Rivers State",
     heroLead: "Port Harcourt is our home base. We install hybrid solar systems with lithium batteries across all 23 LGAs of Rivers State, from GRA and Woji to Bonny Island, Okrika and Omoku.",
     heroImage: "/images/real/solar-panels-on-the-roof.jpeg",
     whyLead: "PHED supply in Rivers State remains among the most unreliable in the South-South. Many homes and businesses run generators for most of the day. Solar changes that permanently.",
@@ -73,7 +73,7 @@ export const STATES: Record<StatePageData["slug"], StatePageData> = {
   },
   delta: {
     key: "Delta", slug: "delta", label: "Delta State", mainTown: "Warri", disco: "BEDC", lgas: 25,
-    heroTitle: "Solar installation in Warri, Asaba & all of Delta State",
+    heroTitle: "Solar Installation in Warri, Asaba & Delta State",
     heroLead: "From Asaba by the Niger to Warri, Sapele and the creeks of Burutu, we install hybrid solar systems with lithium batteries for homes, businesses, cold rooms and off-grid communities across Delta State.",
     heroImage: "/images/real/5kwh-6Kva-system-abraka.jpeg",
     whyLead: "Delta is one of Nigeria's richest states by oil revenue, yet many homes in Warri, Ughelli and Asaba see only a few hours of BEDC supply a day. Solar is not a luxury here. It is common sense.",
@@ -111,7 +111,7 @@ export const STATES: Record<StatePageData["slug"], StatePageData> = {
   },
   bayelsa: {
     key: "Bayelsa", slug: "bayelsa", label: "Bayelsa State", mainTown: "Yenagoa", disco: "PHED", lgas: 8,
-    heroTitle: "Solar installation in Yenagoa & all of Bayelsa State",
+    heroTitle: "Solar Installation in Yenagoa & Bayelsa State",
     heroLead: "Transmission faults, floods and geography make the grid unreliable in Bayelsa by default. We install flood-aware hybrid and off-grid solar across all 8 LGAs, including riverine and island communities.",
     heroImage: "/images/real/LiFePo4-batteries-in-storage.jpeg",
     whyLead: "Bayelsa sits at the heart of the Niger Delta and is one of the most power-deprived states in Nigeria. Here is why solar is the answer, not an upgrade.",

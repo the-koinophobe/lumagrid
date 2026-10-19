@@ -42,7 +42,7 @@ export default function SolarInstallationHub() {
 
       <PageHero
         eyebrow="Areas we cover"
-        title={<>Solar installation across <span className="hl">Rivers, Delta & Bayelsa.</span></>}
+        title={<>Solar Installation Areas: <span className="hl">Rivers, Delta &amp; Bayelsa</span></>}
         lead={`Panels, hybrid inverters and lithium batteries for homes and businesses in ${CITIES.length} towns. Pick yours for local prices, areas and answers.`}
         image="/images/real/solar-panels-in-transit.jpeg"
         crumbs={[{ name: "Home", href: "/" }, { name: "Areas" }]}
@@ -54,7 +54,7 @@ export default function SolarInstallationHub() {
         <section key={st} className={`sec ${si % 2 ? "sec--paper" : "sec--sand"}`}>
           <div className="wrap">
             <div className="sec-head-row">
-              <SectionHead eyebrow={`${CITIES.filter(c => c.state === st).length} towns`} title={STATE_PAGES[st].label} lead={BLURB[st]} />
+              <SectionHead eyebrow={`${CITIES.filter(c => c.state === st).length} towns`} title={`Solar installation in ${STATE_PAGES[st].label}`} lead={BLURB[st]} />
               <Link href={STATE_PAGES[st].href} className="link-arrow">{STATE_PAGES[st].label} overview <ArrowRight size={15} /></Link>
             </div>
             <div className="g3">

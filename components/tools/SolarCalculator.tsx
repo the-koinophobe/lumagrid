@@ -359,7 +359,7 @@ function Step1({
 
   return (
     <div className="calc-card">
-      <h2 className="calc-q">What is your generator costing you?</h2>
+      <h3 className="calc-q">What is your generator costing you?</h3>
       <p className="calc-sub">
         Tap the closest amount, then fine-tune. This is fuel only — we add servicing for you.
       </p>
@@ -594,7 +594,7 @@ function Step2({
 
   return (
     <div className="calc-card">
-      <h2 className="calc-q">What do you need to power?</h2>
+      <h3 className="calc-q">What do you need to power?</h3>
       <p className="calc-sub">
         Pick the closest match — we fill in the appliances for you. Adjust anything after.
       </p>
@@ -898,9 +898,9 @@ function Step3({ appliances, location, psh, weekly, petrol, onBack, onRestart }:
       )}
 
       {/* ── The system ── */}
-      <h2 className="calc-q" style={{ fontSize: "clamp(18px, 4.6vw, 22px)", marginBottom: 4 }}>
+      <h3 className="calc-q" style={{ fontSize: "clamp(18px, 4.6vw, 22px)", marginBottom: 4 }}>
         What that system looks like
-      </h2>
+      </h3>
       <p className="calc-sub" style={{ marginBottom: 14 }}>
         {location} State · rainy-season sizing · {appliances.length} appliance type{appliances.length !== 1 ? "s" : ""}
       </p>

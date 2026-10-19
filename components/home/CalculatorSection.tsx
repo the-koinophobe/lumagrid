@@ -11,9 +11,9 @@ export default function CalculatorSection() {
     <section id="calculator" className="sec sec--ink" style={{ scrollMarginTop: 72 }}>
       <div className="wrap">
         <div className="sec-head reveal" style={{ maxWidth: 700 }}>
-          <span className="eyebrow">Savings calculator</span>
+          <span className="eyebrow">Your generator has a price tag</span>
           <h2 className="h2">
-            Your generator has a price tag. <span className="hl">Most people never add it up.</span>
+            Generator vs solar: <span className="hl">savings calculator</span>
           </h2>
           <p className="lead">
             Tell us roughly what you spend on fuel each week. We show you the yearly figure, the solar system

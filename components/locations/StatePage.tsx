@@ -51,7 +51,7 @@ export default function StatePage({ s }: { s: StatePageData }) {
       {/* Towns first: it is what most visitors came for */}
       <section className="sec sec--sand" style={{ paddingTop: 48 }}>
         <div className="wrap">
-          <SectionHead eyebrow="Pick your town" title={`Solar in every part of ${s.label}.`} lead="Each town page has local areas, prices, what changes about the install there and answers to the questions people there ask us." />
+          <SectionHead eyebrow="Pick your town" title={`Solar installation by town in ${s.label}`} lead="Each town page has local areas, prices, what changes about the install there and answers to the questions people there ask us." />
           <div className="g3">
             {towns.map((t, i) => {
               const img = getImage(cityImageKey(t));
@@ -74,7 +74,7 @@ export default function StatePage({ s }: { s: StatePageData }) {
 
       <section className="sec sec--ink">
         <div className="wrap">
-          <SectionHead eyebrow={`Why solar in ${s.label}`} title={<>The power situation in <span className="hl">{s.label}.</span></>} lead={s.whyLead} />
+          <SectionHead eyebrow={`Why solar in ${s.label}`} title={<>Why solar makes sense in <span className="hl">{s.label}</span></>} lead={s.whyLead} />
           <div className="g3">
             {s.why.map((w, i) => (
               <div key={w.title} className="card card--ink reveal" style={{ "--d": `${(i % 3) * 0.06}s` } as React.CSSProperties}>
@@ -89,7 +89,7 @@ export default function StatePage({ s }: { s: StatePageData }) {
 
       <section className="sec sec--paper">
         <div className="wrap">
-          <SectionHead eyebrow="Coverage" title={`Areas we serve in ${s.label}.`} lead={s.areasLead} />
+          <SectionHead eyebrow="Coverage" title={`Solar installation areas in ${s.label}`} lead={s.areasLead} />
           <div className="g3">
             {s.areas.map((a, i) => (
               <div key={a.name} className="card card--flat reveal" style={{ display: "flex", gap: 14, alignItems: "flex-start", padding: 18, "--d": `${(i % 3) * 0.04}s` } as React.CSSProperties}>
@@ -104,7 +104,7 @@ export default function StatePage({ s }: { s: StatePageData }) {
       <section className="sec sec--sand">
         <div className="wrap">
           <div className="sec-head-row">
-            <SectionHead eyebrow="Prices" title={`Solar prices in ${s.mainTown}.`} lead="Equipment prices are the same across the Niger Delta. Any transport cost is shown on your quote before you pay." />
+            <SectionHead eyebrow="Prices" title={`Solar prices in ${s.mainTown} (2026)`} lead="Equipment prices are the same across the Niger Delta. Any transport cost is shown on your quote before you pay." />
             <Link href="/pricing" className="link-arrow">Full price guide <ArrowRight size={15} /></Link>
           </div>
           <div className="g3">
@@ -125,7 +125,7 @@ export default function StatePage({ s }: { s: StatePageData }) {
       <section className="sec sec--paper">
         <div className="wrap">
           <div className="sec-head-row">
-            <SectionHead eyebrow="Reviews" title="What our customers say." />
+            <SectionHead eyebrow="Reviews" title="LumaGrid Solar reviews" />
             <span className="badge-google"><GoogleIcon /> 5.0 <Stars count={5} /></span>
           </div>
           <div className="g2">
@@ -143,7 +143,7 @@ export default function StatePage({ s }: { s: StatePageData }) {
       {guides.length > 0 && (
         <section className="sec sec--sand">
           <div className="wrap">
-            <SectionHead eyebrow="Local guides" title={`Guides for ${s.label}.`} />
+            <SectionHead eyebrow="Local guides" title={`Solar guides for ${s.label}`} />
             <div className="g3">{guides.map(p => <PostCard key={p.slug} post={p} />)}</div>
           </div>
         </section>
@@ -151,7 +151,7 @@ export default function StatePage({ s }: { s: StatePageData }) {
 
       <section className="sec sec--paper">
         <div className="wrap wrap--narrow">
-          <SectionHead eyebrow="FAQ" title={`Solar questions from ${s.label}.`} center />
+          <SectionHead eyebrow="FAQ" title={`Solar installation FAQs: ${s.label}`} center />
           <FaqList faqs={s.faqs} />
         </div>
       </section>

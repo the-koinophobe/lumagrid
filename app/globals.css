@@ -941,3 +941,63 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 @media (max-width: 1180px) { .hide-lt-xl { display: none !important; } }
 .contact-grid { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); align-items: start; }
 @media (min-width: 1000px) { .contact-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px; } }
+.navdrop__head { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.faq-q { display: inline; font-family: var(--font-bricolage), sans-serif; font-size: 16px; font-weight: 700; line-height: 1.4; letter-spacing: -.005em; }
+
+/* ── Day / night energy flow ────────────────────────────────────────── */
+.ef { position: relative; transition: background .8s var(--ease); }
+.ef.ef-night { background: radial-gradient(120% 90% at 20% 0%, rgba(120,150,255,.12), transparent 60%), rgba(255,255,255,.02); }
+.ef .ef-sun, .ef .ef-moon, .ef .ef-panels, .ef .ef-day-only { transition: opacity .7s var(--ease); }
+.ef .ef-moon { opacity: 0; }
+.ef-night .ef-sun { opacity: 0; }
+.ef-night .ef-moon { opacity: 1; }
+.ef-night .ef-panels { opacity: .45; }
+.ef-night .ef-day-only { opacity: 0; }
+.ef-night .ef-charge { animation-direction: reverse; }
+.ef-night .battery-fill { animation-name: battery-drain; }
+@keyframes battery-drain { 0% { transform: scaleY(1); } 70%, 100% { transform: scaleY(.35); } }
+.ef-toggle { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); margin-bottom: 8px; }
+.ef-toggle button { display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 8px 14px; border-radius: 999px; border: 0; background: transparent; color: rgba(255,255,255,.75); font-weight: 700; font-size: 13.5px; cursor: pointer; transition: background .2s, color .2s; }
+.ef-toggle button.on { background: var(--lime); color: var(--ink); }
+.ef-caption { font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,.78); padding: 4px 6px 12px; min-height: 3.2em; }
+.ef-caption strong { color: var(--lime); }
+
+/* ── Hero quote starter ─────────────────────────────────────────────── */
+.hq { background: #fff; color: var(--ink); border-radius: var(--r-xl); padding: 22px 20px; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+@media (min-width: 900px) { .hq { padding: 28px 26px; } }
+.hq__title { font-family: var(--font-bricolage), sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+.hq__sub { font-size: 14px; color: var(--muted); margin: 4px 0 18px; }
+.hq__field { border: 0; padding: 0; margin: 0 0 16px; }
+.hq__field legend { font-size: 13px; font-weight: 700; margin-bottom: 8px; padding: 0; }
+.hq__opts { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+.hq__opt { min-height: 46px; padding: 10px 8px; border-radius: 12px; border: 1.5px solid var(--line); background: #fff; font-weight: 700; font-size: 14px; color: var(--ink); cursor: pointer; transition: all .15s; }
+.hq__opt:hover { border-color: var(--ink); }
+.hq__opt.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.hq__trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 14px; font-size: 12.5px; color: var(--muted); }
+.hq__trust span { display: inline-flex; align-items: center; gap: 6px; }
+
+/* ── Trust strip ────────────────────────────────────────────────────── */
+.trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; padding: 18px 0; font-size: 14px; font-weight: 600; color: var(--ink); }
+.trust-strip span { display: inline-flex; align-items: center; gap: 8px; }
+.trust-strip svg { color: var(--green-mid); }
+
+/* ── Cost bars ──────────────────────────────────────────────────────── */
+.bars { display: grid; gap: 22px; }
+.bar__label { display: flex; justify-content: space-between; gap: 12px; font-weight: 700; margin-bottom: 8px; font-size: 15px; }
+.bar__track { height: 56px; border-radius: 14px; background: rgba(255,255,255,.07); overflow: hidden; }
+.bar__fill { height: 100%; border-radius: 14px; width: var(--w); display: flex; align-items: center; padding: 0 16px; font-family: var(--font-bricolage), sans-serif; font-weight: 800; font-size: 18px; white-space: nowrap; }
+.js .bars.reveal .bar__fill { width: 0; transition: width 1.4s var(--ease) .2s; }
+.js .bars.reveal.is-in .bar__fill { width: var(--w); }
+.bar__fill, .js .bars.reveal.is-in .bar__fill { min-width: 84px; }
+.js .bars.reveal:not(.is-in) .bar__fill { min-width: 0; padding: 0; }
+@media (max-width: 640px) { .bar__fill { font-size: 15px; padding: 0 12px; } }
+@media (prefers-reduced-motion: reduce) { .js .bars.reveal .bar__fill { width: var(--w); transition: none; } }
+
+/* ── Photo service cards ────────────────────────────────────────────── */
+.scard { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 380px; border-radius: var(--r-xl); overflow: hidden; color: #fff; isolation: isolate; }
+.scard img { object-fit: cover; z-index: -2; transition: transform .8s var(--ease); }
+.scard::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8,21,15,0) 25%, rgba(8,21,15,.92) 100%); }
+.scard:hover img { transform: scale(1.06); }
+.scard__body { padding: 22px; }
+.scard__body p { color: rgba(255,255,255,.8); font-size: 14.5px; line-height: 1.6; margin-top: 8px; }
+.scard .link-arrow { margin-top: 12px; color: var(--lime); font-size: 14px; }

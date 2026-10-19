@@ -46,7 +46,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       <BlogIndex
         posts={posts}
         activeSlug={cat.slug}
-        title={<>{cat.name}</>}
+        listHeading={`${cat.name}: all ${posts.length} guides`}
+        title={<>{cat.name}: <span className="hl">Solar Guides for Nigeria</span></>}
         lead={INTRO[cat.slug] ?? `${cat.count} guides.`}
         crumbs={[{ name: "Home", href: "/" }, { name: "Guides", href: "/blog" }, { name: cat.name }]}
       />

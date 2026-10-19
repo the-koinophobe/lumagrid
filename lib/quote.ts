@@ -74,6 +74,7 @@ export interface QuoteAnswers {
 export interface QuotePrefill {
   state?: QuoteState;
   area?: string;
+  building?: BuildingType;
   power?: string[];
   /** What the visitor clicked on, e.g. "Family 6KVA package". Goes into the message. */
   source?: string;

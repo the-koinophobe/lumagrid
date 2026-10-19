@@ -81,7 +81,7 @@ export default function Navbar({ isMobile, solid: forceSolid = false }: { isMobi
               <div className="navdrop__panel" role="menu">
                 {STATES.map(st => (
                   <div key={st}>
-                    <h4><Link href={STATE_PAGES[st].href} style={{ color: "var(--muted)" }}>{STATE_PAGES[st].label}</Link></h4>
+                    <p className="navdrop__head"><Link href={STATE_PAGES[st].href} style={{ color: "var(--muted)" }}>{STATE_PAGES[st].label}</Link></p>
                     {CITIES.filter(c => c.state === st).map(c => (
                       <Link key={c.slug} href={`/solar-installation/${c.slug}`} role="menuitem">{c.name}</Link>
                     ))}

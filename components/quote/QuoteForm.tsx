@@ -43,6 +43,7 @@ export default function QuoteForm({
     ...(restore ? loadSavedAnswers() : {}),
     ...(prefill?.state ? { state: prefill.state } : {}),
     ...(prefill?.area ? { area: prefill.area } : {}),
+    ...(prefill?.building ? { building: prefill.building } : {}),
     ...(prefill?.power?.length ? { power: prefill.power } : {}),
   }));
   const [touched, setTouched] = useState(false);

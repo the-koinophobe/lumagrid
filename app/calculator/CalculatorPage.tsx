@@ -27,8 +27,8 @@ export default function CalculatorPage() {
       <Navbar />
 
       <PageHero
-        eyebrow="Free tool"
-        title={<>What does your generator <span className="hl">really cost?</span></>}
+        eyebrow="What does your generator really cost?"
+        title={<>Solar Calculator: <span className="hl">Generator vs Solar Cost in Nigeria</span></>}
         lead="Work out your yearly fuel spend, then see the solar system that would replace it: panels, battery, inverter and how long it takes to pay for itself."
         image="/images/real/solar-panels-on-the-roof.jpeg"
         crumbs={[{ name: "Home", href: "/" }, { name: "Calculator" }]}
@@ -41,13 +41,14 @@ export default function CalculatorPage() {
 
       <section className="sec sec--sand" style={{ paddingTop: 40 }}>
         <div className="wrap">
+          <h2 className="h3" style={{ marginBottom: 18 }}>Generator vs solar savings calculator</h2>
           <SolarCalculator />
         </div>
       </section>
 
       <section className="sec sec--paper">
         <div className="wrap">
-          <SectionHead eyebrow="How it works" title="What the calculator does." />
+          <SectionHead eyebrow="How it works" title="How the solar savings calculator works" />
           <div className="g3">
             {HOW.map((h, i) => (
               <div key={h.title} className="card reveal" style={{ "--d": `${i * 0.06}s` } as React.CSSProperties}>

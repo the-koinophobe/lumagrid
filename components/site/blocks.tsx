@@ -100,7 +100,7 @@ export function CtaBand({
         <div className="ctaband reveal-scale">
           <SunMark className="ctaband__sun" />
           <div>
-            <h2 className="h2">{title}</h2>
+            <p className="h2" role="presentation">{title}</p>
             <p>{text}</p>
           </div>
           <div className="ctaband__actions">
@@ -122,7 +122,7 @@ export function FaqList({ faqs }: { faqs: { q: string; a: string }[] }) {
     <div className="faq-list">
       {faqs.map((f, i) => (
         <details key={f.q} className="reveal" style={{ "--d": `${Math.min(i, 6) * 0.04}s` } as React.CSSProperties}>
-          <summary className="brig">{f.q}</summary>
+          <summary><h3 className="faq-q">{f.q}</h3></summary>
           <p>{f.a}</p>
         </details>
       ))}

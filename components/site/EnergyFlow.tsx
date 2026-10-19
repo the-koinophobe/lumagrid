@@ -15,8 +15,8 @@ export default function EnergyFlow() {
       <title id="ef-title">How a LumaGrid solar system powers your home</title>
       <desc id="ef-desc">Sunlight hits the panels. The inverter sends power to the home and charges the lithium battery. At night the battery powers the home, and grid or generator power can top it up.</desc>
 
-      {/* Sun */}
-      <g transform="translate(70 70)">
+      {/* Sun (day) and moon (night) */}
+      <g transform="translate(70 70)" className="ef-sun">
         <g className="sun-rays">
           {Array.from({ length: 12 }).map((_, i) => (
             <rect key={i} x="-3" y="-52" width="6" height="16" rx="3" fill={lime} opacity=".75" transform={`rotate(${i * 30})`} />
@@ -24,9 +24,15 @@ export default function EnergyFlow() {
         </g>
         <circle r="26" fill={lime} />
       </g>
+      <g transform="translate(70 70)" className="ef-moon">
+        <path d="M14 -24 A28 28 0 1 0 24 14 A22 22 0 1 1 14 -24 Z" fill="#e8eefc" />
+        <circle cx="-30" cy="30" r="2" fill="#e8eefc" opacity=".7" />
+        <circle cx="40" cy="-30" r="1.6" fill="#e8eefc" opacity=".6" />
+        <circle cx="-38" cy="-26" r="1.4" fill="#e8eefc" opacity=".6" />
+      </g>
 
       {/* Panels */}
-      <g transform="translate(160 150)">
+      <g transform="translate(160 150)" className="ef-panels">
         <rect x="0" y="0" width="150" height="80" rx="8" fill={card} stroke={edge} />
         <g transform="translate(10 10) skewX(-12)">
           {Array.from({ length: 3 }).map((_, r) =>
@@ -78,10 +84,10 @@ export default function EnergyFlow() {
 
       {/* Flows */}
       <g fill="none" strokeLinecap="round" strokeWidth="3">
-        <path d="M96 96 Q140 130 168 160" stroke={lime} className="flow-line flow-line--slow" opacity=".8" />
-        <path d="M310 190 L360 195" stroke={lime} className="flow-line" />
+        <path d="M96 96 Q140 130 168 160" stroke={lime} className="flow-line flow-line--slow ef-day-only" opacity=".8" />
+        <path d="M310 190 L360 195" stroke={lime} className="flow-line ef-day-only" />
         <path d="M452 180 Q500 160 520 140" stroke={lime} className="flow-line" />
-        <path d="M452 235 Q500 270 530 290" stroke={lime} className="flow-line" />
+        <path d="M452 235 Q500 270 530 290" stroke={lime} className="flow-line ef-charge" />
         <path d="M396 330 L400 262" stroke="rgba(255,255,255,.4)" className="flow-line flow-line--slow" />
       </g>
     </svg>
