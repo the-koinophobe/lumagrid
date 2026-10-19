@@ -19,7 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     (max, p) => (new Date(p.updated) > max ? new Date(p.updated) : max),
     CONTENT_UPDATED,
   );
-  const img = (key?: string) => [absoluteImageUrl(getImage(key), SITE_URL)];
+  // Next writes image URLs into the XML as-is, so the `&` in Unsplash query
+  // strings must be escaped here or the whole sitemap fails to parse.
+  const img = (key?: string) => [absoluteImageUrl(getImage(key), SITE_URL).replace(/&/g, "&amp;")];
 
   const page = (
     path: string,
