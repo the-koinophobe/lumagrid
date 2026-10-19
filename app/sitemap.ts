@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, getCategories } from "@/lib/blog";
 import { CITIES, cityImageKey } from "@/lib/cities";
 import { SITE_URL } from "@/lib/constants";
 import { absoluteImageUrl, getImage } from "@/lib/images";
@@ -46,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/locations/bayelsa", 0.8),
     ...CITIES.map(c => page(`/solar-installation/${c.slug}`, 0.7, { images: img(cityImageKey(c)) })),
     page("/blog", 0.7, { lastModified: latestPost, changeFrequency: "weekly" }),
+    ...getCategories().map(c => page(`/blog/category/${c.slug}`, 0.6, { lastModified: latestPost, changeFrequency: "weekly" })),
     ...posts.map(p => page(`/blog/${p.slug}`, 0.6, { lastModified: new Date(p.updated), images: img(p.image) })),
     page("/about", 0.5),
     page("/contact", 0.5),
