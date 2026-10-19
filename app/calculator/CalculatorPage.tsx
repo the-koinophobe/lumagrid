@@ -1,89 +1,68 @@
-"use client";
-
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SolarCalculator from "@/components/tools/SolarCalculator";
-import { FadeIn } from "@/components/ui";
-import { PETROL_PRICE_NGN, PETROL_PRICE_ASOF, PETROL_PRICE_NOTE } from "@/lib/constants";
-import { FuelPump } from "@/components/ui/icons";
+import JsonLd from "@/components/seo/JsonLd";
+import { CtaBand, PageHero, SectionHead } from "@/components/site/blocks";
+import { PETROL_PRICE_NGN, PETROL_PRICE_ASOF, PETROL_PRICE_NOTE, SITE_URL } from "@/lib/constants";
+import { FuelPump, ArrowRight } from "@/components/ui/icons";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const HOW = [
+  { title: "Your fuel spend", text: "Weekly petrol or diesel, plus about ₦180,000 a year of servicing, gives your true yearly generator cost." },
+  { title: "Your appliances", text: "Watts × hours for everything you want on solar, split into daytime and night-time use." },
+  { title: "Rainy-season sizing", text: "Panels are sized for low rainy-season sun in your state, so the battery still fills from April to October." },
+];
 
 export default function CalculatorPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Solar calculator", href: "/calculator" }])} />
+      <JsonLd data={{
+        "@context": "https://schema.org", "@type": "WebApplication", name: "LumaGrid Solar & Generator Savings Calculator",
+        url: `${SITE_URL}/calculator`, applicationCategory: "UtilitiesApplication", operatingSystem: "Any",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "NGN" },
+        description: "Work out your yearly generator cost and the solar system that would replace it, sized for rainy season in Rivers, Delta and Bayelsa.",
+      }} />
       <Navbar />
 
-      <section
-        style={{
-          background: "var(--ink)",
-          padding: "112px 20px 44px",
-          color: "#fff",
-        }}
+      <PageHero
+        eyebrow="Free tool"
+        title={<>What does your generator <span className="hl">really cost?</span></>}
+        lead="Work out your yearly fuel spend, then see the solar system that would replace it: panels, battery, inverter and how long it takes to pay for itself."
+        image="/images/real/solar-panels-on-the-roof.jpeg"
+        crumbs={[{ name: "Home", href: "/" }, { name: "Calculator" }]}
       >
-        <div className="container" style={{ maxWidth: 720 }}>
-          <FadeIn>
-            <span
-              style={{
-                display: "inline-block",
-                background: "rgba(255,255,255,0.12)",
-                color: "var(--lime)",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                padding: "6px 13px",
-                borderRadius: 3,
-                marginBottom: 16,
-              }}
-            >
-              Free tool
-            </span>
+        <span className="pill pill--glass" style={{ marginTop: 18 }}>
+          <span style={{ color: "var(--lime)" }}><FuelPump size={15} /></span>
+          ₦{PETROL_PRICE_NGN.toLocaleString("en-NG")}/litre · {PETROL_PRICE_NOTE}, {PETROL_PRICE_ASOF}
+        </span>
+      </PageHero>
 
-            <h1
-              className="brig"
-              style={{
-                fontSize: "clamp(28px, 7vw, 46px)",
-                fontWeight: 800,
-                lineHeight: 1.08,
-                letterSpacing: "-0.03em",
-                marginBottom: 14,
-              }}
-            >
-              What does your generator{" "}
-              <span style={{ color: "var(--lime)" }}>really cost?</span>
-            </h1>
-
-            <p style={{ fontSize: "var(--step-lead)", color: "rgba(255,255,255,0.75)", lineHeight: 1.75 }}>
-              Work out your yearly fuel spend, then see the solar system that
-              would replace it — panels, battery, inverter, and how long it takes
-              to pay for itself. Sized for Niger Delta rainy season, not
-              best-case sunshine.
-            </p>
-
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 9,
-                marginTop: 18,
-                padding: "9px 14px",
-                borderRadius: 999,
-                background: "rgba(255,255,255,0.07)",
-                border: "1px solid rgba(255,255,255,0.13)",
-                color: "rgba(255,255,255,0.8)",
-                fontSize: 12.5,
-              }}
-            >
-              <span style={{ color: "var(--lime)" }}><FuelPump size={16} /></span>
-              ₦{PETROL_PRICE_NGN.toLocaleString("en-NG")}/litre · {PETROL_PRICE_NOTE}, {PETROL_PRICE_ASOF}
-            </div>
-          </FadeIn>
+      <section className="sec sec--sand" style={{ paddingTop: 40 }}>
+        <div className="wrap">
+          <SolarCalculator />
         </div>
       </section>
 
-      <section style={{ background: "var(--sand)", padding: "36px 20px 72px" }}>
-        <SolarCalculator />
+      <section className="sec sec--paper">
+        <div className="wrap">
+          <SectionHead eyebrow="How it works" title="What the calculator does." />
+          <div className="g3">
+            {HOW.map((h, i) => (
+              <div key={h.title} className="card reveal" style={{ "--d": `${i * 0.06}s` } as React.CSSProperties}>
+                <h3 className="h3">{h.title}</h3>
+                <p>{h.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="muted" style={{ marginTop: 22 }}>
+            Results are estimates. <Link href="/pricing" className="link-arrow">See real prices <ArrowRight size={14} /></Link> or read <Link href="/blog/how-much-solar-do-i-need" className="link-arrow">how to size a system yourself</Link>.
+          </p>
+        </div>
       </section>
 
+      <CtaBand source="Calculator page - bottom" title="Want a real quote, not an estimate?" />
       <Footer />
     </>
   );

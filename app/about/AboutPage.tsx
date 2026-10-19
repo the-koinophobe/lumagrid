@@ -1,636 +1,128 @@
-"use client";
-
-import { useBreakpoint } from "@/lib/hooks";
+import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/quote/WhatsAppButton";
-import { Bolt, Handshake, Wrench, MapPin } from "@/components/ui/icons";
-import { FadeIn, SectionHeader, WhatsAppIcon, Check } from "@/components/ui";
+import JsonLd from "@/components/seo/JsonLd";
+import { CtaBand, PageHero, QuoteButtons, SectionHead } from "@/components/site/blocks";
+import { Bolt, Handshake, Wrench, MapPin, ArrowRight } from "@/components/ui/icons";
+import { CITIES, STATE_PAGES } from "@/lib/cities";
+import { breadcrumbSchema } from "@/lib/schema";
 
-// ─── Data ────────────────────────────────────────────────────────────────────
-
-const MISSION_VALUES = [
-  {
-    icon: Bolt,
-    title: "Energy Independence",
-    body: "We exist to cut every home and business loose from a grid that was never built to serve them. Your power should come from the sun, not NEPA.",
-  },
-  {
-    icon: Handshake,
-    title: "Honest Work",
-    body: "No inflated quotes. No hidden markups. You get a clear breakdown of what you're paying for and exactly what you'll get in return.",
-  },
-  {
-    icon: Wrench,
-    title: "Quality That Lasts",
-    body: "We install systems we'd put in our own homes. Tier-1 panels, certified inverters, and workmanship that holds up through harmattan and rainy season alike.",
-  },
-  {
-    icon: MapPin,
-    title: "Built for This Region",
-    body: "We know the Niger Delta. We understand the load demands, the weather patterns, and the voltage swings that generic installers overlook.",
-  },
+const VALUES = [
+  { icon: Bolt, title: "Energy independence", body: "We exist to cut every home and business loose from a grid that was never built to serve them. Your power should come from the sun, not from waiting on NEPA." },
+  { icon: Handshake, title: "Honest work", body: "No inflated quotes and no hidden markups. You get a clear, itemised breakdown of what you are paying for and exactly what you will get." },
+  { icon: Wrench, title: "Quality that lasts", body: "We install systems we would put in our own homes: tier-one panels, pure sine wave inverters, lithium batteries and workmanship that holds up through harmattan and rainy season." },
+  { icon: MapPin, title: "Built for this region", body: "We know the Niger Delta: the load demands, the weather, the soot, the floods and the voltage swings that generic installers overlook." },
 ];
 
-const WHY_ITEMS = [
-  "Site assessment before every quote — no guesswork",
-  "Certified installation teams, not subcontracted labour",
-  "Post-installation support and system monitoring",
-  "Warranties on panels, inverters, and batteries",
-  "Transparent pricing with itemised breakdowns",
-  "Coverage across Rivers, Delta, and Bayelsa States",
+const PROMISES = [
+  "A site assessment before every quote. No guessing over the phone.",
+  "Our own trained installation team, not casual labour.",
+  "Itemised pricing that names every brand, model and cable size.",
+  "Proper protection: breakers, surge protection and earthing.",
+  "A 2-year workmanship warranty, in writing.",
+  "Support on WhatsApp after handover, not a disappearing act.",
 ];
-
-const COVERAGE = [
-  { name: "Rivers State", sub: "Port Harcourt & surroundings", top: "20%", left: "42%" },
-  { name: "Delta State", sub: "Asaba, Warri & beyond", top: "12%", left: "28%" },
-  { name: "Bayelsa State", sub: "Yenagoa & communities", top: "38%", left: "34%" },
-];
-
-// ─── Sections ─────────────────────────────────────────────────────────────────
-
-function HeroSection({ isMobile }: { isMobile: boolean }) {
-  return (
-    <section
-      style={{
-        background: "linear-gradient(135deg, var(--green) 0%, #0a4029 60%, #072b1c 100%)",
-        paddingTop: isMobile ? "100px" : "120px",
-        paddingBottom: isMobile ? "64px" : "96px",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Decorative grid lines */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(0,192,106,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,192,106,0.07) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-          pointerEvents: "none",
-        }}
-      />
-      {/* Accent glow */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-80px",
-          right: "-80px",
-          width: "400px",
-          height: "400px",
-          background: "radial-gradient(circle, rgba(0,192,106,0.15) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }}
-      />
-
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <FadeIn>
-          <span
-            className="tag"
-            style={{
-              background: "rgba(255,255,255,0.12)",
-              color: "var(--accent)",
-              border: "1px solid rgba(255,255,255,0.22)",
-              marginBottom: "24px",
-              display: "inline-block",
-            }}
-          >
-            Who We Are
-          </span>
-          <h1
-            className="brig"
-            style={{
-              fontSize: isMobile ? "clamp(2rem, 8vw, 2.8rem)" : "clamp(2.8rem, 5vw, 4rem)",
-              color: "#fff",
-              lineHeight: 1.15,
-              maxWidth: "700px",
-              marginBottom: "24px",
-            }}
-          >
-            We got tired of waiting for light that never comes.
-          </h1>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.75)",
-              fontSize: isMobile ? "1rem" : "1.15rem",
-              maxWidth: "560px",
-              lineHeight: 1.7,
-            }}
-          >
-            LumaGrid Solar was founded in the Niger Delta by people who lived the power problem firsthand.
-            We do not sell hope. We install reliable solar energy systems that put you in control of your own power.
-          </p>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-function StorySection({ isMobile }: { isMobile: boolean }) {
-  const newsItems = [
-    {
-      label: "Instablog9ja",
-      text: "Power generation drops to 3,940MW as plants shut down amid gas supply crisis.",
-    },
-    {
-      label: "Nigeria National Grid",
-      text: "\"THE POWER GENERATION HAS DEGRADED EVEN MORE!\"",
-    },
-    {
-      label: "Nairametrics",
-      text: "Nigeria's power grid faces shutdowns as majority of plants stay offline.",
-    },
-  ];
-
-  return (
-    <section className="section" style={{ background: "#fff" }}>
-      <div className="container">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-            gap: isMobile ? "48px" : "80px",
-            alignItems: "start",
-          }}
-        >
-          {/* Left: Story copy */}
-          <FadeIn>
-            <span className="tag" style={{ marginBottom: "20px", display: "inline-block" }}>
-              Our Story
-            </span>
-            <h2
-              className="brig section-title"
-              style={{ marginBottom: "24px", textAlign: "left" }}
-            >
-              The grid failed us all. We chose to do something about it.
-            </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              <p style={{ color: "var(--muted)", lineHeight: 1.75 }}>
-                Every Nigerian knows the routine. You plan your day around when light might come.
-                You buy fuel for a generator that eats money and chokes your lungs. You wait on NEPA
-                apologies that explain nothing and fix nothing.
-              </p>
-              <p style={{ color: "var(--muted)", lineHeight: 1.75 }}>
-                The founders of LumaGrid Solar grew up in that same reality. Rivers State. Generators
-                humming through the night. Businesses losing stock to heat. Children studying by
-                candlelight. Not because resources were scarce, but because the system was broken beyond
-                repair.
-              </p>
-              <p style={{ color: "var(--muted)", lineHeight: 1.75 }}>
-                So we stopped waiting. LumaGrid Solar was built to offer something different: a
-                permanent exit from grid dependency. Real solar infrastructure designed, supplied, and
-                installed by people who understand this region and actually care about what happens
-                after the job is done.
-              </p>
-              <p style={{ color: "var(--muted)", lineHeight: 1.75 }}>
-                The grid has only gotten worse since we started. That is not a talking point. It is the
-                news every week. Which is exactly why what we do matters more now than ever.
-              </p>
-            </div>
-          </FadeIn>
-
-          {/* Right: News cards */}
-          <FadeIn delay={0.15}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              {/* NEPA meme card */}
-              <div
-                style={{
-                  background: "#111",
-                  borderRadius: "16px",
-                  padding: "28px 24px",
-                  color: "#fff",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "radial-gradient(ellipse at top left, rgba(255,180,0,0.08), transparent 60%)",
-                  }}
-                />
-                <p
-                  className="brig"
-                  style={{ fontSize: "1.05rem", lineHeight: 1.5, position: "relative", zIndex: 1 }}
-                >
-                  <span style={{ color: "#f5a623" }}>In 2015,</span> Nigerians marched to NEPA offices
-                  demanding electricity after 2 months without light. When they arrived, NEPA&apos;s own{" "}
-                  <span style={{ color: "#f5a623" }}>generator</span> was on.
-                </p>
-                <p
-                  style={{
-                    marginTop: "12px",
-                    fontSize: "0.82rem",
-                    color: "rgba(255,255,255,0.4)",
-                    position: "relative",
-                    zIndex: 1,
-                  }}
-                >
-                  A story every Nigerian has lived in some form.
-                </p>
-              </div>
-
-              {/* News items */}
-              {newsItems.map((item, i) => (
-                <div
-                  key={i}
-                  style={{
-                    background: "var(--green-xl)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "12px",
-                    padding: "18px 20px",
-                    display: "flex",
-                    gap: "14px",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: "var(--ink)",
-                      marginTop: "6px",
-                      flexShrink: 0,
-                    }}
-                  />
-                  <div>
-                    <p
-                      style={{
-                        fontSize: "0.72rem",
-                        color: "var(--green-mid)",
-                        fontWeight: 600,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {item.label}
-                    </p>
-                    <p style={{ fontSize: "0.9rem", color: "var(--green)", lineHeight: 1.5 }}>
-                      {item.text}
-                    </p>
-                  </div>
-                </div>
-              ))}
-
-              <p
-                style={{
-                  fontSize: "0.82rem",
-                  color: "var(--muted)",
-                  textAlign: "center",
-                  paddingTop: "4px",
-                }}
-              >
-                March 2026. This is the grid Nigerians are still being asked to rely on.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function MissionSection({ isMobile }: { isMobile: boolean }) {
-  return (
-    <section className="section" style={{ background: "var(--green-xl)" }}>
-      <div className="container">
-        <FadeIn>
-          <SectionHeader
-            tag="Mission & Values"
-            title="What we stand for"
-            subtitle="We are not just selling solar panels. We are selling a way out of a broken system. These are the principles that guide every installation we do."
-          />
-        </FadeIn>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
-            gap: "20px",
-            marginTop: "48px",
-          }}
-        >
-          {MISSION_VALUES.map((item, i) => (
-            <FadeIn key={i} delay={i * 0.08}>
-              <div
-                className="card-hover"
-                style={{
-                  background: "#fff",
-                  borderRadius: "16px",
-                  padding: "28px",
-                  border: "1px solid var(--border)",
-                  height: "100%",
-                }}
-              >
-                <div className="icon-badge" style={{ marginBottom: "14px" }}><item.icon size={21} /></div>
-                <h3
-                  className="brig"
-                  style={{
-                    fontSize: "1.1rem",
-                    color: "var(--green)",
-                    marginBottom: "10px",
-                  }}
-                >
-                  {item.title}
-                </h3>
-                <p style={{ color: "var(--muted)", lineHeight: 1.7, fontSize: "0.95rem" }}>
-                  {item.body}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhyUsSection({ isMobile }: { isMobile: boolean }) {
-  return (
-    <section className="section" style={{ background: "#fff" }}>
-      <div className="container">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-            gap: isMobile ? "48px" : "80px",
-            alignItems: "center",
-          }}
-        >
-          <FadeIn>
-            <span className="tag" style={{ marginBottom: "20px", display: "inline-block" }}>
-              Why Choose Us
-            </span>
-            <h2 className="brig section-title" style={{ textAlign: "left", marginBottom: "16px" }}>
-              We do not cut corners. And we do not disappear after installation.
-            </h2>
-            <p style={{ color: "var(--muted)", lineHeight: 1.75, marginBottom: "32px" }}>
-              Plenty of people will sell you solar in Port Harcourt. Not all of them will still pick
-              up your call six months later. We built LumaGrid Solar on the standard we wish existed
-              when we were looking for someone to trust.
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-              {WHY_ITEMS.map((item, i) => (
-                <div key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <Check />
-                  <p style={{ color: "#2d3d35", lineHeight: 1.6, fontSize: "0.95rem" }}>{item}</p>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.15}>
-            <div
-              style={{
-                background: "linear-gradient(145deg, var(--green) 0%, #0a4029 100%)",
-                borderRadius: "20px",
-                padding: isMobile ? "36px 28px" : "48px 40px",
-                color: "#fff",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "-40px",
-                  right: "-40px",
-                  width: "200px",
-                  height: "200px",
-                  background: "radial-gradient(circle, rgba(0,192,106,0.2), transparent 70%)",
-                }}
-              />
-              <p
-                className="brig"
-                style={{
-                  fontSize: isMobile ? "1.5rem" : "1.75rem",
-                  lineHeight: 1.3,
-                  marginBottom: "20px",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
-                &quot;The sun rises every day in the Niger Delta. That energy belongs to you.&quot;
-              </p>
-              <p
-                style={{
-                  color: "rgba(255,255,255,0.65)",
-                  fontSize: "0.9rem",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
-                LumaGrid Solar, Rivers State
-              </p>
-
-              <div
-                style={{
-                  marginTop: "32px",
-                  paddingTop: "28px",
-                  borderTop: "1px solid rgba(255,255,255,0.15)",
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "20px",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
-                {[
-                  { label: "Homes & Businesses Served", value: "Growing" },
-                  { label: "States Covered", value: "3" },
-                  { label: "After-Sales Support", value: "Ongoing" },
-                  { label: "Grid Dependency", value: "Zero" },
-                ].map((stat, i) => (
-                  <div key={i}>
-                    <p
-                      className="brig"
-                      style={{ fontSize: "1.4rem", color: "var(--accent)", marginBottom: "4px" }}
-                    >
-                      {stat.value}
-                    </p>
-                    <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.4 }}>
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CoverageSection({ isMobile }: { isMobile: boolean }) {
-  return (
-    <section className="section" style={{ background: "var(--green-xl)" }}>
-      <div className="container">
-        <FadeIn>
-          <SectionHeader
-            tag="Coverage Area"
-            title="Serving the Niger Delta"
-            subtitle="We operate across three states in the Niger Delta region, with local teams who know the terrain and understand what reliable solar installation looks like in your area."
-          />
-        </FadeIn>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-            gap: "20px",
-            marginTop: "48px",
-          }}
-        >
-          {COVERAGE.map((area, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <div
-                className="card-hover"
-                style={{
-                  background: "#fff",
-                  borderRadius: "16px",
-                  padding: "32px 28px",
-                  border: "1px solid var(--border)",
-                  textAlign: "center",
-                }}
-              >
-                <div
-                  style={{
-                    width: "56px",
-                    height: "56px",
-                    borderRadius: "50%",
-                    background: "var(--green-light)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 20px",
-                    color: "var(--ink)",
-                  }}
-                >
-                  <MapPin size={22} />
-                </div>
-                <h3 className="brig" style={{ fontSize: "1.15rem", color: "var(--green)", marginBottom: "8px" }}>
-                  {area.name}
-                </h3>
-                <p style={{ color: "var(--muted)", fontSize: "0.9rem" }}>{area.sub}</p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-
-        <FadeIn delay={0.3}>
-          <p
-            style={{
-              textAlign: "center",
-              marginTop: "32px",
-              color: "var(--muted)",
-              fontSize: "0.9rem",
-            }}
-          >
-            Not sure if we cover your area? Message us on WhatsApp and we will confirm within minutes.
-          </p>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-function CTASection({ isMobile }: { isMobile: boolean }) {
-  return (
-    <section
-      className="section"
-      style={{
-        background: "linear-gradient(135deg, var(--green) 0%, #0a4029 100%)",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(0,192,106,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,192,106,0.06) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-          pointerEvents: "none",
-        }}
-      />
-      <div className="container" style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
-        <FadeIn>
-          <span
-            className="tag"
-            style={{
-              background: "rgba(255,255,255,0.12)",
-              color: "var(--accent)",
-              border: "1px solid rgba(255,255,255,0.22)",
-              marginBottom: "24px",
-              display: "inline-block",
-            }}
-          >
-            Get Started
-          </span>
-          <h2
-            className="brig"
-            style={{
-              fontSize: isMobile ? "1.9rem" : "2.6rem",
-              color: "#fff",
-              marginBottom: "16px",
-              lineHeight: 1.2,
-            }}
-          >
-            Ready to leave the grid behind?
-          </h2>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.7)",
-              fontSize: isMobile ? "1rem" : "1.1rem",
-              maxWidth: "500px",
-              margin: "0 auto 36px",
-              lineHeight: 1.7,
-            }}
-          >
-            Talk to our team today. We will assess your needs, explain your options, and give you a
-            clear quote with no pressure and no hidden fees.
-          </p>
-          <WhatsAppButton
-            source="About page"
-            className="btn-wa"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              fontSize: "1rem",
-            }}
-          >
-            <WhatsAppIcon size={20} />
-            Chat With Us on WhatsApp
-          </WhatsAppButton>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function AboutPage() {
-  const { isMobile, isSmall } = useBreakpoint();
-
+  const states = Object.keys(STATE_PAGES) as (keyof typeof STATE_PAGES)[];
   return (
     <>
-      <Navbar isMobile={isMobile} />
-      <HeroSection isMobile={isMobile} />
-      <StorySection isMobile={isMobile} />
-      <MissionSection isMobile={isMobile} />
-      <WhyUsSection isMobile={isMobile} />
-      <CoverageSection isMobile={isMobile} />
-      <CTASection isMobile={isMobile} />
-      <Footer isMobile={isMobile} isSmall={isSmall} />
+      <JsonLd data={breadcrumbSchema([{ name: "Home", href: "/" }, { name: "About", href: "/about" }])} />
+      <Navbar />
+
+      <PageHero
+        eyebrow="About LumaGrid"
+        title={<>We got tired of waiting for <span className="hl">light that never comes.</span></>}
+        lead="LumaGrid Solar is a CAC-registered solar installer based in Port Harcourt. We design and install solar panels, hybrid inverters and lithium batteries for homes and businesses across Rivers, Delta and Bayelsa."
+        image="/images/Lumagrid-12.jpg"
+        crumbs={[{ name: "Home", href: "/" }, { name: "About" }]}
+      >
+        <QuoteButtons source="About page - hero" />
+      </PageHero>
+
+      <section className="sec sec--paper">
+        <div className="wrap split2">
+          <div className="reveal">
+            <span className="eyebrow">Our story</span>
+            <h2 className="h2">The grid failed us all. We chose to do something about it.</h2>
+            <div className="stack" style={{ marginTop: 20, fontSize: 17, lineHeight: 1.8, color: "var(--muted)" }}>
+              <p>
+                Every Nigerian knows the routine. You plan your day around when light might come. You buy fuel for a
+                generator that eats money and chokes your lungs. You wait on NEPA apologies that explain nothing and
+                fix nothing.
+              </p>
+              <p>
+                The founders of LumaGrid Solar grew up in that same reality. Rivers State. Generators humming through
+                the night. Businesses losing stock to heat. Children studying by candlelight. Not because resources
+                were scarce, but because the system was broken beyond repair.
+              </p>
+              <p>
+                So we stopped waiting. LumaGrid Solar was built to offer something different: a permanent exit from
+                grid dependency. Real solar infrastructure designed, supplied and installed by people who understand
+                this region and actually care about what happens after the job is done.
+              </p>
+              <p style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 700, fontSize: 20, color: "var(--ink)" }}>
+                &ldquo;The sun rises every day in the Niger Delta. That energy belongs to you.&rdquo;
+              </p>
+            </div>
+          </div>
+          <div className="frame frame--4x5 reveal-scale">
+            <Image src="/images/Lumagrid-9.jpg" alt="LumaGrid solar technician" fill sizes="(max-width: 960px) 100vw, 520px" />
+          </div>
+        </div>
+      </section>
+
+      <section className="sec sec--ink">
+        <div className="wrap">
+          <SectionHead eyebrow="What we stand for" title="Four rules behind every installation." />
+          <div className="g4">
+            {VALUES.map((v, i) => (
+              <div key={v.title} className="card card--ink reveal" style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
+                <span className="card-icon"><v.icon size={22} /></span>
+                <h3 className="h3" style={{ color: "#fff" }}>{v.title}</h3>
+                <p>{v.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="sec sec--sand">
+        <div className="wrap split2 split2--rev">
+          <div className="reveal">
+            <span className="eyebrow">Our promise</span>
+            <h2 className="h2">We do not cut corners. And we do not disappear.</h2>
+            <p className="lead" style={{ marginTop: 14 }}>Plenty of people will sell you solar in Port Harcourt. Not all of them will still pick up your call six months later. We built LumaGrid on the standard we wished existed when we were looking for someone to trust.</p>
+            <ul className="ticks" style={{ marginTop: 24 }}>{PROMISES.map(p => <li key={p}>{p}</li>)}</ul>
+            <div style={{ marginTop: 26 }}>
+              <Link href="/blog/choosing-a-solar-installer-port-harcourt" className="link-arrow">12 questions to ask any installer <ArrowRight size={15} /></Link>
+            </div>
+          </div>
+          <div className="frame frame--4x3 reveal-scale">
+            <Image src="/images/real/jinko-panels-delivered-compound.jpeg" alt="Jinko solar panels delivered to a customer's compound" fill sizes="(max-width: 960px) 100vw, 560px" />
+          </div>
+        </div>
+      </section>
+
+      <section className="sec sec--paper">
+        <div className="wrap">
+          <SectionHead eyebrow="Where we work" title="Three states. Twenty-two towns." lead="Port Harcourt is our base. We travel across the Niger Delta, including island and riverine communities, with transport costs shown on your quote before you pay." />
+          <div className="g3">
+            {states.map((st, i) => (
+              <Link key={st} href={STATE_PAGES[st].href} className="card card--hover reveal" style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
+                <span className="card-icon"><MapPin size={22} /></span>
+                <h3 className="h3">{STATE_PAGES[st].label}</h3>
+                <p>{CITIES.filter(c => c.state === st).map(c => c.name).join(", ")}</p>
+                <span className="link-arrow" style={{ marginTop: 14, fontSize: 14 }}>Solar in {STATE_PAGES[st].label} <ArrowRight size={14} /></span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CtaBand source="About page - bottom" title="Let's end your generator bill." />
+      <Footer />
     </>
   );
 }

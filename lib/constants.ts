@@ -122,7 +122,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    name: "Okoro E.", location: "", stars: 5,
+    name: "Okoro E.", location: "Abraka, Delta State", stars: 5,
     text: "I'm satisfied with the service rendered by LumaGrid and their technicians. I live in Abraka where the light situation is bad, so I decided to get solar for my house and shop. I contacted them for it and I can say, for sure, they did a great job. The connections were neat and obviously done by people who know what they are doing. Now I don't have to be worrying myself about NEPA bill again. I definitely recommend them to anyone wanting to have solar in their homes and offices",
   },
   {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import DeltaStatePage from "./DeltaStatePage";
+import StatePage from "@/components/locations/StatePage";
+import { STATES } from "@/lib/states";
 
 export const metadata: Metadata = {
   title: "Solar Installation in Delta State | Warri, Asaba, Sapele, Ughelli",
@@ -10,13 +11,12 @@ export const metadata: Metadata = {
     description:
       "Professional solar installation in Warri, Asaba, Sapele, Ughelli and all of Delta State. Cut your diesel bill. Free site assessment.",
     url: "https://lumagridsolar.com/locations/delta",
-    images: [{ url: "/og/default.jpg", width: 1200, height: 630 }],
-  },
+      },
   alternates: {
     canonical: "https://lumagridsolar.com/locations/delta",
   },
 };
 
 export default function Page() {
-  return <DeltaStatePage />;
+  return <StatePage s={STATES.delta} />;
 }

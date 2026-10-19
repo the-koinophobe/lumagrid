@@ -5,6 +5,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Bricolage_Grotesque, Chivo } from "next/font/google";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import QuoteProvider from "@/components/quote/QuoteProvider";
+import RevealObserver from "@/components/site/RevealObserver";
+import MobileBar from "@/components/site/MobileBar";
 
 // ─── Site-wide default metadata ───────────────────────────────────────────────
 // Every page inherits these and can override specific fields via generateMetadata()
@@ -79,7 +81,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0d5c3a",
+  themeColor: "#08150f",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 
@@ -103,8 +108,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-NG" suppressHydrationWarning>
       <head>
+        {/* Turns on scroll animations only when JS runs; content is visible without it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         {/*
           Fonts are self-hosted via next/font — no external font requests.
           Icons and manifest are auto-served by Next from app/ (favicon.ico,
@@ -116,7 +123,12 @@ export default function RootLayout({
       <body
         className={`${bricolage.variable} ${chivo.variable} antialiased`}
       >
-        <QuoteProvider>{children}</QuoteProvider>
+        <a href="#content" className="skip-link">Skip to content</a>
+        <QuoteProvider>
+          <div id="content">{children}</div>
+          <MobileBar />
+        </QuoteProvider>
+        <RevealObserver />
 
         <Analytics />
         <SpeedInsights />

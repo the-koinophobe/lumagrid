@@ -3,8 +3,11 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
+import Image from "next/image";
 import WhatsAppButton from "@/components/quote/WhatsAppButton";
 import { WhatsAppIcon } from "@/components/ui";
+import { ArrowRight } from "@/components/ui/icons";
+import { CtaBand, FaqList, PageHero, QuoteButtons, SectionHead } from "@/components/site/blocks";
 import { PACKAGES, PRICING, PETROL_PRICE_NGN, PETROL_PRICE_ASOF } from "@/lib/constants";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 
@@ -63,9 +66,22 @@ const FAQS = [
   },
 ];
 
-const h2: React.CSSProperties = { fontSize: "clamp(22px, 4.5vw, 30px)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: 14 };
-const p: React.CSSProperties = { fontSize: 15.5, color: "#2d3a35", lineHeight: 1.8, marginBottom: 16 };
-const a: React.CSSProperties = { textDecoration: "underline", textDecorationColor: "var(--lime)", textDecorationThickness: 2, fontWeight: 600 };
+const FACTORS = [
+  { title: "Battery size", text: `The biggest cost. Lithium storage runs roughly ₦${(PRICING.perKwhBattery / 1000).toFixed(0)},000 per kWh installed. Running an AC through the night is what pushes it up.`, href: "/blog/how-long-do-solar-batteries-last-nigeria", link: "How long batteries last" },
+  { title: "Inverter size and type", text: "A hybrid inverter that also uses grid power costs a little more than basic off-grid, but lets you buy a smaller battery.", href: "/blog/hybrid-vs-off-grid-solar-nigeria", link: "Hybrid vs off-grid" },
+  { title: "Panel brand and count", text: "Tier-one panels such as Jinko and Longi cost more up front and keep their output for 25 years. Unbranded panels lose power fast.", href: "/blog/fake-substandard-solar-panels-nigeria", link: "Spot fake panels" },
+  { title: "Your building", text: "Bungalows are simplest. Upstairs buildings and duplexes can need longer cable runs and more roof-access equipment.", href: "/blog/solar-on-upstairs-building", link: "Solar on upstairs buildings" },
+  { title: "Location and logistics", text: "Equipment prices are the same everywhere we work. Long drives or boat trips (Bonny, Brass) add a transport line on the quote.", href: "/solar-installation", link: "Towns we cover" },
+  { title: "What you want to power", text: "ACs, pumps, freezers and pressing irons change the size of everything. The calculator sizes it from your appliance list.", href: "/calculator", link: "Open the calculator" },
+];
+
+const INCLUDES = [
+  "Inverter, lithium battery and solar panels, with brand and model named",
+  "Mounting rails, DC and AC cabling, breakers, surge protection and earthing",
+  "Installation, testing and a walkthrough of how to use the system",
+  "2-year workmanship warranty plus the manufacturers' product warranties",
+  "Any transport cost for sites outside Port Harcourt, shown up front",
+];
 
 export default function PricingPage() {
   return (
@@ -74,111 +90,123 @@ export default function PricingPage() {
       <JsonLd data={faqSchema(FAQS)} />
       <Navbar />
 
-      <section style={{ background: "var(--ink)", color: "#fff", padding: "112px 20px 48px" }}>
-        <div className="container" style={{ maxWidth: 860 }}>
-          <span className="tag" style={{ background: "rgba(255,255,255,0.12)", color: "var(--lime)" }}>Prices · Updated {PETROL_PRICE_ASOF}</span>
-          <h1 className="brig" style={{ fontSize: "clamp(30px, 7vw, 50px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.03em", marginBottom: 16 }}>
-            How much does solar cost in Port Harcourt, Warri and Yenagoa?
-          </h1>
-          <p style={{ fontSize: "var(--step-lead)", color: "rgba(255,255,255,0.8)", lineHeight: 1.75, maxWidth: 680, marginBottom: 24 }}>
-            Installed prices for complete solar systems in Rivers, Delta and Bayelsa States, and the things that move a quote up or down.
-          </p>
-          <WhatsAppButton source="Pricing page - top" className="btn-lime" style={{ fontSize: 16, padding: "15px 24px" }}>
-            <WhatsAppIcon size={18} color="var(--ink)" /> Get my exact price
-          </WhatsAppButton>
+      <PageHero
+        eyebrow={`Prices · Updated ${PETROL_PRICE_ASOF}`}
+        title={<>What solar costs in Port Harcourt, <span className="hl">Warri and Yenagoa.</span></>}
+        lead="Installed prices for complete solar systems in Rivers, Delta and Bayelsa, and the things that move a quote up or down."
+        image="/images/real/longi-panel-pallets.jpeg"
+        crumbs={[{ name: "Home", href: "/" }, { name: "Prices" }]}
+      >
+        <QuoteButtons source="Pricing page - top" primary="Get my exact price" />
+      </PageHero>
+
+      <section className="sec--tight sec--sand">
+        <div className="wrap wrap--narrow">
+          <aside className="quick-answer reveal" aria-label="Quick answer" style={{ marginBottom: 0 }}>
+            <strong>TL;DR</strong>
+            <p>
+              A complete installed system starts at about <b>₦1.7M for 3kVA</b> (3.2kWh lithium, four 600W panels) and about
+              {" "}<b>₦3.8M for 6kVA</b> (8kWh lithium, eight 600W panels). 5kVA usually lands around <b>{estimate(5, 5, 3.3)}</b> and
+              10kVA around <b>{estimate(10, 15, 6.6)}</b>. Prices include inverter, battery, panels, mounting, cabling, protection and installation.
+            </p>
+          </aside>
         </div>
       </section>
 
-      <section style={{ background: "var(--sand)", padding: "36px 20px" }}>
-        <div className="container" style={{ maxWidth: 860 }}>
-          <div className="facts">
-            <h2 className="brig" style={{ fontSize: 18, fontWeight: 800, marginBottom: 8 }}>Quick answer</h2>
-            <p style={{ fontSize: 15, lineHeight: 1.75 }}>
-              A complete, installed solar system from LumaGrid Solar starts at about <strong>₦1.7M for 3kVA</strong> (3.2kWh lithium
-              battery, four 600W panels) and about <strong>₦3.8M for 6kVA</strong> (8kWh lithium, eight 600W panels). A 5kVA system
-              usually lands around <strong>{estimate(5, 5, 3.3)}</strong> and a 10kVA system around <strong>{estimate(10, 15, 6.6)}</strong>.
-              Prices include the inverter, battery, panels, mounting, cabling, protection and installation, and are confirmed after a free site assessment.
-            </p>
+      <section className="sec sec--sand" style={{ paddingTop: 24 }}>
+        <div className="wrap">
+          <SectionHead eyebrow="Packages" title="Our standard packages." />
+          <div className="g3">
+            {PACKAGES.map((p, i) => (
+              <article key={p.name} className={`plan reveal${p.highlight ? " plan--featured" : ""}`} style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
+                {p.badge && <span className="pill pill--lime plan__badge">{p.badge}</span>}
+                <div className="plan__head">
+                  <div className="plan__name">{p.name} · {p.kva}</div>
+                  <div className="plan__price">{p.priceNote && <small>{p.priceNote}</small>}{p.price}</div>
+                  <div style={{ fontSize: 14, marginTop: 8, opacity: .75 }}>{p.label}</div>
+                </div>
+                <div className="plan__body">
+                  <div>
+                    <div className="plan__label">Runs</div>
+                    <ul className="ticks" style={{ gap: 9, fontSize: 14.5 }}>{p.appliances.map(a => <li key={a}>{a}</li>)}</ul>
+                  </div>
+                  <div>
+                    <div className="plan__label">Includes</div>
+                    <ul style={{ listStyle: "none", display: "grid", gap: 6, fontSize: 14, color: "var(--muted)" }}>{p.includes.map(x => <li key={x}>• {x}</li>)}</ul>
+                  </div>
+                  <WhatsAppButton source={`Pricing - ${p.name} ${p.kva}`} className={`btn ${p.highlight ? "btn--lime" : "btn--ink"}`}>
+                    <WhatsAppIcon size={17} color={p.highlight ? "var(--ink)" : "#fff"} />
+                    {p.price === "Custom" ? "Get a custom quote" : `Get the ${p.name} quote`}
+                  </WhatsAppButton>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ background: "#fff" }}>
-        <div className="container" style={{ maxWidth: 860 }}>
-          <h2 className="brig" style={h2}>Solar system prices by size</h2>
-          <div className="table-wrap">
-            <table>
+      <section className="sec sec--paper">
+        <div className="wrap">
+          <SectionHead eyebrow="By size" title="Solar system prices by size." lead={<>3kVA and 6kVA are standard packages. 5kVA and 10kVA are estimates from the same pricing the <Link href="/calculator" className="link-arrow">calculator</Link> uses.</>} />
+          <div className="table-wrap reveal">
+            <table className="compare">
               <thead><tr><th>Inverter</th><th>Battery</th><th>Panels</th><th>Suits</th><th>Installed price</th></tr></thead>
               <tbody>
                 {SIZES.map(s => (
-                  <tr key={s.size}>
-                    <td><strong>{s.size}</strong></td><td>{s.battery}</td><td>{s.panels}</td><td>{s.suits}</td><td><strong>{s.price}</strong></td>
-                  </tr>
+                  <tr key={s.size}><td><strong>{s.size}</strong></td><td>{s.battery}</td><td>{s.panels}</td><td>{s.suits}</td><td>{s.price}</td></tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p style={{ fontSize: 13, color: "var(--muted)", marginTop: 8 }}>
-            3kVA and 6kVA are our standard packages. 5kVA and 10kVA are estimates using the same pricing the{" "}
-            <Link href="/calculator" style={{ textDecoration: "underline" }}>calculator</Link> uses. Bigger systems ({PACKAGES[2].kva}) are quoted individually.
-          </p>
-
-          <h2 className="brig" style={{ ...h2, marginTop: 40 }}>What changes the price of a solar system</h2>
-          <p style={p}><strong>1. Battery size.</strong> The biggest single cost. Lithium storage runs roughly ₦{(PRICING.perKwhBattery / 1000).toFixed(0)},000 per kWh installed. Running an AC through the night is what pushes battery size up. See <Link href="/blog/how-long-do-solar-batteries-last-nigeria" style={a}>how long solar batteries last</Link> and <Link href="/blog/lifep04-vs-acid" style={a}>lithium vs lead-acid</Link>.</p>
-          <p style={p}><strong>2. Inverter size and type.</strong> A hybrid inverter that also uses grid power costs a little more than a basic off-grid unit, but lets you buy a smaller battery. Read <Link href="/blog/hybrid-vs-off-grid-solar-nigeria" style={a}>hybrid vs off-grid</Link>.</p>
-          <p style={p}><strong>3. Number and brand of panels.</strong> We use tier-one brands such as Jinko and Longi. Cheap unbranded panels cost less up front and lose output quickly. Here is <Link href="/blog/fake-substandard-solar-panels-nigeria" style={a}>how to spot fake panels</Link>.</p>
-          <p style={p}><strong>4. Your building.</strong> Bungalows are the simplest. <Link href="/blog/solar-on-upstairs-building" style={a}>Upstairs buildings</Link> and duplexes can need longer cable runs and more roof-access equipment.</p>
-          <p style={p}><strong>5. Location and logistics.</strong> Equipment prices are the same everywhere we work. Sites that need a long drive or a boat (Bonny, Brass, riverine communities) carry a transport cost that is listed on the quote.</p>
-          <p style={p}><strong>6. What you want to power.</strong> ACs, water pumps, freezers and pressing irons change the size of everything. The <Link href="/calculator" style={a}>solar calculator</Link> sizes it from your appliance list, and <Link href="/blog/what-can-3kva-5kva-10kva-power" style={a}>this guide</Link> shows what each size can carry.</p>
-
-          <h2 className="brig" style={{ ...h2, marginTop: 40 }}>What every LumaGrid quote includes</h2>
-          <ul className="steps" style={{ listStyle: "disc" }}>
-            <li>Inverter, lithium battery bank and solar panels, with brand and model named</li>
-            <li>Mounting rails, DC and AC cabling, breakers, surge protection and earthing</li>
-            <li>Installation, testing and a walkthrough of how to use the system</li>
-            <li>2-year workmanship warranty and the manufacturers&apos; product warranties</li>
-            <li>Any transport cost for sites outside Port Harcourt, shown up front</li>
-          </ul>
         </div>
       </section>
 
-      <section className="section" style={{ background: "var(--sand)" }}>
-        <div className="container" style={{ maxWidth: 860 }}>
-          <h2 className="brig" style={h2}>Solar price questions</h2>
-          <div className="faq-list">
-            {FAQS.map(f => (
-              <details key={f.q}>
-                <summary className="brig">{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
+      <section className="sec sec--sand">
+        <div className="wrap">
+          <SectionHead eyebrow="What moves the price" title="Six things that change a quote." />
+          <div className="g3">
+            {FACTORS.map((f, i) => (
+              <div key={f.title} className="card reveal" style={{ "--d": `${(i % 3) * 0.06}s` } as React.CSSProperties}>
+                <div className="kicker" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, fontSize: 30, color: "var(--green-mid)", lineHeight: 1, marginBottom: 12 }}>{String(i + 1).padStart(2, "0")}</div>
+                <h3 className="h3">{f.title}</h3>
+                <p>{f.text}</p>
+                <Link href={f.href} className="link-arrow" style={{ marginTop: 14, fontSize: 14 }}>{f.link} <ArrowRight size={14} /></Link>
+              </div>
             ))}
           </div>
-          <p style={{ ...p, marginTop: 24 }}>
+        </div>
+      </section>
+
+      <section className="sec sec--paper">
+        <div className="wrap split2">
+          <div className="reveal">
+            <span className="eyebrow">Every quote</span>
+            <h2 className="h2">What a LumaGrid price includes.</h2>
+            <ul className="ticks" style={{ marginTop: 22 }}>{INCLUDES.map(x => <li key={x}>{x}</li>)}</ul>
+            <div style={{ marginTop: 24 }}><Link href="/blog/how-to-read-a-solar-quote" className="link-arrow">How to read a solar quote <ArrowRight size={15} /></Link></div>
+          </div>
+          <div className="frame frame--4x3 reveal-scale">
+            <Image src="/images/real/LiFePo4-batteries-in-storage.jpeg" alt="LiFePO4 lithium batteries in storage, ready for LumaGrid installs" fill sizes="(max-width: 960px) 100vw, 560px" />
+          </div>
+        </div>
+      </section>
+
+      <section className="sec sec--sand">
+        <div className="wrap wrap--narrow">
+          <SectionHead eyebrow="FAQ" title="Solar price questions." center />
+          <FaqList faqs={FAQS} />
+          <p className="muted" style={{ marginTop: 26, textAlign: "center", lineHeight: 1.8 }}>
             Prices for your town:{" "}
-            <Link href="/solar-installation/port-harcourt" style={a}>Port Harcourt</Link>,{" "}
-            <Link href="/solar-installation/obio-akpor" style={a}>Obio-Akpor</Link>,{" "}
-            <Link href="/solar-installation/warri" style={a}>Warri</Link>,{" "}
-            <Link href="/solar-installation/asaba" style={a}>Asaba</Link>,{" "}
-            <Link href="/solar-installation/yenagoa" style={a}>Yenagoa</Link> and{" "}
-            <Link href="/solar-installation" style={a}>every other town we cover</Link>.
+            <Link href="/solar-installation/port-harcourt" className="link-arrow">Port Harcourt</Link>,{" "}
+            <Link href="/solar-installation/warri" className="link-arrow">Warri</Link>,{" "}
+            <Link href="/solar-installation/asaba" className="link-arrow">Asaba</Link>,{" "}
+            <Link href="/solar-installation/yenagoa" className="link-arrow">Yenagoa</Link>,{" "}
+            <Link href="/solar-installation" className="link-arrow">all towns</Link>.
           </p>
         </div>
       </section>
 
-      <section style={{ background: "var(--ink)", padding: "56px 20px" }}>
-        <div className="container" style={{ maxWidth: 760, textAlign: "center" }}>
-          <h2 className="brig" style={{ color: "#fff", fontSize: "clamp(26px, 6vw, 40px)", fontWeight: 800, lineHeight: 1.1, marginBottom: 14 }}>
-            Get an exact price for your property
-          </h2>
-          <p style={{ color: "rgba(255,255,255,0.75)", lineHeight: 1.7, marginBottom: 24 }}>
-            Tell us your state, area, building type and what you want to power. We reply on WhatsApp with a recommendation and a price range, then confirm it after a free site visit.
-          </p>
-          <WhatsAppButton source="Pricing page - bottom" className="btn-lime" style={{ fontSize: 16, padding: "15px 26px" }}>
-            <WhatsAppIcon size={18} color="var(--ink)" /> Get my quote
-          </WhatsAppButton>
-        </div>
-      </section>
-
+      <CtaBand source="Pricing page - bottom" title="Get an exact price for your property." />
       <Footer />
     </>
   );

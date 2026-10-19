@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import BayelsaStatePage from "./BayelsaStatePage";
+import StatePage from "@/components/locations/StatePage";
+import { STATES } from "@/lib/states";
 
 export const metadata: Metadata = {
   title: "Solar Installation in Bayelsa State | Yenagoa, Ogbia, Amassoma",
@@ -10,13 +11,12 @@ export const metadata: Metadata = {
     description:
       "Reliable off-grid solar for Bayelsa's most underserved communities. Yenagoa, Nembe, Brass, Southern Ijaw and beyond. Free site assessment.",
     url: "https://lumagridsolar.com/locations/bayelsa",
-    images: [{ url: "/og/default.jpg", width: 1200, height: 630 }],
-  },
+      },
   alternates: {
     canonical: "https://lumagridsolar.com/locations/bayelsa",
   },
 };
 
 export default function Page() {
-  return <BayelsaStatePage />;
+  return <StatePage s={STATES.bayelsa} />;
 }

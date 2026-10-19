@@ -1,0 +1,20 @@
+# After every successful Vercel production deploy, tell IndexNow (Bing,
+# Yandex, Seznam...) about every URL in the live sitemap. Bing's index feeds
+# ChatGPT search, so new guides show up there within days, not weeks.
+# Vercel reports deployments to GitHub, which triggers deployment_status.
+name: IndexNow after deploy
+
+on:
+  deployment_status:
+  workflow_dispatch:
+
+jobs:
+  ping:
+    if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/indexnow.mjs

@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useInView } from "@/lib/hooks";
 
 // ── WhatsApp Icon ─────────────────────────────────────────────────────────────
 
@@ -31,18 +30,18 @@ export function Stars({ count = 5 }: { count?: number }) {
 
 // ── FadeIn ────────────────────────────────────────────────────────────────────
 
+/**
+ * Fades its children up when they scroll into view. Purely class-based: the
+ * site-wide RevealObserver adds `is-in`, and the content stays visible when
+ * JavaScript is off or for crawlers (see `.js .reveal` in globals.css).
+ */
 export function FadeIn({
-  children, delay = 0, className = "",
+  children, delay = 0, className = "", style,
 }: {
-  children: React.ReactNode; delay?: number; className?: string;
+  children: React.ReactNode; delay?: number; className?: string; style?: React.CSSProperties;
 }) {
-  const [ref, inView] = useInView();
   return (
-    <div ref={ref} className={className} style={{
-      opacity: inView ? 1 : 0,
-      transform: inView ? "translateY(0)" : "translateY(28px)",
-      transition: `opacity 0.65s ease ${delay}s, transform 0.65s ease ${delay}s`,
-    }}>
+    <div className={`reveal ${className}`.trim()} style={{ ...style, ["--d" as string]: `${delay}s` }}>
       {children}
     </div>
   );

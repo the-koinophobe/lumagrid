@@ -110,3 +110,16 @@ export function getRelatedPosts(post: BlogPostFull, count = 3): BlogPost[] {
     .map(x => x.p);
   return [...picked, ...scored].slice(0, count);
 }
+
+export function categorySlug(category: string): string {
+  return category.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+/** Categories in display order, with post counts. */
+export function getCategories(): { name: string; slug: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const p of getAllPosts()) counts.set(p.category, (counts.get(p.category) ?? 0) + 1);
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([name, count]) => ({ name, slug: categorySlug(name), count }));
+}

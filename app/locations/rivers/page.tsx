@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import RiversStatePage from "./RiversStatePage";
+import StatePage from "@/components/locations/StatePage";
+import { STATES } from "@/lib/states";
 
 export const metadata: Metadata = {
   title: "Solar Installation in Rivers State & Port Harcourt | Free Quote",
@@ -10,13 +11,12 @@ export const metadata: Metadata = {
     description:
       "Professional solar installation across all of Rivers State. Port Harcourt, Bonny Island, Degema, Obio-Akpor and beyond. Free assessment, genuine brands, real warranties.",
     url: "https://lumagridsolar.com/locations/rivers",
-    images: [{ url: "/og/default.jpg", width: 1200, height: 630 }],
-  },
+      },
   alternates: {
     canonical: "https://lumagridsolar.com/locations/rivers",
   },
 };
 
 export default function Page() {
-  return <RiversStatePage />;
+  return <StatePage s={STATES.rivers} />;
 }
