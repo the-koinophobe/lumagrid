@@ -95,7 +95,7 @@ export default function LumaGridHome() {
             <div style={{ fontSize: 14, color: "rgba(255,255,255,.75)", marginTop: 6 }}>every month at ₦{PETROL_PRICE_NGN.toLocaleString("en-NG")}/litre</div>
             <hr style={{ border: 0, borderTop: "1px solid rgba(255,255,255,.14)", margin: "18px 0" }} />
             <div style={{ fontSize: 14, color: "rgba(255,255,255,.8)", lineHeight: 1.6 }}>
-              A family solar system from <strong style={{ color: "#fff" }}>₦3.8M</strong> pays that back in about a year, then keeps saving.
+              A family solar system from <strong style={{ color: "#fff" }}>₦3.8M</strong> pays that back in under a year, then keeps saving.
             </div>
             <a href="#calculator" className="link-arrow" style={{ marginTop: 14, color: "#fff" }}>Work out my numbers <ArrowRight size={15} /></a>
           </aside>

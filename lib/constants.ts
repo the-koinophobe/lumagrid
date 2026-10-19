@@ -44,17 +44,16 @@ export const SERVICES: Service[] = [
 /**
  * Default petrol pump price, naira per litre.
  *
- * Sourced August 2026 from Port Harcourt pump prices: Dangote gantry ₦1,165,
- * NNPC retail ₦1,255 (Lagos), Matrix Port Harcourt ₦1,220. Retail across PH
- * stations sat in the ₦1,220–1,290 band, so 1,250 is a fair midpoint.
+ * Updated October 2026 to ₦1,500/litre, the Port Harcourt pump price at the
+ * time (owner-confirmed). August 2026 was about ₦1,250.
  *
  * ── UPDATE POINT ──────────────────────────────────────────────────────────
  * This is the ONLY place the price is defined. Change the number and the date
  * below, and it updates everywhere — calculator, homepage, and all copy.
  * Visitors can also override it themselves with the in-calculator slider.
  */
-export const PETROL_PRICE_NGN = 1250;
-export const PETROL_PRICE_ASOF = "August 2026";
+export const PETROL_PRICE_NGN = 1500;
+export const PETROL_PRICE_ASOF = "October 2026";
 export const PETROL_PRICE_NOTE = "Port Harcourt average pump price";
 
 /** Generator servicing: oil, filters, plugs, and typical repairs per year. */
