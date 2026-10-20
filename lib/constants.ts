@@ -60,9 +60,10 @@ export const PETROL_PRICE_NOTE = "Port Harcourt average pump price";
 export const GENERATOR_SERVICE_NGN_PER_YEAR = 180_000;
 
 /**
- * Rule-of-thumb install pricing, back-fitted from our own quoted packages
- * (3kVA/3.2kWh ≈ ₦1.7M, 6kVA/8kWh ≈ ₦3.8M). Used to show an estimate RANGE
- * only — every real number still comes from a site assessment.
+ * Rule-of-thumb install pricing, back-fitted from our earlier packages
+ * (3kVA/3.2kWh ≈ ₦1.7M, 6kVA/8kWh ≈ ₦3.8M). The October 2026 packages
+ * (3kVA/5kWh ₦2.8M, 6kVA/16kWh ₦4.9M) are bundle prices and don't follow it.
+ * Used to show an estimate RANGE only — every real number still comes from a site assessment.
  */
 export const PRICING = {
   perKvaInverter: 110_000,
@@ -76,16 +77,16 @@ export const PRICING = {
 export const PACKAGES: Package[] = [
   {
     name: "Starter", label: "1–2 Bedroom", kva: "3KVA",
-    price: "₦1.7M", priceNote: "from", color: "#157a4e", highlight: false,
+    price: "₦2.8M", priceNote: "from", color: "#157a4e", highlight: false,
     appliances: ["4–6 LED lights", "2 ceiling fans", "TV + decoder", "Phone charging", "Small fridge"],
-    includes: ["3KVA inverter", "3.2kwh lithium battery", "4× 600W solar panels", "2-year warranty"],
+    includes: ["3KVA inverter", "5kwh lithium battery", "4× 600W solar panels", "2-year warranty"],
     ctaMsg: "I'm interested in the Starter 3KVA solar package.",
   },
   {
     name: "Family", label: "3–4 Bedroom", kva: "6KVA",
-    price: "₦3.8M", priceNote: "from", color: "#0d5c3a", highlight: true, badge: "Most Popular",
+    price: "₦4.9M", priceNote: "from", color: "#0d5c3a", highlight: true, badge: "Most Popular",
     appliances: ["All starter loads", "1× 1.5HP inverter AC", "Washing machine", "Large fridge/freezer", "Security lights"],
-    includes: ["6KVA hybrid inverter", "8kwh lithium battery", "8× 600W solar panels", "2-year warranty"],
+    includes: ["6KVA hybrid inverter", "16kwh lithium battery", "8× 600W solar panels", "2-year warranty"],
     ctaMsg: "I'm interested in the Family 6KVA solar package.",
   },
   {
@@ -142,9 +143,9 @@ export const LOCATIONS: Location[] = [
  * place, the numbers and LumaGrid without relying on the question.
  */
 export const FAQS: Faq[] = [
-  { q: "How much does a solar system cost in Port Harcourt?", a: "LumaGrid Solar's installed systems start from about ₦1.7M for a 3kVA inverter with a 3.2kWh lithium battery and four 600W panels, and from about ₦3.8M for a 6kVA system with 8kWh of lithium storage that can run a 1.5HP inverter AC. Every quote is itemised after a free site assessment." },
+  { q: "How much does a solar system cost in Port Harcourt?", a: "LumaGrid Solar's installed systems start from about ₦2.8M for a 3kVA inverter with a 5kWh lithium battery and four 600W panels, and from about ₦4.9M for a 6kVA system with 16kWh of lithium storage that can run a 1.5HP inverter AC. Every quote is itemised after a free site assessment." },
   { q: "Who installs solar in Port Harcourt, Warri and Yenagoa?", a: "LumaGrid Solar is a CAC-registered solar installer based in Port Harcourt that installs solar panels, hybrid inverters and lithium batteries across Rivers, Delta and Bayelsa States, including Port Harcourt, Obio-Akpor, Eleme, Bonny, Warri, Effurun, Asaba, Sapele, Ughelli, Abraka, Yenagoa, Ogbia and Amassoma." },
-  { q: "Can solar power an air conditioner in Nigeria?", a: "Yes. One 1.5HP inverter AC needs at least a 5kVA pure sine wave hybrid inverter, about 3kW to 4kW of panels and enough lithium battery for the hours you run it at night. Our 6kVA package with 8kWh of storage is built for a home with one AC." },
+  { q: "Can solar power an air conditioner in Nigeria?", a: "Yes. One 1.5HP inverter AC needs at least a 5kVA pure sine wave hybrid inverter, about 3kW to 4kW of panels and enough lithium battery for the hours you run it at night. Our 6kVA package with 16kWh of storage is built for a home with one AC." },
   { q: "Can you install solar on an upstairs building or duplex?", a: "Yes. We install on bungalows, upstairs (storey) buildings, duplexes, blocks of flats and shops. On storey buildings we plan safe roof access, fix the panels to the roof structure and run correctly sized cables to the inverter room." },
   { q: "How long does a solar installation take?", a: "Most homes are installed in one to two days after the free site assessment. Larger commercial systems take three to five days." },
   { q: "Does solar work during the rainy season in the Niger Delta?", a: "Yes. Panels keep producing under cloud at reduced output. We size every system for rainy-season sunshine in Rivers, Delta and Bayelsa, not dry-season peaks, so it keeps up from April to October." },

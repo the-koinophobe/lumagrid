@@ -515,7 +515,7 @@ export const CITIES: City[] = [
       },
       {
         q: "How much does solar cost in Yenagoa?",
-        a: "Prices are the same as Port Harcourt for equipment, starting from about ₦1.7M for a 3kVA system. Any transport cost is listed on your quote before you pay.",
+        a: "Prices are the same as Port Harcourt for equipment, starting from about ₦2.8M for a 3kVA system. Any transport cost is listed on your quote before you pay.",
       },
     ],
     nearby: ["ogbia", "amassoma", "kaiama", "sagbama"],

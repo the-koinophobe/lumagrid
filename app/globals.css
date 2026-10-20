@@ -325,6 +325,7 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 
 .calc-card {
   background: #fff;
+  color: var(--ink);
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
   padding: 20px 16px;
@@ -841,6 +842,8 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 .plan__body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 18px; flex: 1; }
 .plan__label { font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
 .plan__badge { position: absolute; top: 18px; right: 18px; }
+/* The badge sits over the head's top-right corner; push the plan name below it. */
+.plan__badge + .plan__head { padding-top: 60px; }
 .plan .btn { width: 100%; margin-top: auto; }
 
 /* ── Quote / testimonial ───────────────────────────────────────────── */
@@ -894,7 +897,12 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 .mbar.show { transform: none; }
 .mbar .btn { min-height: 48px; font-size: 15px; width: 100%; }
 @media (min-width: 900px) { .mbar { display: none; } }
-@media (max-width: 899px) { .wa-fab { display: none !important; } }
+@media (max-width: 899px) {
+  .wa-fab { display: none !important; }
+  /* Keep the last footer row and the calculator's sticky buttons clear of the bar. */
+  footer { padding-bottom: calc(69px + env(safe-area-inset-bottom)); }
+  body:has(.mbar.show) .calc-sticky { bottom: calc(69px + env(safe-area-inset-bottom)); }
+}
 
 /* ── Nav dropdown ───────────────────────────────────────────────────── */
 .navdrop { position: relative; }
@@ -909,10 +917,12 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 .ctaband { position: relative; overflow: hidden; border-radius: var(--r-xl); background: var(--lime); color: var(--ink); padding: 40px 24px; }
 @media (min-width: 900px) { .ctaband { padding: 64px; display: grid; grid-template-columns: 1.4fr 1fr; align-items: center; gap: 40px; } }
 .ctaband .h2 { max-width: 640px; }
-.ctaband p { color: rgba(8,21,15,.74); font-size: 17px; line-height: 1.65; margin-top: 14px; max-width: 560px; }
+.ctaband p:not(.h2) { color: rgba(8,21,15,.74); font-size: 17px; line-height: 1.65; margin-top: 14px; max-width: 560px; }
 .ctaband__actions { display: grid; gap: 10px; margin-top: 24px; position: relative; }
 @media (min-width: 900px) { .ctaband__actions { margin-top: 0; justify-items: end; } }
 .ctaband__sun { position: absolute; right: -90px; bottom: -90px; width: 300px; height: 300px; opacity: .22; pointer-events: none; }
+/* On phones the buttons stack over the sun; give the outline button a fill so the art doesn't show through it. */
+.ctaband .btn--ghost { background: var(--lime); }
 
 /* ── Misc ───────────────────────────────────────────────────────────── */
 .divider-line { height: 1px; background: var(--line); border: 0; }

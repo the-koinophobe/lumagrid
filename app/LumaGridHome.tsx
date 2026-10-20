@@ -76,7 +76,7 @@ export default function LumaGridHome() {
   // 5-year cost: a home burning 8 litres of petrol a day vs the 6kVA family package.
   const monthly = 8 * PETROL_PRICE_NGN * 30;
   const gen5 = (8 * PETROL_PRICE_NGN * 365 + GENERATOR_SERVICE_NGN_PER_YEAR) * 5;
-  const solar5 = 3_800_000 + 50_000 * 5;
+  const solar5 = 4_900_000 + 50_000 * 5;
   const solarWidth = `${Math.max(14, (solar5 / gen5) * 100).toFixed(1)}%`;
 
   return (
@@ -97,7 +97,7 @@ export default function LumaGridHome() {
             </h1>
             <p className="lead">
               LumaGrid Solar installs solar panels, hybrid inverters and lithium batteries for homes and businesses across
-              Rivers, Delta and Bayelsa. From ₦1.7M installed, sized for rainy season and fitted in 1 to 2 days.
+              Rivers, Delta and Bayelsa. From ₦2.8M installed, sized for rainy season and fitted in 1 to 2 days.
             </p>
             <div className="hero__proof">
               <span><Stars count={5} /> 5.0 on Google</span>
@@ -252,7 +252,7 @@ export default function LumaGridHome() {
             <p className="lead" style={{ marginTop: 16 }}>
               A generator burning 8 litres of petrol a day costs about ₦{monthly.toLocaleString("en-NG")} a month at
               ₦{PETROL_PRICE_NGN.toLocaleString("en-NG")}/litre, before servicing. A 6kVA solar system with lithium
-              batteries pays that back in under a year, then keeps saving.
+              batteries pays that back in just over a year, then keeps saving.
             </p>
             <div style={{ marginTop: 22 }}>
               <Link href="/blog/generator-vs-solar" className="link-arrow" style={{ color: "#fff" }}>Full generator vs solar breakdown <ArrowRight size={15} /></Link>
@@ -273,7 +273,7 @@ export default function LumaGridHome() {
             </div>
             <p style={{ fontSize: 13, color: "rgba(255,255,255,.6)", marginTop: 4 }}>
               Generator: 8 litres a day at ₦{PETROL_PRICE_NGN.toLocaleString("en-NG")} plus ₦{(GENERATOR_SERVICE_NGN_PER_YEAR / 1000).toFixed(0)}k a year servicing, with no price rises.
-              Solar: the 6kVA package from ₦3.8M plus light yearly maintenance.
+              Solar: the 6kVA package from ₦4.9M plus light yearly maintenance.
             </p>
           </div>
         </div>

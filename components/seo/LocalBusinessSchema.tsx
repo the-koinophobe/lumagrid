@@ -9,7 +9,7 @@ export const ORG_ID = `${SITE_URL}/#organization`;
 export const BUSINESS_ID = `${SITE_URL}/#business`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 
-/** Package prices like "₦1.7M" → 1700000. Returns undefined for "Custom". */
+/** Package prices like "₦2.8M" → 2800000. Returns undefined for "Custom". */
 function nairaFromLabel(label: string): number | undefined {
   const m = label.match(/([\d.]+)\s*M/i);
   return m ? Math.round(parseFloat(m[1]) * 1_000_000) : undefined;
@@ -68,7 +68,7 @@ export default function LocalBusinessSchema() {
           `${SITE_URL}/images/real/5kwh-6Kva-system-abraka.jpeg`,
           `${SITE_URL}/images/real/jinko-panels.jpeg`,
         ],
-        priceRange: "₦1.7M+",
+        priceRange: "₦2.8M+",
         currenciesAccepted: "NGN",
         paymentAccepted: "Cash, Bank Transfer",
         address: {

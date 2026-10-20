@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   if (!c) return {};
   const url = `https://lumagridsolar.com/solar-installation/${c.slug}`;
   const title = `Solar Installation in ${c.name}, ${c.state} State`;
-  const description = `Solar panel, inverter and lithium battery installation in ${c.name} (${c.areas.slice(0, 3).join(", ")} and more). Systems from ₦1.7M, free site assessment, 2-year workmanship warranty.`;
+  const description = `Solar panel, inverter and lithium battery installation in ${c.name} (${c.areas.slice(0, 3).join(", ")} and more). Systems from ₦2.8M, free site assessment, 2-year workmanship warranty.`;
   return {
     title,
     description,
@@ -48,7 +48,7 @@ function cityFaqs(c: City) {
   const generic = [
     {
       q: `How much does solar installation cost in ${c.name}?`,
-      a: `A 3kVA starter system (3.2kWh lithium battery, four 600W panels) starts from about ₦1.7M installed, and a 6kVA family system (8kWh lithium, eight 600W panels) starts from about ₦3.8M. Bigger homes and businesses are quoted individually. Any transport cost to ${c.name} is shown on your quote before you pay.`,
+      a: `A 3kVA starter system (5kWh lithium battery, four 600W panels) starts from about ₦2.8M installed, and a 6kVA family system (16kWh lithium, eight 600W panels) starts from about ₦4.9M. Bigger homes and businesses are quoted individually. Any transport cost to ${c.name} is shown on your quote before you pay.`,
     },
     {
       q: `Do you install solar on upstairs buildings in ${c.name}?`,
@@ -77,7 +77,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
     ["Coverage", `${c.name}, ${c.lga} LGA, ${st.label}`],
     ["Grid supply", c.disco],
     ["Solar resource", `About ${st.psh} peak sun hours a day (we size for rainy season)`],
-    ["Starting price", "From ₦1.7M for a 3kVA system with lithium battery"],
+    ["Starting price", "From ₦2.8M for a 3kVA system with lithium battery"],
     ["Install time", "1 to 2 days for most homes"],
     ["Warranty", "2-year workmanship, 10-year panel performance"],
     ["Contact", <a key="tel" href={`tel:${PHONE_E164}`}>{PHONE_DISPLAY} (call or WhatsApp)</a>],

@@ -59,7 +59,7 @@ export function serviceSchema({
     offers: {
       "@type": "Offer",
       priceCurrency: "NGN",
-      priceSpecification: { "@type": "PriceSpecification", minPrice: 1_700_000, priceCurrency: "NGN" },
+      priceSpecification: { "@type": "PriceSpecification", minPrice: 2_800_000, priceCurrency: "NGN" },
       availability: "https://schema.org/InStock",
     },
   };

@@ -15,6 +15,6 @@ export default async function Image({ params }: { params: Promise<{ city: string
   return ogCard({
     eyebrow: c ? STATE_PAGES[c.state].label : "Niger Delta",
     title: c ? `Solar installation in ${c.name}` : "Solar installation in the Niger Delta",
-    footer: "From ₦1.7M · Free site assessment · 2-year warranty",
+    footer: "From ₦2.8M · Free site assessment · 2-year warranty",
   });
 }

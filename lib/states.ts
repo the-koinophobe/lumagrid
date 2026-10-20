@@ -25,7 +25,7 @@ export interface StatePageData {
 
 const costFaq = (town: string): StateFaq => ({
   q: `How much does a solar system cost in ${town}?`,
-  a: "A 3kVA starter system with a 3.2kWh lithium battery and four panels starts from about ₦1.7M installed, and a 6kVA family system with 8kWh of lithium storage starts from about ₦3.8M. Your final quote depends on your load and roof, and is itemised line by line after a free site assessment.",
+  a: "A 3kVA starter system with a 5kWh lithium battery and four panels starts from about ₦2.8M installed, and a 6kVA family system with 16kWh of lithium storage starts from about ₦4.9M. Your final quote depends on your load and roof, and is itemised line by line after a free site assessment.",
 });
 const upstairsFaq = (state: string): StateFaq => ({
   q: `Can you install solar panels on an upstairs (storey) building in ${state}?`,

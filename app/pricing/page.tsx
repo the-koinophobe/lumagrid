@@ -14,7 +14,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Solar Installation Prices in Nigeria (2026): 3kVA, 5kVA, 10kVA",
   description:
-    "What solar costs in Port Harcourt, Warri and Yenagoa in 2026: 3kVA from ₦1.7M, 6kVA from ₦3.8M, plus 5kVA and 10kVA estimates and what pushes the price up or down.",
+    "What solar costs in Port Harcourt, Warri and Yenagoa in 2026: 3kVA from ₦2.8M, 6kVA from ₦4.9M, plus 5kVA and 10kVA estimates and what pushes the price up or down.",
   alternates: { canonical: "https://lumagridsolar.com/pricing" },
   openGraph: {
     title: "Solar Installation Prices in Nigeria (2026) | LumaGrid Solar",
@@ -33,9 +33,9 @@ function estimate(kva: number, kwh: number, panelKw: number) {
 }
 
 const SIZES = [
-  { size: "3kVA", battery: "3.2kWh lithium", panels: "4 × 600W (2.4kW)", suits: "1–2 bedroom flat: lights, fans, TV, small fridge", price: "From ₦1.7M" },
+  { size: "3kVA", battery: "5kWh lithium", panels: "4 × 600W (2.4kW)", suits: "1–2 bedroom flat: lights, fans, TV, small fridge", price: "From ₦2.8M" },
   { size: "5kVA", battery: "5kWh lithium", panels: "5–6 × 600W (3–3.6kW)", suits: "2–3 bedroom home, one small inverter AC for a few hours", price: estimate(5, 5, 3.3) },
-  { size: "6kVA", battery: "8kWh lithium", panels: "8 × 600W (4.8kW)", suits: "3–4 bedroom home with one 1.5HP inverter AC", price: "From ₦3.8M" },
+  { size: "6kVA", battery: "16kWh lithium", panels: "8 × 600W (4.8kW)", suits: "3–4 bedroom home with one 1.5HP inverter AC", price: "From ₦4.9M" },
   { size: "10kVA", battery: "15kWh lithium", panels: "10–12 × 600W (6–7.2kW)", suits: "Duplex or office, two ACs, water pump", price: estimate(10, 15, 6.6) },
 ];
 
@@ -105,8 +105,8 @@ export default function PricingPage() {
           <aside className="quick-answer reveal" aria-label="Quick answer" style={{ marginBottom: 0 }}>
             <strong>TL;DR</strong>
             <p>
-              A complete installed system starts at about <b>₦1.7M for 3kVA</b> (3.2kWh lithium, four 600W panels) and about
-              {" "}<b>₦3.8M for 6kVA</b> (8kWh lithium, eight 600W panels). 5kVA usually lands around <b>{estimate(5, 5, 3.3)}</b> and
+              A complete installed system starts at about <b>₦2.8M for 3kVA</b> (5kWh lithium, four 600W panels) and about
+              {" "}<b>₦4.9M for 6kVA</b> (16kWh lithium, eight 600W panels). 5kVA usually lands around <b>{estimate(5, 5, 3.3)}</b> and
               10kVA around <b>{estimate(10, 15, 6.6)}</b>. Prices include inverter, battery, panels, mounting, cabling, protection and installation.
             </p>
           </aside>
